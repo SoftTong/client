@@ -13,6 +13,8 @@ const GlobalStyle = createGlobalStyle`
       padding : 0;
       margin : 0;
       scroll-behavior: smooth;
+      font-family : 'Noto Sans KR';
+      background-color: rgb(248, 249, 250);
       @media (max-width: 1200px) {
         font-size: 14px
       }

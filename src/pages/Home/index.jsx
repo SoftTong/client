@@ -1,13 +1,13 @@
 import React from "react"
 import styled from "styled-components"
 import ContentContainer from "../../containers/pages/home/ContentContainer"
-import Header from "../../layout/header"
+import Header from "../../layout/Header"
 
 const WholeWrapper = styled.div`
     width : 100%;
     display : -webkit-box;
     display : -moz-box;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     /* position : relative; */
 
 `
