@@ -35,7 +35,7 @@ display: flex;
 align-items: center;
  justify-content: flex-end;
 `
-const LogInTextBox = styled.input.attrs(props => ({ type: "text" }))`
+const LogInTextBox = styled.input.attrs(props => ({ type: (props.type) || "text" }))`
 
 border : 1px solid #d9d9d9 ;
 padding : 4px 11px;
@@ -48,6 +48,7 @@ margin-left: 1rem;
 };
 &:hover{
     border : 1px solid #1890ff;
+    transition: all 0.125s ease-in 0s;
 }
 @media screen and (max-width: 992px){
     text-align: center;
@@ -66,21 +67,24 @@ font-size: 14px;
     cursor : pointer;
 `
 
-const LogIn = ({ handleLoginModal }) => {
+const LogIn = ({ settingLogInFunction, logInInfo, LoginBtnOnclick }) => {
+
+    const { username, password } = logInInfo;
+    console.log(logInInfo)
     return (
         <>
             <LoginWrapper>
                 <LoginItem>
-                    <LogInTypo>    <Required>*</Required>학번</LogInTypo>
-                    <LogInTextBox></LogInTextBox>
+                    <LogInTypo><Required>*</Required>학번</LogInTypo>
+                    <LogInTextBox onChange={settingLogInFunction.username} value={username}></LogInTextBox>
                 </LoginItem>
 
                 <LoginItem>
                     <LogInTypo><Required>*</Required>비밀번호</LogInTypo>
-                    <LogInTextBox></LogInTextBox>
+                    <LogInTextBox type={"password"} onChange={settingLogInFunction.password} value={password}></LogInTextBox>
                 </LoginItem>
                 <LoginItem>
-                    <LoginBtn onClick={handleLoginModal.close}>로그인</LoginBtn>
+                    <LoginBtn onClick={LoginBtnOnclick}>로그인</LoginBtn>
                 </LoginItem>
             </LoginWrapper>
         </>

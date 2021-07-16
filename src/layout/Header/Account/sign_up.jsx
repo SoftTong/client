@@ -31,12 +31,12 @@ const Required = styled.div`
 
 const LogInTypo = styled.div`
 font-size : 1rem;
-min-width : 5rem;
+min-width : 6rem;
 display: flex;
 align-items: center;
  justify-content: flex-end;
 `
-const LogInTextBox = styled.input.attrs(props => ({ type: "text" }))`
+const LogInTextBox = styled.input.attrs(props => ({ type: (props.type) || "text" }))`
 
 border : 1px solid #d9d9d9 ;
 padding : 4px 11px;
@@ -49,6 +49,7 @@ margin-left: 1rem;
 };
 &:hover{
     border : 1px solid #1890ff;
+    transition: all 0.125s ease-in 0s;
 }
 @media screen and (max-width: 992px){
     text-align: center;
@@ -66,24 +67,41 @@ font-size: 14px;
     border-radius: 2px;
     cursor : pointer;
 `
-const SignUp = ({ handleLoginModal }) => {
+
+
+const SignUp = ({ handleLoginModal, signUpInfo, settingSingUpFunction, SignupBtnOnclick }) => {
+
+    const { email, password, name, userId, phone_number, department, status } = signUpInfo
+    console.log(signUpInfo)
     return (
         <>
             <LoginWrapper>
                 <LoginItem>
-                    <LogInTypo>    <Required>*</Required>학번</LogInTypo>
-                    <LogInTextBox></LogInTextBox>
+                    <LogInTypo><Required>*</Required>학번</LogInTypo>
+                    <LogInTextBox onChange={settingSingUpFunction.userId} value={userId}></LogInTextBox>
                 </LoginItem>
                 <LoginItem>
-                    <LogInTypo><Required>*</Required>이메일</LogInTypo>
-                    <LogInTextBox></LogInTextBox>
+                    <LogInTypo><Required>*</Required>학과</LogInTypo>
+                    <LogInTextBox onChange={settingSingUpFunction.department} value={department}></LogInTextBox>
                 </LoginItem>
                 <LoginItem>
                     <LogInTypo><Required>*</Required>비밀번호</LogInTypo>
-                    <LogInTextBox></LogInTextBox>
+                    <LogInTextBox onChange={settingSingUpFunction.password} value={password} type={"password"}></LogInTextBox>
                 </LoginItem>
                 <LoginItem>
-                    <LoginBtn onClick={handleLoginModal.close}>가입하기</LoginBtn>
+                    <LogInTypo><Required>*</Required>이메일</LogInTypo>
+                    <LogInTextBox onChange={settingSingUpFunction.email} value={email} ></LogInTextBox>
+                </LoginItem>
+                <LoginItem>
+                    <LogInTypo><Required>*</Required>이름</LogInTypo>
+                    <LogInTextBox onChange={settingSingUpFunction.name} value={name}></LogInTextBox>
+                </LoginItem>
+                <LoginItem>
+                    <LogInTypo><Required>*</Required>핸드폰번호</LogInTypo>
+                    <LogInTextBox onChange={settingSingUpFunction.phone_number} value={phone_number} ></LogInTextBox>
+                </LoginItem>
+                <LoginItem>
+                    <LoginBtn onClick={SignupBtnOnclick}>가입하기</LoginBtn>
                 </LoginItem>
             </LoginWrapper>
         </>

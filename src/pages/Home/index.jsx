@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import ContentContainer from "../../containers/pages/home/ContentContainer"
-import Header from "../../layout/Header"
+import Header from "../../containers/redux/components/Header"
 
 const WholeWrapper = styled.div`
     width : 100%;

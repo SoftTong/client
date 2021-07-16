@@ -31,7 +31,16 @@ margin-bottom : 12px;
 
 
 
-const Container = ({ isSignUpModal, handleSignUpModal, handleLoginModal }) => {
+const Container = ({ isSignUpModal,
+    handleSignUpModal,
+    handleLoginModal,
+    LoginBtnOnclick,
+    SignupBtnOnclick,
+    signUpInfo,
+    settingSingUpFunction,
+    settingLogInFunction,
+    logInInfo
+}) => {
 
 
 
@@ -43,7 +52,11 @@ const Container = ({ isSignUpModal, handleSignUpModal, handleLoginModal }) => {
                         {/* <div className = "SignBtn" onClick={handleSignIn} > SignIn</div> */}
 
                         {/* <SignUp closeModal={handleLoginModal.close}></SignUp> */}
-                        <SignUp handleLoginModal={handleLoginModal}></SignUp>
+                        <SignUp signUpInfo={signUpInfo}
+                            settingSingUpFunction={settingSingUpFunction}
+                            SignupBtnOnclick={SignupBtnOnclick}
+                            handleLoginModal={handleLoginModal}
+                        ></SignUp>
                         <DividerText>이미 가입하셨나요?</DividerText>
                         <LoginBtn onClick={handleSignUpModal.close}>로그인</LoginBtn>
 
@@ -51,7 +64,8 @@ const Container = ({ isSignUpModal, handleSignUpModal, handleLoginModal }) => {
                     </> :
                     <>
                         {/* <div className = "SignBtn" onClick={handleSignUp} > SignUp</div> */}
-                        <LogIn handleLoginModal={handleLoginModal}></LogIn>
+                        <LogIn settingLogInFunction={settingLogInFunction}
+                            logInInfo={logInInfo} handleLoginModal={handleLoginModal} LoginBtnOnclick={LoginBtnOnclick}></LogIn>
                         <DividerText>계정이 없으신가요?</DividerText>
                         <LoginBtn onClick={handleSignUpModal.show}>회원가입</LoginBtn>
                     </>
