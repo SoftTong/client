@@ -18,13 +18,13 @@ const HeaderWrapper = styled.div`
     display : flex;
   align-items: center;
   justify-content : center;
-  @media(max-width: 1200px){
+  @media(max-width: 1024px){
     height : 64px;
   }
   @media(max-width: 768px){
     height : 56px;
   }
-  @media(max-width: 576px){
+  @media(max-width: 480px){
     height : 40px;
   }
 `

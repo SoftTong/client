@@ -9,7 +9,7 @@ const ContentContainer = () => {
     return (
         <>
             <HomeContent
-            //pros로 넘겨주기
+            //props로 넘겨주기
 
             ></HomeContent>
         </>

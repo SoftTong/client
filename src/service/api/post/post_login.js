@@ -5,6 +5,7 @@ import _ from "../../../config/env"
  * @method POST
  * @request @headers 
  * @request @body user
+ * @response
  */
 
 
@@ -15,7 +16,7 @@ const post_login = (loginInfo)=>{
             method: 'POST',
             headers : {
                 'Content-Type': 'application/json',
-              },
+            },
             body:loginInfo,
         }).then((res)=> {
             if(res.status===500) throw Promise.resolve({errorCode: 500, errorName: "Server error"})

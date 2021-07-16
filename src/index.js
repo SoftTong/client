@@ -15,13 +15,13 @@ const GlobalStyle = createGlobalStyle`
       scroll-behavior: smooth;
       font-family : 'Noto Sans KR';
       background-color: rgb(248, 249, 250);
-      @media (max-width: 1200px) {
+      @media (max-width: 1024px) {
         font-size: 14px
       }
-      @media (max-width: 1024px) {
+      @media (max-width: 768px) {
         font-size: 10px
       }
-      @media (max-width: 768px) {
+      @media (max-width: 480px) {
         font-size: 8px
       }
     }
