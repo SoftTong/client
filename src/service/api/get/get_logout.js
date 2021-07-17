@@ -15,10 +15,11 @@ const get_logout = () =>{
     }).then((res)=> {
         if(res.status===500) throw Promise.resolve({errorCode: 500, errorName: "Server error"})
         if (!res.ok) throw res.json()
-        return res.json()
+        console.log(res)
     }).catch(async(error)=>{
+        console.log("에러")
         let err =  await error.then()
-        console.log("Error from logIn\n"+err.errorCode+"\n"+err.errorName)
+        console.log("Error from get_logout\n"+err.errorCode+"\n"+err.errorName)
          //에러처리
         throw err
     })

@@ -105,8 +105,25 @@ const Header = ({ logined }) => {
   const [isLoginModal, setIsLoginModalVisible] = useState(false);
   const handleLoginModal = {
     show: () => setIsLoginModalVisible(true),
-    close: () => setIsLoginModalVisible(false)
+    close: () => {
+      setIsLoginModalVisible(false)
+      setIsSignUpModalVisible(false)
+      setSignUpInfo({
+        email: "",
+        password: "",
+        name: "",
+        userId: "",
+        phone_number: "",
+        department: "",
+        status: "ROLE_USER",
+      })
+      setLoginInfo({
+        username: "",
+        password: "",
+      })
+    }
   }
+
   const [isSignUpModal, setIsSignUpModalVisible] = useState(false)
   const handleSignUpModal = {
     show: () => setIsSignUpModalVisible(true),
@@ -231,7 +248,6 @@ const Header = ({ logined }) => {
                   <Account
                     isSignUpModal={isSignUpModal}
                     handleSignUpModal={handleSignUpModal}
-                    handleLoginModal={handleLoginModal}
                     LoginBtnOnclick={LoginBtnOnclick}
                     SignupBtnOnclick={SignupBtnOnclick}
                     signUpInfo={signUpInfo}

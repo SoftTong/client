@@ -17,14 +17,13 @@ import _ from "../../../config/env"
               },
               body : signupInfo
             })
-           .then(res=>{
+           .then((res)=>{
             if(!res.ok) throw res.json()
-             console.log(res)
-             return res.json()
+            console.log(res)
            })
             .catch(async(error) =>{
                 let err = await error.then()
-                console.log(`Error from sing-up \n ${err}`)
+                // console.log(`Error from sing-up \n ${err}`)
                 console.log(err)
                 console.log("Error from  sing-up\n"+err.errorCode+"\n"+err.errorName)
                 throw err;

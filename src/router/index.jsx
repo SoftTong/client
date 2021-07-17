@@ -5,12 +5,12 @@ import HomeRouter from "./HomeRouter"
 
 //TODO userInfo 추가 ( Redux 구축)
 //TODO 여기서 redux 값다 받아서 props 로 contentContainer 로 넘겨주자 
-const SotongRouter = ({
+const SotongRouter = (
     //예상 userReducer
     // role (역할)
     // username ( 사용자이름)
     // type ( 튜터 ? )
-}) => {
+) => {
 
     const userInfo = {
         //TODO role 하드코딩한거 지우기

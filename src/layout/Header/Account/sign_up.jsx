@@ -69,9 +69,11 @@ font-size: 14px;
 `
 
 
-const SignUp = ({ handleLoginModal, signUpInfo, settingSingUpFunction, SignupBtnOnclick }) => {
+const SignUp = ({ signUpInfo, settingSingUpFunction, SignupBtnOnclick }) => {
 
-    const { email, password, name, userId, phone_number, department, status } = signUpInfo
+    const { email, password, name, userId, phone_number, department,
+        // status 
+    } = signUpInfo
     console.log(signUpInfo)
     return (
         <>
