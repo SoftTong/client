@@ -69,14 +69,14 @@ font-size: 14px;
 
 const LogIn = ({ settingLogInFunction, logInInfo, LoginBtnOnclick }) => {
 
-    const { username, password } = logInInfo;
+    const { userId, password } = logInInfo;
     console.log(logInInfo)
     return (
         <>
             <LoginWrapper>
                 <LoginItem>
                     <LogInTypo><Required>*</Required>학번</LogInTypo>
-                    <LogInTextBox onChange={settingLogInFunction.username} value={username}></LogInTextBox>
+                    <LogInTextBox onChange={settingLogInFunction.userId} value={userId}></LogInTextBox>
                 </LoginItem>
 
                 <LoginItem>

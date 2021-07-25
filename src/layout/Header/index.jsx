@@ -113,12 +113,11 @@ const Header = ({ logined }) => {
         password: "",
         name: "",
         userId: "",
-        phone_number: "",
+        phoneNumber: "",
         department: "",
-        status: "ROLE_USER",
       })
       setLoginInfo({
-        username: "",
+        userId: "",
         password: "",
       })
     }
@@ -137,12 +136,11 @@ const Header = ({ logined }) => {
     password: "",
     name: "",
     userId: "",
-    phone_number: "",
+    phoneNumber: "",
     department: "",
-    status: "ROLE_USER",
   })
   const [logInInfo, setLoginInfo] = useState({
-    username: "",
+    userId: "",
     password: "",
   })
   //TODO 코드 정리 
@@ -165,8 +163,8 @@ const Header = ({ logined }) => {
       return setSignUpInfo((state) => ({ ...state, userId: userId }))
     },
     phone_number: (e) => {
-      const phone_number = e.target.value;
-      return setSignUpInfo((state) => ({ ...state, phone_number: phone_number }))
+      const phoneNumber = e.target.value;
+      return setSignUpInfo((state) => ({ ...state, phoneNumber: phoneNumber }))
     },
     department: (e) => {
       const department = e.target.value;
@@ -179,9 +177,9 @@ const Header = ({ logined }) => {
   }
 
   let settingLogInFunction = {
-    username: (e) => {
-      const username = e.target.value;
-      return setLoginInfo((state) => ({ ...state, username: username }))
+    userId: (e) => {
+      const userId = e.target.value;
+      return setLoginInfo((state) => ({ ...state, userId: userId }))
     },
 
     password: (e) => {
@@ -198,22 +196,21 @@ const Header = ({ logined }) => {
   const LoginBtnOnclick = () => {
     LoginProcess(logInInfo)
     setLoginInfo({
-      username: "",
+      userId: "",
       password: "",
     })
     handleLoginModal.close()
   }
   const SignupBtnOnclick = () => {
     SignupProcess(signUpInfo)
-    // handleLoginModal.close()
+    handleLoginModal.close()
     setSignUpInfo({
       email: "",
       password: "",
       name: "",
       userId: "",
-      phone_number: "",
+      phoneNumber: "",
       department: "",
-      status: "ROLE_USER",
     })
 
   }

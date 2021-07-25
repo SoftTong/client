@@ -5,13 +5,15 @@ const SignupProcess = (signUpInfo) =>{
 
     console.log(signUpInfo)
     const LoginInfo = {
-        "username" : signUpInfo.name,
+        "userId" : signUpInfo.name,
         "password" : signUpInfo.password,
     }
 
     post_signup(JSON.stringify(signUpInfo))
     .then((res)=>{
         console.log(res)
+        console.log("회원가입 성공")
+        console.log("ㄹ그인 start,,,")
         LoginProcess(LoginInfo)
     })
     .catch(err => console.log(err))

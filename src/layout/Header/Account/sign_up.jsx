@@ -71,7 +71,7 @@ font-size: 14px;
 
 const SignUp = ({ signUpInfo, settingSingUpFunction, SignupBtnOnclick }) => {
 
-    const { email, password, name, userId, phone_number, department,
+    const { email, password, name, userId, phoneNumber, department,
         // status 
     } = signUpInfo
     console.log(signUpInfo)
@@ -100,7 +100,7 @@ const SignUp = ({ signUpInfo, settingSingUpFunction, SignupBtnOnclick }) => {
                 </LoginItem>
                 <LoginItem>
                     <LogInTypo><Required>*</Required>핸드폰번호</LogInTypo>
-                    <LogInTextBox onChange={settingSingUpFunction.phone_number} value={phone_number} ></LogInTextBox>
+                    <LogInTextBox onChange={settingSingUpFunction.phone_number} value={phoneNumber} ></LogInTextBox>
                 </LoginItem>
                 <LoginItem>
                     <LoginBtn onClick={SignupBtnOnclick}>가입하기</LoginBtn>

@@ -3,7 +3,7 @@ import _ from "../../../config/env"
 /**
  * @description 유저정보 받아오기 
  * @method GET
- * @request @headers 
+ * @request @headers  SoTong-token
  * @request @body user
  * @response
  */
@@ -11,22 +11,21 @@ import _ from "../../../config/env"
 
 const get_userInfo = ()=>{
  
-    return fetch(_.SERVER_URL + "/userinfo", {
-        // return fetch(_.SERVER_URL + "/gettest", {
+    return fetch(_.SERVER_URL + "/user/current", {
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem("SoTong-token")
             },
         }).then((res)=> {
             if(res.status===500) throw Promise.resolve({errorCode: 500, errorName: "Server error"})
             if(!res.ok) throw res.json()
             console.log(res)
+            return res.json()
         })
         .catch(async(error)=>{
             let err = await error.then()
-            // console.log(`Error from get_userInfo-up \n ${err}`)
-            // console.log(err)
-            console.log("Error from  get_userInfo-up\n"+err.errorCode+"\n"+err.errorName)
+            console.log(err)
+            console.log("Error from  get_userInfo\n"+err.message+"\n success : "+err.success)
             throw err;
         })
      //}

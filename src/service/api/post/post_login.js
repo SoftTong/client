@@ -12,7 +12,7 @@ import _ from "../../../config/env"
 const post_login = (loginInfo)=>{
  
     console.log(loginInfo)
-        return( fetch(_.SERVER_URL + "/login", {
+        return( fetch(_.SERVER_URL + "/api/auth/signin", {
             method: 'POST',
             headers : {
                 'Content-Type': 'application/json',
@@ -23,13 +23,12 @@ const post_login = (loginInfo)=>{
             if(res.status===500) throw Promise.resolve({errorCode: 500, errorName: "Server error"})
             if(!res.ok) throw res.json()
             console.log(res)
+            return res.json()
         })
         .catch(async(error)=>{
-            //FIXME error코드 수정
             let err = await error.then()
-            // console.log(`Error from post_login \n ${err}`)
             console.log(err)
-            console.log("Error from  post_login\n"+err.errorCode+"\n"+err.errorName)
+            console.log("Error from  log_in\n"+err.message+"\n success : "+err.success)
             throw err;
         })
      //}
