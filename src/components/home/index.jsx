@@ -7,7 +7,7 @@ const HomeContent = () => {
     return (
         <>
             {/* home 관련 component */}
-            <div >HOME page</div>
+            <div >HOME page Content</div>
         </>
     )
 

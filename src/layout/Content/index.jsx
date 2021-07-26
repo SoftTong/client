@@ -1,14 +1,15 @@
 import React from "react"
 import styled from "styled-components"
 
-const HeaderStyle = styled.div`
+const ContentStyle = styled.div`
      width: 1530px;
   margin-left: auto;
   margin-right: auto;
-    height : inherit;
+    height : auto;
     display : flex;
     justify-content : center;
     flex-wrap : wrap;
+    padding : 3.2vh 0vw;
     flex-direction: column;
     box-sizing: border-box;
 
@@ -27,15 +28,15 @@ const HeaderStyle = styled.div`
 
 `
 
-const Header = ({ children, style }) => {
+const Content = ({ children, style }) => {
 
     return (
         <>
-            <HeaderStyle style={style}>
+            <ContentStyle style={style}>
                 {children}
-            </HeaderStyle>
+            </ContentStyle>
         </>
     )
 }
 
-export default Header
+export default Content

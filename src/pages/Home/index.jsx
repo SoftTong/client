@@ -2,18 +2,12 @@ import React from "react"
 import styled from "styled-components"
 import ContentContainer from "../../containers/pages/home/ContentContainer"
 import Header from "../../containers/redux/components/Header"
+import ContentLayout from "../../layout/Content"
 
 const WholeWrapper = styled.div`
-    width : 100%;
-    display : -webkit-box;
-    display : -moz-box;
-    /* overflow-x: hidden; */
-    /* position : relative; */
-
-`
-
-const ContentWrapper = styled.div`
-    height : 100%;
+ /* display : -webkit-box;
+    display : -moz-box; */
+    height : 100vh;
     width : 100%;
 `
 
@@ -23,11 +17,10 @@ const Home = () => {
     return (
         <>
             <WholeWrapper>
-                <ContentWrapper>
-                    <Header></Header>
-                    <ContentContainer>
-                    </ContentContainer>
-                </ContentWrapper>
+                <Header></Header>
+                <ContentLayout>
+                    <ContentContainer />
+                </ContentLayout>
 
             </WholeWrapper>
         </>
