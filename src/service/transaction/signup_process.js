@@ -5,7 +5,7 @@ const SignupProcess = (signUpInfo) =>{
 
     console.log(signUpInfo)
     const LoginInfo = {
-        "userId" : signUpInfo.name,
+        "userId" : signUpInfo.userId,
         "password" : signUpInfo.password,
     }
 

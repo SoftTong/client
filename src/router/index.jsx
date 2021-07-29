@@ -1,7 +1,7 @@
 import React from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import HomeRouter from "./HomeRouter"
-
+import ProfileRouter from "./ProfileRouter"
 
 //TODO userInfo 추가 ( Redux 구축)
 //TODO 여기서 redux 값다 받아서 props 로 contentContainer 로 넘겨주자 
@@ -25,6 +25,9 @@ const SotongRouter = (
                 <Switch>
                     <Route path="/">
                         <HomeRouter security={["ADMIN", "GUEST", "USER"]} userInfo={userInfo}></HomeRouter>
+                    </Route>
+                    <Route path='profile' >
+                        <ProfileRouter security={["ADMIN", "GUEST", "USER"]} userInfo={userInfo} ></ProfileRouter>
                     </Route>
                 </Switch>
             </BrowserRouter>

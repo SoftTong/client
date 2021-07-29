@@ -1,5 +1,5 @@
 import React from "react"
-import HomeContent from "../../../components/home"
+import HomeContent from "../../../components/profile"
 
 
 const ContentContainer = () => {
