@@ -1,3 +1,16 @@
+/* Base */
+html {
+  overflow-x: hidden;
+}
+
+body {
+  line-height: 1.7;
+  color: #364d59 !important;
+  font-weight: 300;
+  font-size: 1rem;
+  background: #fff;
+}
+
 a {
   -webkit-transition: 0.3s all ease;
   -o-transition: 0.3s all ease;
@@ -44,6 +57,35 @@ a:hover {
 }
 .site-section.site-section-sm {
   padding: 4em 0;
+}
+
+.site-footer {
+  padding: 1em 0;
+  background-color: rgb(236, 236, 236);
+  margin-top: 4em;
+}
+@media (min-width: 768px) {
+  .site-footer {
+    padding: 2em 0;
+    margin-top: 4em;
+    background-color: rgb(236, 236, 236);
+  }
+}
+.site-footer .border-top {
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+.site-footer a {
+  color: rgba(0, 0, 0, 0.5);
+}
+.site-footer a:hover {
+  color: black;
+}
+.site-footer ul li {
+  margin-bottom: 10px;
+}
+.site-footer .footer-heading {
+  font-size: 16px;
+  color: #000;
 }
 
 .bg-text-line {
