@@ -41,7 +41,7 @@ const SotongRouter = () =>
                 userInfo={userInfo}
               ></CreateNoticeRouter>
             </Route>
-            <Route path="/noticelist">
+            <Route path="/notice">
               <NoticeListRouter
                 security={["ADMIN", "GUEST", "USER"]}
                 userInfo={userInfo}
