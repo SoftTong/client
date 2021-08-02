@@ -6,6 +6,11 @@ const FooterStyle = styled.div`
     height : auto;
     display : flex;
     justify-content : center;
+    /* 위치 맨 밑으로 */
+    left : 0;
+     bottom: 0;
+    right : 0;
+    /*  */
 `
 
 const Footer = ({ children }) => {

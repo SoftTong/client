@@ -1,5 +1,6 @@
 import React from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
+import CreateNoticeRouter from "./CreateNoticeRouter"
 import HomeRouter from "./HomeRouter"
 import ProfileRouter from "./ProfileRouter"
 
@@ -23,11 +24,14 @@ const SotongRouter = (
         <>
             <BrowserRouter>
                 <Switch>
-                    <Route path="/">
+                    <Route exact path="/">
                         <HomeRouter security={["ADMIN", "GUEST", "USER"]} userInfo={userInfo}></HomeRouter>
                     </Route>
-                    <Route path='profile' >
+                    <Route path='/profile' >
                         <ProfileRouter security={["ADMIN", "GUEST", "USER"]} userInfo={userInfo} ></ProfileRouter>
+                    </Route>
+                    <Route path='/createnotice' >
+                        <CreateNoticeRouter security={["ADMIN", "GUEST", "USER"]} userInfo={userInfo} ></CreateNoticeRouter>
                     </Route>
                 </Switch>
             </BrowserRouter>

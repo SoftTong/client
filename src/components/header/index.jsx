@@ -30,6 +30,7 @@ const HeaderWrapper = styled.div`
     height : 40px;
   }
 `
+
 const HeaderContent = styled.div`
 display : flex;
 align-items: center;
@@ -231,8 +232,9 @@ const Header = ({ logined }) => {
 
                         <HeaderList>
                             <ListValue onClick={() => { history.push("/") }}>공지사항</ListValue>
-                            <ListValue onClick={() => { history.push("/") }} >마이페이지</ListValue>
+                            <ListValue onClick={() => { history.push("/profile") }} >마이페이지</ListValue>
                             <ListValue onClick={() => { history.push("/") }} >보고서 제출</ListValue>
+                            <ListValue onClick={() => { history.push("/createnotice") }} >TEST</ListValue>
                         </HeaderList>
 
                         {(logined) ?
