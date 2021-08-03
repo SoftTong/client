@@ -65,6 +65,9 @@ padding : 9px 20px;
 font-size: 14px;
     border-radius: 2px;
     cursor : pointer;
+    &:hover{
+        background:rgb(15,140,255,0.8);
+    }
 `
 
 const LogIn = ({ settingLogInFunction, logInInfo, LoginBtnOnclick }) => {

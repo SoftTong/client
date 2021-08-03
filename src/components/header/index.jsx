@@ -100,6 +100,9 @@ color : #0f8cff;
   }
 ` : null
     }
+        &:hover{
+        background:rgb(15,140,255,0.8);
+    }
 `
 
 const Header = ({ logined }) => {
