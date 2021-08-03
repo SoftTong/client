@@ -176,6 +176,7 @@ padding-left: 1rem;
     display: flex;
 align-items: center;
 justify-content : flex-end;
+
 `
 
 const SubmitBtn = styled.div`
