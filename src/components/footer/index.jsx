@@ -1,15 +1,15 @@
 import React from "react";
 import "../../css/footer.css";
-
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <>
-      <div class="site-footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8">
-              <h2 class="footer-heading mb-4">
+      <div className="site-footer">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-8">
+              <h2 className="footer-heading mb-4">
                 개인정보처리방침 ┃ 사이트맵 ┃ 클린신고센터
               </h2>
               <p>
@@ -17,31 +17,31 @@ const Footer = () => {
                 학연산공동기술연구원(E9동) 742호┃ 043-249-1833
               </p>
             </div>
-            <div class="col-lg-3 ml-auto">
-              <div class="row">
-                <div class="col-lg-8">
-                  <h2 class="footer-heading mb-4">Quick Links</h2>
-                  <ul class="list-unstyled">
+            <div className="col-lg-3 ml-auto">
+              <div className="row">
+                <div className="col-lg-8">
+                  <h2 className="footer-heading mb-4">Quick Links</h2>
+                  <ul className="list-unstyled">
                     <li>
-                      <a href="#">충북대학교</a>
+                      <Link to="#">충북대학교</Link>
                     </li>
                     <li>
-                      <a href="#">충북대학교 개신누리</a>
+                      <Link to="#">충북대학교 개신누리</Link>
                     </li>
                     <li>
-                      <a href="#">SW중심사업단</a>
+                      <Link to="#">SW중심사업단</Link>
                     </li>
                     <li>
-                      <a href="#">충북대학교 전자정보대학</a>
+                      <Link to="#">충북대학교 전자정보대학</Link>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row pt-5 mt-5 text-center">
-            <div class="col-md-12">
-              <div class="border-top pt-5">
+          <div className="row pt-5 mt-5 text-center">
+            <div className="col-md-12">
+              <div className="border-top pt-5">
                 <p>
                   © 2021 충북대학교 SW중심대학사업단 X SoTong All rights
                   reserved.
