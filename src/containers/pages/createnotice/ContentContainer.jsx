@@ -12,10 +12,17 @@ const ContentContainer = () => {
         title: "",
         swurl: "",
         tags: [],
+        startDate: null,
+        endDate: null
     })
 
     const [newTag, setNewTag] = useState("")
 
+    /**
+@description tag 다루는 함수
+@function tagCreate
+@function tagAdd 
+@function tagDelete */
     const handleTags = {
         changetag: (e) => {
             setNewTag(e.target.value)
@@ -27,10 +34,6 @@ const ContentContainer = () => {
                 setNoticeData((state) => ({ ...state, tags: pushTags }));
                 setNewTag("")
             }
-            // console.log(e.target.value)
-            // const newTags = setNoticeData.tags((state) => ({ ...state, newTag }))
-            // setNewTag("")
-            // return setNoticeData((state) => ({ ...state, tags: newTags }))
         },
         delete: (e) => {
             console.log(e.target.innerText)
@@ -38,7 +41,6 @@ const ContentContainer = () => {
             const deleteTag = noticeData.tags.filter(tag => tag !== e.target.innerText)
             console.log(deleteTag)
             setNoticeData((state) => ({ ...state, tags: deleteTag }));
-
         }
     }
 
@@ -56,8 +58,20 @@ const ContentContainer = () => {
         tag: (e) => {
             const tags = e.target.value;
             return setNoticeData((state) => ({ ...state, tags: tags }))
+        },
+        startDate: (e) => {
+            const startDate = e.target.value
+            return setNoticeData((state) => ({ ...state, startDate: startDate }))
+        },
+        endDate: (e) => {
+            const endDate = e.target.value
+            return setNoticeData((state) => ({ ...state, endDate: endDate }))
         }
     }
+
+
+
+
 
 
     return (
@@ -68,6 +82,7 @@ const ContentContainer = () => {
                 handleTags={handleTags}
                 newTag={newTag}
                 createNoticeFunction={createNoticeFunction}
+
             ></CreateNoticeContent>
         </>
     )

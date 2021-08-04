@@ -102,7 +102,7 @@ font-size: 1rem;
 
 const CreateTag = styled.input.attrs(props => ({
     type: "text",
-    placeholder: "태그를 입력하세요(최대 3개)"
+    placeholder: "태그를 입력하세요"
 }))`
     outline: none;
     cursor: text;
@@ -116,8 +116,8 @@ const CreateTag = styled.input.attrs(props => ({
     }
 `
 const WarningTag = styled.div`
-color :  #858585;;
- font-size: 1rem;
+color :  #858585;
+ font-size : ${(props) => (props.size) || '1rem'};
  cursor: default;
 display : flex;
 align-items: center;
@@ -225,9 +225,56 @@ const SWBtn = styled.a.attrs((props) => ({
         background:rgb(233, 236, 239,0.7);
         text-decoration: none;
     }
+`
+const DateWrapper = styled.div`
+display : flex;
+justify-content: center;
+align-items: center;
+flex-direction: row;
+padding: 15px 0;
+@media(max-width : 768px){
+    flex-direction: column;
+    align-items: start;
+}
+`
 
+const DateContent = styled.div`
+box-sizing: border-box;
+    margin: 0;
+    color: #000000d9;
+    list-style: none;
+    padding: 4px 4px 4px 0px;
+    font-size: 1.125rem;
+    display: flex;
+    min-width: 9rem;
+    justify-content : flex-start;
+    align-items: center;
+    background: #fff;
+    /* border: 1px solid #d9d9d9; */
 
 `
+
+const DateSelector = styled.input.attrs((props) => ({
+    type: "date"
+}))`
+background-color: white;
+font-size: 1rem;
+border: 1px solid #d9d9d9;
+border-radius: 2px;
+transition: border .3s,box-shadow .3s;
+padding: 4px 11px;
+color: #707070;
+border-radius: 5px;
+width : 100%;
+&:focus {
+    border-color: #40a9ff;
+    border-right-width: 1px!important;
+    outline: 0;
+    box-shadow: 0 0 0 2px #1890ff33;
+}
+ `
+
+
 
 
 
@@ -325,6 +372,18 @@ const CreateNoticeContent = ({
                         value={swurl}
                         onChange={createNoticeFunction.swurl}
                     ></SetUrl>
+                    <CreateDivider ></CreateDivider>
+                    <DateWrapper>
+                        <DateContent> 일정 시작 날짜 </DateContent>
+                        <DateSelector max={`${noticeData.endDate}` || null} defaultValue={noticeData.startDate}
+                            onChange={createNoticeFunction.startDate} ></DateSelector>
+                    </DateWrapper>
+                    <DateWrapper>
+                        <DateContent> 일정 마감 날짜 </DateContent>
+                        <DateSelector min={`${noticeData.startDate}` || null} defaultValue={noticeData.endDate}
+                            onChange={createNoticeFunction.endDate} ></DateSelector>
+                    </DateWrapper>
+
                     <SubmitBtnWrapper>
                         <SWBtn>SW중심대학사업단 </SWBtn>
                         <SubmitBtn>제출하기</SubmitBtn>
@@ -334,7 +393,11 @@ const CreateNoticeContent = ({
 
                 {/* SECTION 게시글 미리보기 */}
                 <PreviewArea>
-                    <PreviewTitle>{title}</PreviewTitle>
+
+                    {
+                        (title) ? <PreviewTitle>{title}</PreviewTitle> : <WarningTag >생성 될 게시글의 제목을 미리 확인할 수 있습니다. </WarningTag>
+                    }
+
 
                     <CreateTagWrapper>
                         {
