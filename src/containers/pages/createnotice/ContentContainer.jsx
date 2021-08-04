@@ -90,7 +90,15 @@ const ContentContainer = () => {
             'destDay': noticeData.endDate
         }
 
-        postCreateNotice(JSON.stringify({ requestData }))
+        postCreateNotice(JSON.stringify({
+            "name": noticeData.title,
+            "swurl": noticeData.swurl,
+            'tag1': noticeData.tags[0] || null,
+            "tag2": noticeData.tags[1] || null,
+            'tag3': noticeData.tags[2] || null,
+            'startDay': noticeData.startDate,
+            'destDay': noticeData.endDate
+        }))
             .then((res) => {
                 console.log("게시글 올리기 성공")
                 console.log(res)
