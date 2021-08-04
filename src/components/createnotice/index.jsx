@@ -317,7 +317,8 @@ const CreateNoticeContent = ({
     noticeData,
     handleTags,
     createNoticeFunction,
-    newTag
+    newTag,
+    submitOnclick
 }) => {
 
 
@@ -385,8 +386,8 @@ const CreateNoticeContent = ({
                     </DateWrapper>
 
                     <SubmitBtnWrapper>
-                        <SWBtn>SW중심대학사업단 </SWBtn>
-                        <SubmitBtn>제출하기</SubmitBtn>
+                        <SWBtn >SW중심대학사업단 </SWBtn>
+                        <SubmitBtn onClick={submitOnclick}>제출하기</SubmitBtn>
                     </SubmitBtnWrapper>
                 </CreateArea>
                 {/*! SECTION  */}

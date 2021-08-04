@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import CreateNoticeContent from "../../../components/createnotice"
-
+import postCreateNotice from "../../../service/api/post/post_create_notice"
 
 const ContentContainer = () => {
 
@@ -15,6 +15,9 @@ const ContentContainer = () => {
         startDate: null,
         endDate: null
     })
+
+    console.log(noticeData)
+
 
     const [newTag, setNewTag] = useState("")
 
@@ -71,7 +74,29 @@ const ContentContainer = () => {
 
 
 
+    /**
+    @description   제출하기 버튼 OnClick 
+    @function buttonOnclick
+    @btnValue 제출하기
+    @detail  requestData 형식으로 맞추고 post  */
+    const submitOnclick = () => {
+        const requestData = {
+            "name": noticeData.title,
+            "swurl": noticeData.swurl,
+            'tag1': noticeData.tags[0] || null,
+            "tag2": noticeData.tags[1] || null,
+            'tag3': noticeData.tags[2] || null,
+            'startDay': noticeData.startDate,
+            'destDay': noticeData.endDate
+        }
 
+        postCreateNotice(JSON.stringify({ requestData }))
+            .then((res) => {
+                console.log("게시글 올리기 성공")
+                console.log(res)
+            })
+            .catch((err) => console.log(err))
+    }
 
 
     return (
@@ -82,7 +107,7 @@ const ContentContainer = () => {
                 handleTags={handleTags}
                 newTag={newTag}
                 createNoticeFunction={createNoticeFunction}
-
+                submitOnclick={submitOnclick}
             ></CreateNoticeContent>
         </>
     )
