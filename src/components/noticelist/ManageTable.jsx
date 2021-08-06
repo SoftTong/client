@@ -3,7 +3,7 @@ import { getManageApplication } from "./api";
 import Table from "./Table";
 
 const ManageTable = (props) => {
-  const columns = ["번호", "제목", "작성자", "조회수", "작성일"];
+  const columns = ["번호", "제목", "작성자", "작성일"];
   const [tableData, setTableData] = useState([getManageApplication(1)]);
   // const data = Array(10)
   //   .fill()

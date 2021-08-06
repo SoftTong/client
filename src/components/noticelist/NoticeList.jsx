@@ -13,6 +13,9 @@ const NoticeList = () => {
             <ManageTable />
           </div>
         </div>
+        <div className="seach">
+          <input type="text" value="제목"></input>
+        </div>
       </div>
     </div>
   );

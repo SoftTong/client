@@ -1,0 +1,31 @@
+.tabel-list {
+  background-color: rgb(173, 173, 173);
+  width: 100%;
+}
+.table-header {
+  flex: 0 0 auto;
+  width: 25%;
+}
+.table-body {
+  width: 100%;
+  display: inline;
+  height: 70px;
+}
+.card {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+.table-content {
+  display: flex;
+  border-bottom: 1px rgb(167, 167, 167) solid;
+  padding-top: 20px;
+  margin-left: -25px;
+  margin-right: -25px;
+}
+.tag a {
+  padding: 2px 7px;
+  margin-left: 10px;
+  background-color: rgb(185, 185, 185);
+  border-radius: 10px;
+  color: white;
+}
