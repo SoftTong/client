@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ContentContainer from "../../containers/pages/profile/ContentContainer";
+import ContentContainer from "../../containers/redux/pages/profile/ContentContainer";
 import Header from "../../containers/redux/components/Header";
 import ContentLayout from "../../layout/Content";
 import Footer from "../../components/footer";

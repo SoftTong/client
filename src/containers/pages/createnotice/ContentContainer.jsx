@@ -80,16 +80,6 @@ const ContentContainer = () => {
     @btnValue 제출하기
     @detail  requestData 형식으로 맞추고 post  */
     const submitOnclick = () => {
-        const requestData = {
-            "name": noticeData.title,
-            "swurl": noticeData.swurl,
-            'tag1': noticeData.tags[0] || null,
-            "tag2": noticeData.tags[1] || null,
-            'tag3': noticeData.tags[2] || null,
-            'startDay': noticeData.startDate,
-            'destDay': noticeData.endDate
-        }
-
         postCreateNotice(JSON.stringify({
             "name": noticeData.title,
             "swurl": noticeData.swurl,

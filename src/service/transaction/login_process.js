@@ -20,15 +20,21 @@ const LoginProcess = (logInInfo) =>{
         }
     }).then(async (res)=>{
         console.log("유저정보받아오기성공")
-        console.log(res);
-
+        console.log(res)
+        console.log(res.email)
+        console.log(res.name)
+        console.log(res.userId)
+        console.log(res.phoneNumber)
+        console.log(res.department)
+        console.log(res.roles[0].name)
         store.dispatch(ACTION.SET_USER__ACTION_FUNC({
                     user : {
-                        "email" : "test@test",
-                        "name":"test" ,
-                        "userId" :"test" ,
-                        "phone_number" : "test" ,
-                        "department " :"test",
+                        "email" :res.email,
+                        "name":res.name ,
+                        "userId" :res.userId ,
+                        "phone_number" :res.phoneNumber ,
+                        "department" :res.department,
+                        "role" :(res.roles[0].name === "ROLE_ADMIN" ? 'ADMIN' : 'USER' )
                     }
                 }))
                 store.dispatch(ACTION.LOGIN_ACTION_FUNC());

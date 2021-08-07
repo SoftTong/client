@@ -54,6 +54,10 @@ cursor : pointer;
 display :block;
 width : 50px;
 height : 50px;
+&:focus {
+    border: none;
+    outline:none;
+}
 
 `
 

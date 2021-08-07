@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const UserCard = () => {
+const UserCard = ({ userProfile }) => {
+  console.log(userProfile)
   return (
     <div className="col-lg-3">
       <div className="box small h-80">
@@ -13,8 +14,8 @@ const UserCard = () => {
           />
 
           <div className="text">
-            <h3>2018038066</h3>
-            <h2>박지현</h2>
+            <h3>{userProfile.userId}</h3>
+            <h2>{userProfile.name}</h2>
           </div>
           <div className="role">
             <Link to="#" className="category">

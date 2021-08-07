@@ -1,18 +1,23 @@
 import './App.css';
 import SotongRouter from "./router"
 import run from "./init/start"
-import { React,useEffect } from 'react';
+import { React,useEffect, useState} from 'react';
 
 
 function App() {
+  const [isRenew, setIsRenew] = useState(false) 
   useEffect(()=>{
-    run()
+    run().then((status)=>{
+      if(status){
+        setIsRenew(true)
+      }
+    })
   }, [])
-  return (
+  return (isRenew) ? (
     <>
       <SotongRouter />
     </>
-  );
+  ) : null;
 }
 
 export default App;

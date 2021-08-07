@@ -1,6 +1,23 @@
 import React from "react";
+import styled from 'styled-components'
 
-const UserInfo = () => {
+// FIXME chaeeun ADD
+const ChaeeunDiv = styled.div`
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem 0.375rem 0;
+    font-size: 1rem;
+    font-weight: 400;
+display : flex;
+align-items: center;
+justify-content: flex-start;
+`
+
+const ChaeeunText = styled.span`
+background: linear-gradient(180deg,rgba(255,255,255,0) 50%,
+#cae3f8 50%);
+`
+
+const UserInfo = ({ userProfile, editUserProfileFunctions }) => {
   return (
     <div className="col-lg-9">
       <div className="section-title">
@@ -12,20 +29,38 @@ const UserInfo = () => {
             <form>
               <div className="col-md-12">
                 <p>학번</p>
-                <input
+                {/* <input
                   type="text"
                   className="form-control"
                   placeholder="학번을 입력하세요"
-                />
+                /> */}
+                <ChaeeunDiv>
+                  <ChaeeunText>{userProfile.userId}</ChaeeunText>
+                </ChaeeunDiv>
+
               </div>
 
               <div className="col-md-12">
                 <p>이름</p>
-                <input
+                {/* <input
                   type="text"
                   className="form-control"
                   placeholder="이름을 입력하세요"
-                />
+                /> */}
+                <ChaeeunDiv>
+                  <ChaeeunText>{userProfile.name}</ChaeeunText>
+                </ChaeeunDiv>
+              </div>
+              <div className="col-md-12">
+                <p>학과</p>
+                {/* <input
+                  type="text"
+                  className="form-control"
+                  placeholder="소속을 입력하세요"
+                /> */}
+                <ChaeeunDiv>
+                  <ChaeeunText>{userProfile.department}</ChaeeunText>
+                </ChaeeunDiv>
               </div>
               <div className="col-md-12">
                 <p>이메일</p>
@@ -33,6 +68,8 @@ const UserInfo = () => {
                   type="email"
                   className="form-control"
                   placeholder="이메일을 입력하세요"
+                  value={userProfile.email}
+                  onChange={editUserProfileFunctions.email}
                 />
               </div>
               <div className="col-md-12">
@@ -41,14 +78,16 @@ const UserInfo = () => {
                   type="number"
                   className="form-control"
                   placeholder="휴대폰번호를 입력하세요"
+                  value={userProfile.phone_number}
+                  onChange={editUserProfileFunctions.phone_number}
                 />
               </div>
               <div className="col-md-12">
-                <p>소속</p>
+                <p>비밀번호</p>
                 <input
-                  type="text"
+                  type="password"
                   className="form-control"
-                  placeholder="소속을 입력하세요"
+                  placeholder="변경할 비밀번호를 입력해주세요"
                 />
               </div>
             </form>

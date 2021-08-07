@@ -11,9 +11,8 @@ a:hover {
 .form-control {
   height: 55px;
   background-color: #fff !important;
-  font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 .form-control:active,
 .form-control:focus {
@@ -32,6 +31,12 @@ a:hover {
 }
 .form-control:focus {
   background: #e2e2e2 !important;
+}
+
+/*FIXME chaeeun number 버튼안보이게 */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
 .site-section {
@@ -210,7 +215,7 @@ a:hover {
   position: relative;
 }
 .site-navbar .site-navigation .site-menu > li.active > a:before {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 15px;
   left: 0;
@@ -227,14 +232,14 @@ a:hover {
 }
 .site-navbar .site-navigation .site-menu .has-children > a:before {
   position: absolute;
-  content: "\e313";
+  content: '\e313';
   font-size: 16px;
   top: 50%;
   right: 0;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  font-family: "icomoon";
+  font-family: 'icomoon';
 }
 .site-navbar .site-navigation .site-menu .has-children .dropdown {
   visibility: hidden;
@@ -256,26 +261,18 @@ a:hover {
 .site-navbar .site-navigation .site-menu .has-children .dropdown.arrow-top {
   position: absolute;
 }
-.site-navbar
-  .site-navigation
-  .site-menu
-  .has-children
-  .dropdown.arrow-top:before {
+.site-navbar .site-navigation .site-menu .has-children .dropdown.arrow-top:before {
   display: none;
   bottom: 100%;
   left: 20%;
   border: solid transparent;
-  content: " ";
+  content: ' ';
   height: 0;
   width: 0;
   position: absolute;
   pointer-events: none;
 }
-.site-navbar
-  .site-navigation
-  .site-menu
-  .has-children
-  .dropdown.arrow-top:before {
+.site-navbar .site-navigation .site-menu .has-children .dropdown.arrow-top:before {
   border-color: rgba(136, 183, 213, 0);
   border-bottom-color: #fff;
   border-width: 10px;
@@ -303,64 +300,22 @@ a:hover {
   padding: 9px 20px;
   display: block;
 }
-.site-navbar
-  .site-navigation
-  .site-menu
-  .has-children
-  .dropdown
-  > li
-  > a:hover {
+.site-navbar .site-navigation .site-menu .has-children .dropdown > li > a:hover {
   background: #f8f9fa;
   color: #ced4da;
 }
-.site-navbar
-  .site-navigation
-  .site-menu
-  .has-children
-  .dropdown
-  > li.has-children
-  > a:before {
-  content: "\e315";
+.site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children > a:before {
+  content: '\e315';
   right: 20px;
 }
-.site-navbar
-  .site-navigation
-  .site-menu
-  .has-children
-  .dropdown
-  > li.has-children
-  > .dropdown,
-.site-navbar
-  .site-navigation
-  .site-menu
-  .has-children
-  .dropdown
-  > li.has-children
-  > ul {
+.site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children > .dropdown,
+.site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children > ul {
   left: 100%;
   top: 0;
 }
-.site-navbar
-  .site-navigation
-  .site-menu
-  .has-children
-  .dropdown
-  > li.has-children:hover
-  > a,
-.site-navbar
-  .site-navigation
-  .site-menu
-  .has-children
-  .dropdown
-  > li.has-children:active
-  > a,
-.site-navbar
-  .site-navigation
-  .site-menu
-  .has-children
-  .dropdown
-  > li.has-children:focus
-  > a {
+.site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children:hover > a,
+.site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children:active > a,
+.site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children:focus > a {
   background: #f8f9fa;
   color: #ced4da;
 }
@@ -469,7 +424,7 @@ a:hover {
 }
 .site-section-cover.overlay:before {
   position: absolute;
-  content: "";
+  content: '';
   top: 0;
   left: 0;
   right: 0;

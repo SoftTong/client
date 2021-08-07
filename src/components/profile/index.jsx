@@ -4,13 +4,17 @@ import "../../css/bootstrap.min.css";
 import UserCard from "./UserCard";
 import UserInfo from "./UserInfo";
 
-const profileContent = () => {
+const profileContent = ({
+  userProfile,
+  editUserProfileFunctions
+}) => {
+  console.log(userProfile)
   return (
     <>
       <div className="container">
         <div class="row align-items-stretch overlap">
-          <UserCard></UserCard>
-          <UserInfo></UserInfo>
+          <UserCard userProfile={userProfile}></UserCard>
+          <UserInfo userProfile={userProfile} editUserProfileFunctions={editUserProfileFunctions}></UserInfo>
         </div>
       </div>
     </>
