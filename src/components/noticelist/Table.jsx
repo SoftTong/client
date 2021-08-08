@@ -7,7 +7,7 @@ const Table = ({ columns, data }) => {
     <table className="tabel-list">
       <thead className="table-head py-3 px-4 d-none d-lg-block bg-light">
         <tr className="row align-items-sm-center text-center text-dark">
-          <th className="col-sm-1">{columns[0]}</th>
+          <th className="col-sm-1"></th>
           <th className="col-sm-7">{columns[1]}</th>
           <th className="col-sm-2">{columns[2]}</th>
           <th className="col-sm-2">{columns[3]}</th>

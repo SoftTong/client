@@ -42,3 +42,22 @@
   border-radius: 10px;
   color: white;
 }
+.seachbar {
+  display: flex;
+  padding: 20px 5px;
+}
+.seachtext {
+  width: 100%;
+  margin-left: 20px;
+  border: solid 1px black;
+}
+.seachtext input {
+  width: 96%;
+  border: none;
+}
+.pagination {
+}
+.pagination ul {
+  list-style: none;
+  display: flex;
+}
