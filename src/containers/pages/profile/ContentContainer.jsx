@@ -16,7 +16,6 @@ const ContentContainer = ({
     /**
         * @description redux 유저 정보 초기세팅
         */
-    console.log(department)
     const [userProfile, setUserProfile] = useState({
         email: email,
         name: name,
@@ -24,6 +23,7 @@ const ContentContainer = ({
         phone_number: phone_number,
         department: department,
         role: role,
+        password: ""
     })
     console.log(userProfile.name)
     // SECTION UserCard
@@ -44,6 +44,9 @@ const ContentContainer = ({
         phone_number: (e) => {
             return setUserProfile((state) => ({ ...state, phone_number: e.target.value }))
         },
+        password: (e) => {
+            return setUserProfile((state) => ({ ...state, password: e.target.value }))
+        },
     }
     /**
        *  @description 프로필수정완료시 redux update
@@ -53,8 +56,15 @@ const ContentContainer = ({
             return SET_USER({ email: userProfile.email })
         },
         phone_number: () => {
-            return SET_USER({ email: userProfile.phone_number })
+            return SET_USER({ phone_number: userProfile.phone_number })
         },
+        password: () => {
+            return SET_USER({ password: userProfile.password })
+        },
+    }
+    let emailOncick = () => {
+        //통신 
+        //.then(리덕스 값 바꿔주기)
     }
 
     // !SECTION UserInfo

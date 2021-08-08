@@ -1,16 +1,16 @@
 import _ from "../../../config/env"
 
 /**
- * @description 유저정보 받아오기 
+ * @description 공지사항 table Data 받아오기
  * @method GET
  * @request @headers  SoTong-token
  * @response
  */
 
 
-const get_userInfo = ()=>{
+const get_noticelist = (noticeId)=>{
  
-    return fetch(_.SERVER_URL + "/user/current", {
+    return fetch(_.SERVER_URL + "/notice/"+ Number(noticeId), {
             method: 'GET',
             headers : {
                 'Authorization': "Bearer " + localStorage.getItem("SoTong-token")
@@ -24,11 +24,11 @@ const get_userInfo = ()=>{
         .catch(async(error)=>{
             let err = await error.then()
             console.log(err)
-            console.log("Error from  get_userInfo\n"+err.message+"\n success : "+err.success)
+            console.log("Error from  get_noticelist\n"+err.message+"\n success : "+err.success)
             throw err;
         })
      //}
      
  }
 
- export default get_userInfo
+ export default get_noticelist

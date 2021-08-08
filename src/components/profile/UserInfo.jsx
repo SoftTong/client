@@ -68,7 +68,7 @@ const UserInfo = ({ userProfile, editUserProfileFunctions }) => {
                   type="email"
                   className="form-control"
                   placeholder="이메일을 입력하세요"
-                  value={userProfile.email}
+                  defaultValue={userProfile.email}
                   onChange={editUserProfileFunctions.email}
                 />
               </div>
@@ -78,7 +78,7 @@ const UserInfo = ({ userProfile, editUserProfileFunctions }) => {
                   type="number"
                   className="form-control"
                   placeholder="휴대폰번호를 입력하세요"
-                  value={userProfile.phone_number}
+                  defaultValue={userProfile.phone_number}
                   onChange={editUserProfileFunctions.phone_number}
                 />
               </div>
