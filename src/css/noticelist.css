@@ -56,8 +56,23 @@
   border: none;
 }
 .pagination {
+  justify-content: center;
 }
 .pagination ul {
   list-style: none;
   display: flex;
+  padding: 0px;
 }
+.pagination ul li {
+  background-color: rgb(199, 199, 240);
+  border-radius: 2px;
+  margin: 10px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* .linkpage {
+  display: block;
+} */

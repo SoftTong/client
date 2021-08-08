@@ -1,8 +1,8 @@
 import React from "react";
 import "../../css/profile.css";
 import "../../css/bootstrap.min.css";
-import UserCard from "./UserCard";
 import NoticeList from "./NoticeList";
+import UserCard from "../../containers/redux/components/usercard";
 
 const NoticeListContent = () => {
   return (

@@ -1,6 +1,7 @@
 import React from "react";
 import ManageTable from "./ManageTable";
 import seachicon from "../../img/seachicon.png";
+import { Link } from "react-router-dom";
 
 const NoticeList = () => {
   return (
@@ -30,16 +31,24 @@ const NoticeList = () => {
         <div className="pagination">
           <ul>
             <li>
-              <a>1</a>
+              <Link to="#" className="linkpage">
+                1
+              </Link>
             </li>
             <li>
-              <a>2</a>
+              <Link to="#" className="linkpage">
+                2
+              </Link>
             </li>
             <li>
-              <a>3</a>
+              <Link to="#" className="linkpage">
+                3
+              </Link>
             </li>
             <li>
-              <a>4</a>
+              <Link to="#" className="linkpage">
+                4
+              </Link>
             </li>
           </ul>
         </div>
