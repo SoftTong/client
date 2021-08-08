@@ -1,5 +1,6 @@
 import React from "react";
 import ManageTable from "./ManageTable";
+import seachicon from "../../img/seachicon.png";
 
 const NoticeList = () => {
   return (
@@ -13,8 +14,34 @@ const NoticeList = () => {
             <ManageTable />
           </div>
         </div>
-        <div className="seach">
-          <input type="text" value="제목"></input>
+        <div className="seachbar">
+          <select>
+            <option>제목</option>
+            <option>작성자</option>
+            <option>태그</option>
+          </select>
+          <div className="seachtext">
+            <input type="seach" placeholder="검색할 내용을 입력하세요"></input>
+            <span>
+              <img src={seachicon} width="20px" height="20px"></img>
+            </span>
+          </div>
+        </div>
+        <div className="pagination">
+          <ul>
+            <li>
+              <a>1</a>
+            </li>
+            <li>
+              <a>2</a>
+            </li>
+            <li>
+              <a>3</a>
+            </li>
+            <li>
+              <a>4</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
