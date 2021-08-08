@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import ProfileImg from "../../img/profile.png";
 
 
@@ -15,15 +14,15 @@ const UserCard = ({ userId, name }) => {
                         <h2>{name}</h2>
                     </div>
                     <div className="role">
-                        <div className="category">
+                        <span className="category">
                             학생
-                        </div>
-                        <Link to="#" className="category">
+                        </span>
+                        <span className="category">
                             튜터
-                        </Link>
-                        <Link to="#" className="category">
+                        </span>
+                        <span className="category">
                             연구실인턴십
-                        </Link>
+                        </span>
                     </div>
                 </div>
             </div>
