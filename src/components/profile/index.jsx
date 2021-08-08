@@ -1,7 +1,7 @@
 import React from "react";
 import "../../css/profile.css";
 import "../../css/bootstrap.min.css";
-import UserCard from "./UserCard";
+import UserCard from "../../containers/redux/components/usercard";
 import UserInfo from "./UserInfo";
 
 const profileContent = ({
@@ -13,7 +13,7 @@ const profileContent = ({
     <>
       <div className="container">
         <div class="row align-items-stretch overlap">
-          <UserCard userProfile={userProfile}></UserCard>
+          <UserCard ></UserCard>
           <UserInfo userProfile={userProfile} editUserProfileFunctions={editUserProfileFunctions}></UserInfo>
         </div>
       </div>
