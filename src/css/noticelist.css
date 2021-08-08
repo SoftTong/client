@@ -1,10 +1,18 @@
 .tabel-list {
-  background-color: rgb(173, 173, 173);
+  background-color: rgb(255, 255, 255);
   width: 100%;
 }
-.table-header {
+.table-head {
   flex: 0 0 auto;
-  width: 25%;
+  width: 100%;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+.table-head tr {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  width: 100%;
+  justify-content: space-between;
 }
 .table-body {
   width: 100%;
@@ -19,8 +27,13 @@
   display: flex;
   border-bottom: 1px rgb(167, 167, 167) solid;
   padding-top: 20px;
-  margin-left: -25px;
-  margin-right: -25px;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+.table-content tr {
+  width: 100%;
+  display: flex;
+  justify-content: space-between !important;
 }
 .tag a {
   padding: 2px 7px;

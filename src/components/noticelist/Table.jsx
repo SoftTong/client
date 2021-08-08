@@ -5,25 +5,22 @@ import "../../css/noticelist.css";
 const Table = ({ columns, data }) => {
   return (
     <table className="tabel-list">
-      <div className="py-3 px-4 d-none d-lg-block bg-light">
-        <div className="row align-items-sm-center text-center text-dark">
-          {columns.map((columns) => (
-            <span className="table-header" key={columns}>
-              {columns}
-            </span>
-          ))}
-        </div>
-      </div>
-      <div className="card card-frame py-3 px-3 px-sm-4">
-        {data.map(({ number, title, person, date }) => (
-          <div
-            className="table-content notice-wrapper row align-items-sm-center text-center text-dark important"
-            key={number + title + person + date}
-          >
-            <span className="table-body col-lg-1 text-sm-center d-none d-lg-block">
+      <thead className="table-head py-3 px-4 d-none d-lg-block bg-light">
+        <tr className="row align-items-sm-center text-center text-dark">
+          <th className="col-sm-1">{columns[0]}</th>
+          <th className="col-sm-7">{columns[1]}</th>
+          <th className="col-sm-2">{columns[2]}</th>
+          <th className="col-sm-2">{columns[3]}</th>
+        </tr>
+      </thead>
+
+      {data.map(({ number, title, person, date }) => (
+        <tbody className="table-content py-3 px-4 notice-wrapper row align-items-sm-center text-center text-dark important">
+          <tr>
+            <td id={number} className="col-sm-1">
               {number}
-            </span>
-            <span className="table-body col-lg-6 text-sm-center d-none d-lg-block">
+            </td>
+            <td id={number} className="col-sm-7">
               {title}
               <div className="tag">
                 <Link to="#" className="category">
@@ -36,17 +33,16 @@ const Table = ({ columns, data }) => {
                   특강
                 </Link>
               </div>
-            </span>
-            <span className="table-body col-lg-2 text-sm-center d-none d-lg-block">
+            </td>
+            <td id={number} className="col-sm-2">
               {person}
-            </span>
-
-            <span className="table-body col-lg-3 text-sm-center d-none d-lg-block">
+            </td>
+            <td id={number} className="col-sm-2">
               {date}
-            </span>
-          </div>
-        ))}
-      </div>
+            </td>
+          </tr>
+        </tbody>
+      ))}
     </table>
   );
 };
