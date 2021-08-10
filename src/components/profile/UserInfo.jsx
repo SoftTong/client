@@ -18,10 +18,14 @@ const ChaeeunText = styled.span`
 `;
 
 const UserInfo = ({ userProfile, editUserProfileFunctions }) => {
-  const [test, setTest] = useState(false);
-  console.log(test);
-  const buttonShow = () => {
-    setTest(!test);
+  const [showEmail, setShowEmail] = useState(false);
+  const [showPhone, setShowPhone] = useState(false);
+
+  const buttonShowEmail = () => {
+    setShowEmail(!showEmail);
+  };
+  const buttonShowPhone = () => {
+    setShowPhone(!showPhone);
   };
   const stopBubbling = (e) => {
     e.stopPropagation()
@@ -36,7 +40,7 @@ const UserInfo = ({ userProfile, editUserProfileFunctions }) => {
           <div className="section">
             <form>
               <div className="col-md-12">
-                <p>학번</p>
+                <p className="subtitle">학번</p>
                 {/* <input
                   type="text"
                   className="form-control"
@@ -48,7 +52,7 @@ const UserInfo = ({ userProfile, editUserProfileFunctions }) => {
               </div>
 
               <div className="col-md-12">
-                <p>이름</p>
+                <p className="subtitle">이름</p>
                 {/* <input
                   type="text"
                   className="form-control"
@@ -59,7 +63,7 @@ const UserInfo = ({ userProfile, editUserProfileFunctions }) => {
                 </ChaeeunDiv>
               </div>
               <div className="col-md-12">
-                <p>학과</p>
+                <p className="subtitle">학과</p>
                 {/* <input
                   type="text"
                   className="form-control"
@@ -79,60 +83,63 @@ const UserInfo = ({ userProfile, editUserProfileFunctions }) => {
       <div className="box h-50">
         <div className="d-flex align-items-center">
           <div className="section">
-            <form onClick={stopBubbling}>
+            <div>
               <div className="col-md-12">
-                <p>이메일</p>
+                <p className="subtitle">이메일</p>
                 <div className="inputsubmit">
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="이메일을 입력하세요"
-                    defaultValue={userProfile.email}
-                    onChange={editUserProfileFunctions.email}
-                  />
-                  {
-                    test ?
-                      <button onClick={buttonShow} className="sub-button">
-                        저장
-                      </button> :
-                      <button onClick={buttonShow} className="sub-button">
-                        변경
-                      </button>
-                  }
-                </div>
-              </div>
-              <div className="col-md-12">
-                <p>휴대폰번호</p>
-                <div className="inputsubmit">
-                  <input
-                    type="number"
-                    className="form-control"
-                    placeholder="휴대폰번호를 입력하세요"
-                    defaultValue={userProfile.phone_number}
-                    onChange={editUserProfileFunctions.phone_number}
-                  />
-                  <button type="submit" className="sub-button">
-                    저장
+                  {showEmail ? (
+                    <input
+                      type="email"
+                      className="form-control"
+                      placeholder="이메일을 입력하세요"
+                      defaultValue={userProfile.email}
+                      onChange={editUserProfileFunctions.email}
+                    />
+                  ) : (
+                    <ChaeeunDiv>
+                      <ChaeeunText>{userProfile.email}</ChaeeunText>
+                    </ChaeeunDiv>
+                  )}
+
+                  <button onClick={buttonShowEmail} className="sub-button">
+                    {showEmail ? "저장" : "변경"}
                   </button>
                 </div>
               </div>
               <div className="col-md-12">
-                <p>비밀번호</p>
+                <p className="subtitle">휴대폰번호</p>
+                <div className="inputsubmit">
+                  {showPhone ? (
+                    <input
+                      type="number"
+                      className="form-control"
+                      placeholder="휴대폰번호를 입력하세요"
+                      defaultValue={userProfile.phone_number}
+                      onChange={editUserProfileFunctions.phone_number}
+                    />
+                  ) : (
+                    <ChaeeunDiv>
+                      <ChaeeunText>{userProfile.phone_number}</ChaeeunText>
+                    </ChaeeunDiv>
+                  )}
+
+                  <button onClick={buttonShowPhone} className="sub-button">
+                    {showPhone ? "저장" : "변경"}
+                  </button>
+                </div>
+              </div>
+              <div className="col-md-12">
+                <p className="subtitle">비밀번호</p>
                 <div className="inputsubmit">
                   <input
                     type="password"
                     className="form-control"
                     placeholder="변경할 비밀번호를 입력하세요"
                   />
-                  <button type="submit" className="sub-button">
-                    저장
-                  </button>
+                  <button className="sub-button">변경</button>
                 </div>
               </div>
-              <button onClick={buttonShow} className="sub-button">
-                {test ? "저장" : "변경"}
-              </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
