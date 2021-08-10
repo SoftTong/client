@@ -773,7 +773,9 @@ input::-webkit-inner-spin-button {
   height: 10%;
   background-color: rgb(233, 233, 233);
   border-bottom: black;
+  padding-left: 20px;
   font-size: 25px;
+  font-weight: bold;
   color: rgb(148, 148, 148);
   align-items: center;
   display: flex;
@@ -808,4 +810,7 @@ input::-webkit-inner-spin-button {
 .inputsubmit {
   display: flex;
   align-items: center;
+}
+.subtitle {
+  font-weight: bold;
 }
