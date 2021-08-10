@@ -1,24 +1,58 @@
-import React, { useState } from "react";
-import { getManageApplication } from "./api";
-import Table from "./Table";
+import React from "react";
 
-const ManageTable = (props) => {
-  const columns = ["번호", "제목", "작성자", "작성일"];
-  const [tableData, setTableData] = useState([getManageApplication(1)]);
-  // const data = Array(10)
-  //   .fill()
-  //   .map(() => ({
-  //     number: tableData[0][1].number,
-  //     title: tableData[0][1].title,
-  //     person: tableData.person,
-  //     click: tableData.click,
-  //     date: tableData.date,
-  //   }));
-  const data = tableData[0];
+const ManageTable = ({ pageList }) => {
 
   return (
     <>
-      <Table columns={columns} data={data} />
+      <table className="tabel-list">
+        <thead className="table-head py-3 px-4 d-none d-lg-block bg-light">
+          <tr className="row align-items-sm-center text-center text-dark">
+            <th className="col-sm-7">제목</th>
+            <th className="col-sm-2">작성자</th>
+            <th className="col-sm-3">작성일</th>
+          </tr>
+        </thead>
+
+        {pageList.map(({ number, title, adminName, uploadDay, tag1, tag2, tag3 }) => (
+          <tbody className="table-content py-3 px-4 notice-wrapper row align-items-sm-center text-center text-dark important">
+            <tr>
+              <td id={number} className="col-sm-7">
+                {title}
+                <div className="tag">
+                  {
+                    (tag1) ?
+                      <span className="category">
+                        {tag1}
+                      </span>
+                      : null
+                  }
+                  {
+                    (tag2) ?
+                      <span className="category">
+                        {tag2}
+                      </span>
+                      : null
+                  }
+                  {
+                    (tag3) ?
+                      <span className="category">
+                        {tag3}
+                      </span>
+                      : null
+                  }
+
+                </div>
+              </td>
+              <td id={number} className="col-sm-2">
+                {adminName}
+              </td>
+              <td id={number} className="col-sm-3">
+                {uploadDay}
+              </td>
+            </tr>
+          </tbody>
+        ))}
+      </table>
     </>
   );
 };

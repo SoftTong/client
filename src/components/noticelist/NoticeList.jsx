@@ -3,7 +3,7 @@ import ManageTable from "./ManageTable";
 import seachicon from "../../img/seachicon.png";
 import { Link } from "react-router-dom";
 
-const NoticeList = () => {
+const NoticeList = ({ pageList }) => {
   return (
     <div className="col-lg-9">
       <div className="section-title">
@@ -12,7 +12,7 @@ const NoticeList = () => {
       <div className="box h-100">
         <div className="d-flex align-items-center">
           <div className="section">
-            <ManageTable />
+            <ManageTable pageList={pageList} />
           </div>
         </div>
         <div className="seachbar">

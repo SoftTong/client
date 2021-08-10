@@ -23,7 +23,9 @@ const UserInfo = ({ userProfile, editUserProfileFunctions }) => {
   const buttonShow = () => {
     setTest(!test);
   };
-
+  const stopBubbling = (e) => {
+    e.stopPropagation()
+  }
   return (
     <div className="col-lg-9 userinfotext">
       <div className="section-title">
@@ -77,7 +79,7 @@ const UserInfo = ({ userProfile, editUserProfileFunctions }) => {
       <div className="box h-50">
         <div className="d-flex align-items-center">
           <div className="section">
-            <form>
+            <form onClick={stopBubbling}>
               <div className="col-md-12">
                 <p>이메일</p>
                 <div className="inputsubmit">
@@ -88,9 +90,15 @@ const UserInfo = ({ userProfile, editUserProfileFunctions }) => {
                     defaultValue={userProfile.email}
                     onChange={editUserProfileFunctions.email}
                   />
-                  <button onClick={buttonShow} className="sub-button">
-                    {test ? "저장" : "변경"}
-                  </button>
+                  {
+                    test ?
+                      <button onClick={buttonShow} className="sub-button">
+                        저장
+                      </button> :
+                      <button onClick={buttonShow} className="sub-button">
+                        변경
+                      </button>
+                  }
                 </div>
               </div>
               <div className="col-md-12">
@@ -121,10 +129,14 @@ const UserInfo = ({ userProfile, editUserProfileFunctions }) => {
                   </button>
                 </div>
               </div>
+              <button onClick={buttonShow} className="sub-button">
+                {test ? "저장" : "변경"}
+              </button>
             </form>
           </div>
         </div>
       </div>
+
     </div>
   );
 };
