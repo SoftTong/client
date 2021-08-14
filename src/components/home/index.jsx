@@ -29,12 +29,12 @@ const HomeContent = () => {
               <iframe
                 src="https://sw7up.cbnu.ac.kr/community/notice/61108786d2329b2b74c84c02"
                 width="100%"
-                height="500px"
+                height="650px"
               ></iframe>
             </div>
-            <h2>신청서 작성</h2>
-            <div className="formsection" height="70%">
-              신청서 폼
+            <div className="buttonsection">
+              <button className="sub-button detail-button">신청하기</button>
+              <button className="sub-button detail-button">돌아가기</button>
             </div>
           </div>
         </div>

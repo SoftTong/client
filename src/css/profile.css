@@ -814,3 +814,21 @@ input::-webkit-inner-spin-button {
 .subtitle {
   font-weight: bold;
 }
+
+.buttonsection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.detail-button {
+  display: block;
+  background-color: cornflowerblue;
+  text-align: center;
+  color: #333;
+}
+.detail-button:hover {
+  color: #fff;
+  box-shadow: 200px 0 0 0 rgba(0, 0, 0, 0.5) inset;
+}

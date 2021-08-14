@@ -64,7 +64,6 @@
   padding: 0px;
 }
 .pagination ul li {
-  background-color: rgb(199, 199, 240);
   border-radius: 2px;
   margin: 10px;
   width: 30px;
@@ -72,6 +71,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.pagination ul li:hover {
+  background-color: rgb(199, 199, 240);
 }
 /* .linkpage {
   display: block;
