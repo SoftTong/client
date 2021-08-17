@@ -73,14 +73,7 @@ const ContentContainer = () => {
 
   //NOTE detail notice data
   const [detailNoticeData, setDetailNoticeData] = useState({
-    id: "",
-    title: "",
-    tag1: "",
-    tag2: "",
-    tag3: "",
-    startDay: "",
-    destDay: "",
-
+    id: ""
   })
 
 
@@ -95,23 +88,21 @@ const ContentContainer = () => {
     get_noticedetail(id)
       .then((res) => {
         console.log(res)
+        setDetailNoticeData((state) => ({
+          ...state,
+          title: res.name,
+          tag1: res.tag1,
+          tag2: res.tag2,
+          tag3: res.tag3,
+          startDay: res.startDay,
+          destDay: res.destDay,
+          swurl: res.swurl,
+        }))
         detailHandling.show()
       })
       .catch((err) => {
         console.log(err)
-
-        //FIXME 통신 성공시 지우기
-        setDetailNoticeData((state) => ({
-          ...state,
-          title: "SW중심대학사업단 2021학년도 SW융합전공 홍보 동영상 공유",
-          tag1: "SW융합교육센터",
-          tag2: "SW융합전공",
-          tag3: "SW융합전공 홍보",
-          startDay: "2021-08-10",
-          destDay: "2021-08-16",
-        }))
-        detailHandling.show()
-
+        console.log("detail데이터 불러오기 실패")
 
       })
   }

@@ -21,12 +21,9 @@ const NoticeListContent = ({
             isDetailVisible={isDetailVisible}
             detailHandling={detailHandling}
             paginationNum={paginationNum}
-<<<<<<< HEAD
             noticeDetailOnclick={noticeDetailOnclick}
             detailNoticeData={detailNoticeData}
 
-=======
->>>>>>> 862c2b5c67f2fb1110e307f73da772ebf874cd83
           ></NoticeList>
         </div>
       </div>

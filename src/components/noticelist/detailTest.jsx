@@ -4,9 +4,11 @@ import React from "react"
 
 
 
-const Test = ({ DetailTest }) => {
+const Test = ({ detailNoticeData }) => {
+    console.log("DetailTest")
+    console.log(detailNoticeData)
     return (
-        <div>TESTETSETESET</div>
+        <div>{detailNoticeData.title}</div>
     )
 }
 
