@@ -32,6 +32,15 @@ const HomeContent = () => {
                 height="650px"
               ></iframe>
             </div>
+            <h2>첨부파일 제출하기</h2>
+            <div className="section submitform">
+              <div className="detailbox">
+                <div className="detail">
+                  <p>이름</p>
+                  <input type="text"></input>
+                </div>
+              </div>
+            </div>
             <div className="buttonsection">
               <button className="sub-button detail-button">신청하기</button>
               <button className="sub-button detail-button">돌아가기</button>

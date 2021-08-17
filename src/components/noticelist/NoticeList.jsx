@@ -2,18 +2,20 @@ import React from "react";
 import ManageTable from "./ManageTable";
 import { FaSistrix } from "react-icons/fa";
 
-const NoticeList = ({ pageList,
+const NoticeList = ({
+  pageList,
   isDetailVisible,
   detailHandling,
-  paginationNum, }) => {
-  console.log('paginationNum')
-  console.log(paginationNum)
+  paginationNum,
+}) => {
+  console.log("paginationNum");
+  console.log(paginationNum);
   return (
-    <div className="col-lg-9">
+    <div className="col-lg-12">
       <div className="section-title">
         <p>프로그램 신청</p>
       </div>
-      <div className="box h-100">
+      <div className="box">
         <div className="d-flex align-items-center">
           <div className="section">
             <ManageTable pageList={pageList} />
@@ -34,11 +36,18 @@ const NoticeList = ({ pageList,
         </div>
         <div className="pagination">
           <ul>
-            {
-              paginationNum.map((i, index) => {
-                return <li key={index} onClick={() => { console.log("dd") }}>{paginationNum[index]}</li>
-              })
-            }
+            {paginationNum.map((i, index) => {
+              return (
+                <li
+                  key={index}
+                  onClick={() => {
+                    console.log("dd");
+                  }}
+                >
+                  {paginationNum[index]}
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
