@@ -5,7 +5,8 @@ import { useHistory } from "react-router-dom";
 
 import DetailTest from "./detailTest"
 
-const NoticeList = ({ pageList,
+const NoticeList = ({
+  pageList,
   isDetailVisible,
   detailHandling,
   paginationNum,
@@ -14,7 +15,7 @@ const NoticeList = ({ pageList,
 }) => {
   const history = useHistory();
   return (
-    <div className="col-lg-9">
+    <div className="col-lg-12">
       <div className="section-title">
         <p onClick={() => { detailHandling.close() }}>공지 사항</p>
       </div>
