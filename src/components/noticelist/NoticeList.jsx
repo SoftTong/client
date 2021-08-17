@@ -1,7 +1,6 @@
 import React from "react";
 import ManageTable from "./ManageTable";
 import { FaSistrix } from "react-icons/fa";
-import { useHistory } from "react-router-dom";
 
 import DetailTest from "./detailTest"
 
@@ -12,8 +11,9 @@ const NoticeList = ({
   paginationNum,
   noticeDetailOnclick,
   detailNoticeData,
+  paginationOnclick
 }) => {
-  const history = useHistory();
+
   return (
     <div className="col-lg-12">
       <div className="section-title">
@@ -47,7 +47,7 @@ const NoticeList = ({
                 <ul>
                   {
                     paginationNum.map((i, index) => {
-                      return <li key={index} onClick={() => { console.log("dd") }}>{paginationNum[index]}</li>
+                      return <li key={index} onClick={paginationOnclick}>{paginationNum[index]}</li>
                     })
                   }
                 </ul>
