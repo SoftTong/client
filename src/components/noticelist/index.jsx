@@ -1,7 +1,6 @@
 import React from "react";
 import "../../css/bootstrap.min.css";
 import NoticeList from "./NoticeList";
-import UserCard from "../../containers/redux/components/usercard";
 import "../../css/noticelist.css";
 const NoticeListContent = ({
   pageList,
