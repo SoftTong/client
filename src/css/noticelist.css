@@ -44,11 +44,18 @@
 }
 .tagcategory {
   font-size: 13px;
-  padding: 2px 7px;
-  margin-right: 10px;
-  background-color: rgb(185, 185, 185);
-  border-radius: 3px;
-  color: white;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-right: 0.75rem;
+  background: rgb(241, 243, 245);
+  border-radius: 1rem;
+  color: rgb(12, 166, 120);
+  transition: all 0.125s ease-in 0s;
+  cursor: pointer;
+  margin-bottom: 0.75rem;
+}
+.detailtag {
+  font-size: 17px;
 }
 .seachbar {
   display: flex;
@@ -110,4 +117,7 @@
   margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
+}
+.date {
+  text-align: right;
 }
