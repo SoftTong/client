@@ -12,14 +12,12 @@ const ContentContainer = () => {
         console.log(res)
         console.log(res.content)
         res.content.forEach((lists) => {
-          console.log(lists.title)
-          console.log(lists.memberDao.title)
           setPageList((state) => [...state, {
             title: lists.name,
             tag1: lists.tag1,
             tag2: lists.tag2,
             tag3: lists.tag3,
-            adminName: lists.memberDao.name,
+            adminName: lists.authorName,
             uploadDay: lists.uploadDay.substring(0, 10)
           }])
         })

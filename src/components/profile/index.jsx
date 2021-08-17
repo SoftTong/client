@@ -6,7 +6,13 @@ import UserInfo from "./UserInfo";
 
 const profileContent = ({
   userProfile,
-  editUserProfileFunctions
+  editUserProfileFunctions,
+  showEmail,
+  editEmailOnclick,
+  editPhoneOnclick,
+  showPhone,
+  showPassword,
+  editPasswordOnclick,
 }) => {
   console.log(userProfile)
   return (
@@ -14,7 +20,14 @@ const profileContent = ({
       <div className="container">
         <div class="row align-items-stretch overlap">
           <UserCard ></UserCard>
-          <UserInfo userProfile={userProfile} editUserProfileFunctions={editUserProfileFunctions}></UserInfo>
+          <UserInfo userProfile={userProfile}
+            editUserProfileFunctions={editUserProfileFunctions}
+            showEmail={showEmail}
+            editEmailOnclick={editEmailOnclick}
+            showPhone={showPhone}
+            editPhoneOnclick={editPhoneOnclick}
+            showPassword={showPassword}
+            editPasswordOnclick={editPasswordOnclick}></UserInfo>
         </div>
       </div>
     </>

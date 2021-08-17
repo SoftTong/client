@@ -2,6 +2,7 @@ import React from "react";
 import ManageTable from "./ManageTable";
 import seachicon from "../../img/seachicon.png";
 import { Link } from "react-router-dom";
+import { FaSistrix } from "react-icons/fa";
 
 const NoticeList = ({ pageList }) => {
   return (
@@ -24,7 +25,7 @@ const NoticeList = ({ pageList }) => {
           <div className="seachtext">
             <input type="seach" placeholder="검색할 내용을 입력하세요"></input>
             <span>
-              <img src={seachicon} width="20px" height="20px"></img>
+              <FaSistrix></FaSistrix>
             </span>
           </div>
         </div>
