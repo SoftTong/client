@@ -4,7 +4,7 @@ import get_noticelist from "../../service/api/get/get_noticedetail";
 
 const HomeContent = () => {
   const getnoticeList0 = () => {
-    get_noticelist(0)
+    get_noticelist(15)
       .then((res) => {
         console.log(res);
         console.log(res.content);

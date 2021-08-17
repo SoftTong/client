@@ -7,6 +7,8 @@ const NoticeListContent = ({ pageList,
   isDetailVisible,
   detailHandling,
   paginationNum,
+  noticeDetailOnclick,
+  detailNoticeData,
 }) => {
 
   return (
@@ -17,7 +19,11 @@ const NoticeListContent = ({ pageList,
           <NoticeList pageList={pageList}
             isDetailVisible={isDetailVisible}
             detailHandling={detailHandling}
-            paginationNum={paginationNum}></NoticeList>
+            paginationNum={paginationNum}
+            noticeDetailOnclick={noticeDetailOnclick}
+            detailNoticeData={detailNoticeData}
+
+          ></NoticeList>
         </div>
       </div>
     </>
