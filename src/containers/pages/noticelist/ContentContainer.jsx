@@ -49,9 +49,8 @@ const ContentContainer = () => {
   //왜이래 야 다시 쳐봐
 
   useEffect(() => {
-    console.log("mount")
     setIsDetailVisible(false)
-    getnoticeList(1)
+    getnoticeList(0)
   }, [])
 
   useEffect(() => {
@@ -59,9 +58,11 @@ const ContentContainer = () => {
   }, [pagingNum])
 
 
+
   //SECTION pagination 
   const paginationNum = []
 
+  // pageTotalNum
   for (let i = 0; i < pageTotalNum; i++) {
     paginationNum.push(i + 1)
   }

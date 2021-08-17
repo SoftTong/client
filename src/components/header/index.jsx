@@ -1,7 +1,7 @@
 import React from "react";
 import LogoImg from "../../img/logo_.png";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
 import Modal from "../../components/atoms/Modal";
 import Account from "./AccountModal";
@@ -232,6 +232,9 @@ const Header = ({ logined }) => {
             />
 
             <HeaderList>
+              <Link to='/notice'>
+                제발,,
+              </Link>
               <ListValue
                 onClick={() => {
                   history.push("/notice");
