@@ -1,10 +1,13 @@
 import React from "react";
 import ManageTable from "./ManageTable";
-import seachicon from "../../img/seachicon.png";
-import { Link } from "react-router-dom";
 import { FaSistrix } from "react-icons/fa";
 
-const NoticeList = ({ pageList }) => {
+const NoticeList = ({ pageList,
+  isDetailVisible,
+  detailHandling,
+  paginationNum, }) => {
+  console.log('paginationNum')
+  console.log(paginationNum)
   return (
     <div className="col-lg-9">
       <div className="section-title">
@@ -31,26 +34,11 @@ const NoticeList = ({ pageList }) => {
         </div>
         <div className="pagination">
           <ul>
-            <li>
-              <Link to="#" className="linkpage">
-                1
-              </Link>
-            </li>
-            <li>
-              <Link to="#" className="linkpage">
-                2
-              </Link>
-            </li>
-            <li>
-              <Link to="#" className="linkpage">
-                3
-              </Link>
-            </li>
-            <li>
-              <Link to="#" className="linkpage">
-                4
-              </Link>
-            </li>
+            {
+              paginationNum.map((i, index) => {
+                return <li key={index} onClick={() => { console.log("dd") }}>{paginationNum[index]}</li>
+              })
+            }
           </ul>
         </div>
       </div>

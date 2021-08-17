@@ -73,7 +73,9 @@
   align-items: center;
 }
 .pagination ul li:hover {
-  background-color: rgb(199, 199, 240);
+  /* background-color: rgb(199, 199, 240); */
+  background-color: rgb(233, 233, 233);
+  cursor: pointer;
 }
 /* .linkpage {
   display: block;
