@@ -51,7 +51,7 @@ const ContentContainer = () => {
   useEffect(() => {
     console.log("mount")
     setIsDetailVisible(false)
-    getnoticeList(0)
+    getnoticeList(1)
   }, [])
 
   useEffect(() => {
@@ -64,6 +64,11 @@ const ContentContainer = () => {
 
   for (let i = 0; i < pageTotalNum; i++) {
     paginationNum.push(i + 1)
+  }
+
+  const paginationOnclick = (e) => {
+    console.log(Number(e.target.innerText) - 1)
+    setPagingNum(Number(e.target.innerText) - 1)
   }
   //!SECTION pagination 
 
@@ -108,7 +113,6 @@ const ContentContainer = () => {
   }
 
   ///!SECTION notice detail 
-  console.log(detailNoticeData)
 
   return (
     <>
@@ -118,7 +122,7 @@ const ContentContainer = () => {
         detailHandling={detailHandling}
         paginationNum={paginationNum}
         noticeDetailOnclick={noticeDetailOnclick}
-
+        paginationOnclick={paginationOnclick}
         detailNoticeData={detailNoticeData}
 
       ></NoticeListContent>

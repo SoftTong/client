@@ -10,6 +10,7 @@ const NoticeListContent = ({
   paginationNum,
   noticeDetailOnclick,
   detailNoticeData,
+  paginationOnclick,
 }) => {
   return (
     <>
@@ -23,7 +24,7 @@ const NoticeListContent = ({
             paginationNum={paginationNum}
             noticeDetailOnclick={noticeDetailOnclick}
             detailNoticeData={detailNoticeData}
-
+            paginationOnclick={paginationOnclick}
           ></NoticeList>
         </div>
       </div>
