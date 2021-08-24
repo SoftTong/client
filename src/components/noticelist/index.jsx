@@ -10,6 +10,9 @@ const NoticeListContent = ({
   noticeDetailOnclick,
   detailNoticeData,
   paginationOnclick,
+  uploadOnclick,
+  uploadfile,
+  selectFile,
 }) => {
   return (
     <>
@@ -24,6 +27,9 @@ const NoticeListContent = ({
             noticeDetailOnclick={noticeDetailOnclick}
             detailNoticeData={detailNoticeData}
             paginationOnclick={paginationOnclick}
+            uploadOnclick={uploadOnclick}
+            uploadfile={uploadfile}
+            selectFile={selectFile}
           ></NoticeList>
         </div>
       </div>

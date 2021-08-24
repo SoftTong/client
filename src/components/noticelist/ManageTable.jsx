@@ -13,8 +13,17 @@ const ManageTable = ({ pageList, noticeDetailOnclick }) => {
         </thead>
 
         {pageList.map(
-          ({ id, number, title, adminName, uploadDay, tag1, tag2, tag3 }, index) => (
-            <tbody key={index} onClick={() => { noticeDetailOnclick(id) }} className="table-content py-3 px-4 notice-wrapper row align-items-sm-center text-center text-dark important">
+          (
+            { id, number, title, adminName, uploadDay, tag1, tag2, tag3 },
+            index
+          ) => (
+            <tbody
+              key={index}
+              onClick={() => {
+                noticeDetailOnclick(id);
+              }}
+              className="table-content py-3 px-4 notice-wrapper row align-items-sm-center text-center text-dark important"
+            >
               <tr>
                 <td id={number} className="col-sm-7 thtitle">
                   {title}
