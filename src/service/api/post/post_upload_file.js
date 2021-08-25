@@ -7,14 +7,13 @@ import _ from "../../../config/env";
  * @request @body requestData
  * @response
  */
-
 const upload_file = (requestData) => {
   console.log("requestdata");
-  console.log(requestData);
+  console.log(requestData.get('file'));
+  console.log(requestData.get('noticeId'));
   return fetch(_.SERVER_URL + "/notice/file/apply", {
     method: "POST",
     headers: {
-      "Content-type": "multipart/form-data",
       Authorization: "Bearer " + localStorage.getItem("SoTong-token"),
     },
     body: requestData,
@@ -31,9 +30,9 @@ const upload_file = (requestData) => {
       console.log(err);
       console.log(
         "Error from  upload_file\n" +
-          err.message +
-          "\n success : " +
-          err.success
+        err.message +
+        "\n success : " +
+        err.success
       );
       throw err;
     });

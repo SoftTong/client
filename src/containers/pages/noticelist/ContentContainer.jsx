@@ -111,12 +111,13 @@ const ContentContainer = () => {
   const selectFile = (e) => {
     const selectfiles = e.currentTarget.files;
     console.log("====파일확인====");
-    console.log(selectfiles);
+    console.log(selectfiles[0]);
 
     const formData = new FormData();
-    formData.append("file", selectfiles);
+    formData.append("file", selectfiles[0]);
     formData.append("noticeId", detailNoticeData.id);
-
+    console.log(formData.get('file'));
+    console.log(formData.get('noticeId'));
     console.log(formData);
     setUploadfile(formData);
   };
