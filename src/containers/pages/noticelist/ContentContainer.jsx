@@ -18,15 +18,16 @@ const ContentContainer = () => {
   const [isDetailVisible, setIsDetailVisible] = useState(false);
 
   //검색 단어
-  const [seachWord, setSeachWord] = useState("");
+  const [searchWord, setSearchWord] = useState("");
+  const [lengthWord, setLengthWord] = useState(0);
 
   const detailHandling = {
     show: () => setIsDetailVisible(true),
     close: () => setIsDetailVisible(false),
   };
 
-  const getnoticeList = (pickPageNum) => {
-    get_noticelist(pickPageNum)
+  const getnoticeList = (pickPageNum, searchWord) => {
+    get_noticelist(pickPageNum, searchWord)
       .then((res) => {
         console.log(res);
         console.log(res.content);
@@ -50,8 +51,6 @@ const ContentContainer = () => {
       })
       .catch((err) => console.log(err));
   };
-  //what is this component?
-  //왜이래 야 다시 쳐봐
 
   useEffect(() => {
     setIsDetailVisible(false);
@@ -59,8 +58,8 @@ const ContentContainer = () => {
   }, []);
 
   useEffect(() => {
-    getnoticeList(pagingNum);
-  }, [pagingNum]);
+    getnoticeList(pagingNum, searchWord);
+  }, [pagingNum, searchWord]);
 
   //SECTION pagination
   const paginationNum = [];
@@ -140,8 +139,9 @@ const ContentContainer = () => {
 
   //검색기능
   const handleChangeWord = (e) => {
-    setSeachWord(e.target.value);
-    console.log(seachWord);
+    setSearchWord(e.target.value);
+    setPagingNum(0);
+    console.log(searchWord);
   };
 
   return (
@@ -157,7 +157,7 @@ const ContentContainer = () => {
         uploadOnclick={uploadOnclick}
         uploadfile={uploadfile}
         selectFile={selectFile}
-        seachWord={seachWord}
+        searchWord={searchWord}
         handleChangeWord={handleChangeWord}
       ></NoticeListContent>
     </>

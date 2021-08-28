@@ -3,7 +3,7 @@ import React from "react";
 const ManageTable = ({
   pageList,
   noticeDetailOnclick,
-  seachWord,
+  searchWord,
   handleChangeWord,
 }) => {
   return (
@@ -17,64 +17,37 @@ const ManageTable = ({
           </tr>
         </thead>
 
-        {pageList
-          .filter(
-            (
-              { id, number, title, adminName, uploadDay, tag1, tag2, tag3 },
-              index
-            ) => {
-              if (seachWord === null) {
-                return (
-                  { id, number, title, adminName, uploadDay, tag1, tag2, tag3 },
-                  index
-                );
-              } else if (
-                title.toLowerCase().includes(seachWord.toLowerCase())
-              ) {
-                return (
-                  { id, number, title, adminName, uploadDay, tag1, tag2, tag3 },
-                  index
-                );
-              }
-            }
+        {pageList.map(
+          (
+            { id, number, title, adminName, uploadDay, tag1, tag2, tag3 },
+            index
+          ) => (
+            <tbody
+              key={index}
+              onClick={() => {
+                noticeDetailOnclick(id);
+              }}
+              className="table-content py-3 px-4 notice-wrapper row align-items-sm-center text-center text-dark important"
+            >
+              <tr>
+                <td id={number} className="col-sm-7 thtitle">
+                  {title}
+                  <div className="tag">
+                    {tag1 ? <span className="tagcategory">{tag1}</span> : null}
+                    {tag2 ? <span className="tagcategory">{tag2}</span> : null}
+                    {tag3 ? <span className="tagcategory">{tag3}</span> : null}
+                  </div>
+                </td>
+                <td id={number} className="col-sm-2">
+                  {adminName}
+                </td>
+                <td id={number} className="col-sm-3">
+                  {uploadDay}
+                </td>
+              </tr>
+            </tbody>
           )
-          .map(
-            (
-              { id, number, title, adminName, uploadDay, tag1, tag2, tag3 },
-              index
-            ) => (
-              <tbody
-                key={index}
-                onClick={() => {
-                  noticeDetailOnclick(id);
-                }}
-                className="table-content py-3 px-4 notice-wrapper row align-items-sm-center text-center text-dark important"
-              >
-                <tr>
-                  <td id={number} className="col-sm-7 thtitle">
-                    {title}
-                    <div className="tag">
-                      {tag1 ? (
-                        <span className="tagcategory">{tag1}</span>
-                      ) : null}
-                      {tag2 ? (
-                        <span className="tagcategory">{tag2}</span>
-                      ) : null}
-                      {tag3 ? (
-                        <span className="tagcategory">{tag3}</span>
-                      ) : null}
-                    </div>
-                  </td>
-                  <td id={number} className="col-sm-2">
-                    {adminName}
-                  </td>
-                  <td id={number} className="col-sm-3">
-                    {uploadDay}
-                  </td>
-                </tr>
-              </tbody>
-            )
-          )}
+        )}
       </table>
     </>
   );

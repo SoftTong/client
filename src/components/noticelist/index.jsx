@@ -13,7 +13,7 @@ const NoticeListContent = ({
   uploadOnclick,
   uploadfile,
   selectFile,
-  seachWord,
+  searchWord,
   handleChangeWord,
 }) => {
   return (
@@ -32,7 +32,7 @@ const NoticeListContent = ({
             uploadOnclick={uploadOnclick}
             uploadfile={uploadfile}
             selectFile={selectFile}
-            seachWord={seachWord}
+            seachWord={searchWord}
             handleChangeWord={handleChangeWord}
           ></NoticeList>
         </div>

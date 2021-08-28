@@ -14,7 +14,7 @@ const NoticeList = ({
   uploadOnclick,
   uploadfile,
   selectFile,
-  seachWord,
+  searchWord,
   handleChangeWord,
 }) => {
   return (
@@ -44,22 +44,22 @@ const NoticeList = ({
                 <ManageTable
                   pageList={pageList}
                   noticeDetailOnclick={noticeDetailOnclick}
-                  seachWord={seachWord}
+                  searchWord={searchWord}
                   handleChangeWord={handleChangeWord}
                 />
               </div>
             </div>
-            <div className="seachbar">
+            <div className="searchbar">
               <select>
                 <option>제목</option>
                 <option>작성자</option>
                 <option>태그</option>
               </select>
-              <div className="seachtext">
+              <div className="searchtext">
                 <input
-                  type="seach"
+                  type="search"
                   placeholder="검색할 내용을 입력하세요"
-                  value={seachWord}
+                  value={searchWord}
                   onChange={handleChangeWord}
                 ></input>
 

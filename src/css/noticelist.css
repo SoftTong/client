@@ -57,16 +57,16 @@
 .detailtag {
   font-size: 17px;
 }
-.seachbar {
+.searchbar {
   display: flex;
   padding: 20px 5px;
 }
-.seachtext {
+.searchtext {
   width: 100%;
   margin-left: 20px;
   border: solid 1px black;
 }
-.seachtext input {
+.searchtext input {
   width: 96%;
   border: none;
   outline: none;
