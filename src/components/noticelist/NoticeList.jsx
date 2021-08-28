@@ -14,6 +14,8 @@ const NoticeList = ({
   uploadOnclick,
   uploadfile,
   selectFile,
+  seachWord,
+  handleChangeWord,
 }) => {
   return (
     <div className="col-lg-12">
@@ -42,6 +44,8 @@ const NoticeList = ({
                 <ManageTable
                   pageList={pageList}
                   noticeDetailOnclick={noticeDetailOnclick}
+                  seachWord={seachWord}
+                  handleChangeWord={handleChangeWord}
                 />
               </div>
             </div>
@@ -55,7 +59,10 @@ const NoticeList = ({
                 <input
                   type="seach"
                   placeholder="검색할 내용을 입력하세요"
+                  value={seachWord}
+                  onChange={handleChangeWord}
                 ></input>
+
                 <span>
                   <FaSistrix></FaSistrix>
                 </span>

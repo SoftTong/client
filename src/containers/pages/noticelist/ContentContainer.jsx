@@ -17,6 +17,9 @@ const ContentContainer = () => {
   //NOTE detail page open
   const [isDetailVisible, setIsDetailVisible] = useState(false);
 
+  //검색 단어
+  const [seachWord, setSeachWord] = useState("");
+
   const detailHandling = {
     show: () => setIsDetailVisible(true),
     close: () => setIsDetailVisible(false),
@@ -116,8 +119,8 @@ const ContentContainer = () => {
     const formData = new FormData();
     formData.append("file", selectfiles[0]);
     formData.append("noticeId", detailNoticeData.id);
-    console.log(formData.get('file'));
-    console.log(formData.get('noticeId'));
+    console.log(formData.get("file"));
+    console.log(formData.get("noticeId"));
     console.log(formData);
     setUploadfile(formData);
   };
@@ -135,6 +138,12 @@ const ContentContainer = () => {
       .catch((err) => console.log(err + ": 에러"));
   };
 
+  //검색기능
+  const handleChangeWord = (e) => {
+    setSeachWord(e.target.value);
+    console.log(seachWord);
+  };
+
   return (
     <>
       <NoticeListContent
@@ -148,6 +157,8 @@ const ContentContainer = () => {
         uploadOnclick={uploadOnclick}
         uploadfile={uploadfile}
         selectFile={selectFile}
+        seachWord={seachWord}
+        handleChangeWord={handleChangeWord}
       ></NoticeListContent>
     </>
   );
