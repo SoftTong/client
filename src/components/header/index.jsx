@@ -247,14 +247,14 @@ const Header = ({ logined }) => {
                   history.push("/profile");
                 }}
               >
-                마이페이지
+                profile
               </ListValue>
               <ListValue
                 onClick={() => {
-                  history.push("/");
+                  history.push("/mypage");
                 }}
               >
-                보고서 제출
+                mypage
               </ListValue>
               <ListValue
                 onClick={() => {

@@ -8,8 +8,9 @@ const NoticeListRouter = ({ security, userInfo }) => {
     return <NoticeList />;
   }
 
-  history.push("/notice");
+  history.push("/");
   return null;
 };
 
 export default NoticeListRouter;
+
