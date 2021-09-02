@@ -117,7 +117,7 @@ const ContentContainer = ({ role, name }) => {
             ...state,
             {
               id: lists.id,
-              title: lists.name,
+              title: lists.noticeTitle,
               status: lists.status,
               uploadDay: lists.uploadDay.substring(0, 10),
             },
