@@ -25,6 +25,7 @@ const MyPageContent = ({
   role,
   name,
   pageList,
+  applypageList,
   isDetailVisible,
   detailHandling,
   paginationNum,
@@ -43,7 +44,15 @@ const MyPageContent = ({
             // FIXME admin 구현후 UserMYPage로
             <div className="container">
               <div class="row align-items-stretch overlap">
-                <UserMyPage></UserMyPage>
+                <UserMyPage
+                  applypageList={applypageList}
+                  isDetailVisible={isDetailVisible}
+                  detailHandling={detailHandling}
+                  paginationNum={paginationNum}
+                  noticeDetailOnclick={noticeDetailOnclick}
+                  detailNoticeData={detailNoticeData}
+                  paginationOnclick={paginationOnclick}
+                ></UserMyPage>
               </div>
             </div>
           ) : (

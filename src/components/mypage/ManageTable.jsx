@@ -1,6 +1,14 @@
 import React from "react";
 
-const ManageTable = ({}) => {
+const ManageTable = ({
+  applypageList,
+  isDetailVisible,
+  detailHandling,
+  paginationNum,
+  noticeDetailOnclick,
+  detailNoticeData,
+  paginationOnclick,
+}) => {
   return (
     <>
       <table className="tabel-list">
@@ -12,11 +20,8 @@ const ManageTable = ({}) => {
           </tr>
         </thead>
 
-        {/* {pageList.map(
-          (
-            { id, number, title, adminName, uploadDay, tag1, tag2, tag3 },
-            index
-          ) => (
+        {applypageList.applypageList.map(
+          ({ id, number, title, status, uploadDay }, index) => (
             <tbody
               key={index}
               onClick={() => {
@@ -27,22 +32,17 @@ const ManageTable = ({}) => {
               <tr>
                 <td id={number} className="col-sm-7 thtitle">
                   {title}
-                  <div className="tag">
-                    {tag1 ? <span className="tagcategory">{tag1}</span> : null}
-                    {tag2 ? <span className="tagcategory">{tag2}</span> : null}
-                    {tag3 ? <span className="tagcategory">{tag3}</span> : null}
-                  </div>
                 </td>
                 <td id={number} className="col-sm-2">
-                  {}
+                  {uploadDay}
                 </td>
                 <td id={number} className="col-sm-3">
-                  {}
+                  <p className="applystatus">{status}</p>
                 </td>
               </tr>
             </tbody>
           )
-        )} */}
+        )}
       </table>
     </>
   );

@@ -4,7 +4,15 @@ import React from "react";
 // import styled from "styled-components";
 import ManageTable from "./ManageTable";
 
-const UserMyPage = () => {
+const UserMyPage = (
+  applypageList,
+  isDetailVisible,
+  detailHandling,
+  paginationNum,
+  noticeDetailOnclick,
+  detailNoticeData,
+  paginationOnclick
+) => {
   return (
     <>
       <div className="col-lg-12">
@@ -14,7 +22,15 @@ const UserMyPage = () => {
         <div className="box h-100">
           <div className="d-flex align-items-center">
             <div className="section">
-              <ManageTable />
+              <ManageTable
+                applypageList={applypageList}
+                isDetailVisible={isDetailVisible}
+                detailHandling={detailHandling}
+                paginationNum={paginationNum}
+                noticeDetailOnclick={noticeDetailOnclick}
+                detailNoticeData={detailNoticeData}
+                paginationOnclick={paginationOnclick}
+              />
             </div>
           </div>
         </div>

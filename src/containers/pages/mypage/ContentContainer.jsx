@@ -14,6 +14,9 @@ const ContentContainer = ({ role, name }) => {
   //NOTE 10개씩 세팅되는 리스트
   const [pageList, setPageList] = useState([]);
 
+  //NOTE 신청목록에서 10개씩 세팅되는 리스트
+  const [applypageList, setApplypageList] = useState([]);
+
   //NOTE manage page open
   const [isDetailVisible, setIsDetailVisible] = useState(false);
 
@@ -108,18 +111,15 @@ const ContentContainer = ({ role, name }) => {
         console.log(res.content);
         console.log(res.totalPages);
         setPageTotalNum(res.totalPages);
-        setPageList([]);
+        setApplypageList([]);
         res.content.forEach((lists) => {
-          setPageList((state) => [
+          setApplypageList((state) => [
             ...state,
             {
               id: lists.id,
               title: lists.name,
-              //   tag1: lists.tag1,
-              //   tag2: lists.tag2,
-              //   tag3: lists.tag3,
-
               status: lists.status,
+              uploadDay: lists.uploadDay.substring(0, 10),
             },
           ]);
         });
@@ -143,6 +143,7 @@ const ContentContainer = ({ role, name }) => {
         role={role}
         name={name}
         pageList={pageList}
+        applypageList={applypageList}
         isDetailVisible={isDetailVisible}
         detailHandling={detailHandling}
         paginationNum={paginationNum}
