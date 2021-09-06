@@ -261,7 +261,7 @@ const Header = ({ logined }) => {
                   history.push("/createnotice");
                 }}
               >
-                TEST
+                게시글 작성
               </ListValue>
             </HeaderList>
 

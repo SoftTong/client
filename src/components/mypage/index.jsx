@@ -44,7 +44,16 @@ const MyPageContent = ({
 
                         (role === "USER") ?
                             // FIXME admin 구현후 UserMYPage로 
-                            <UserMyPage   ></UserMyPage>
+                            // <UserMyPage   ></UserMyPage>
+                            <AdminMyPage
+                                pageList={pageList}
+                                isDetailVisible={isDetailVisible}
+                                detailHandling={detailHandling}
+                                paginationNum={paginationNum}
+                                noticeDetailOnclick={noticeDetailOnclick}
+                                detailNoticeData={detailNoticeData}
+                                paginationOnclick={paginationOnclick}
+                            ></AdminMyPage>
                             :
                             <AdminMyPage
                                 pageList={pageList}

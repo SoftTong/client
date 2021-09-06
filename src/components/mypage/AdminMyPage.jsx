@@ -22,17 +22,20 @@ const TableTitle = styled.div`
 //   text-align:center;
 //   border-spacing:0;
 // `
-// const THead = styled.thead`
-//   flex: 0 0 auto;
-//   width: 100%;
-//   margin-left: 0px !important;
-//   margin-right: 0px !important;
-// `
-// const HTr = styled.tr`
-//       margin-left: 0px !important;
-//   margin-right: 0px !important;
-//   width: 100%;
-//   justify-content: space-between;
+const THead = styled.thead`
+  /* flex: 0 0 auto; */
+  width: 100%;
+  /* margin-left: 0px !important;
+  margin-right: 0px !important; */
+
+  box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px;
+`
+const HTr = styled.tr`
+      margin-left: 0px !important;
+  margin-right: 0px !important;
+  width: 100%;
+    padding : 1rem 1.5rem;
+  justify-content: space-between;
 
 // `
 // const TBody = styled.tbody`
@@ -63,14 +66,15 @@ const AdminMyPage = ({
     return (
         <>
             <TableTitle>MANAGE : 공지사항</TableTitle>
+
             <table className="tabel-list">
-                <thead className="table-head py-3 px-4 d-none d-lg-block bg-light">
+                <THead>
                     <tr className="row align-items-sm-center text-center text-dark">
                         <th className="col-sm-7">제목</th>
                         <th className="col-sm-2">작성자</th>
                         <th className="col-sm-3">작성일</th>
                     </tr>
-                </thead>
+                </THead>
 
                 {pageList.map(
                     (
