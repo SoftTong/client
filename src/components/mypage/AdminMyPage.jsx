@@ -16,37 +16,50 @@ const TableTitle = styled.div`
     display: flex;
 `
 
-// const Table = styled.table`
-//   width:100%;
-//   position : relative;
-//   text-align:center;
-//   border-spacing:0;
-// `
-const THead = styled.thead`
-  /* flex: 0 0 auto; */
-  width: 100%;
-  /* margin-left: 0px !important;
-  margin-right: 0px !important; */
+const Table = styled.table`
+    display: flex;
+    height: 650px;
+    overflow: auto;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    width: inherit;
+`
 
-  box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px;
+const THead = styled.thead`
+    width: inherit;
+    padding: 0 1.5rem;
+    
+    display : flex;
+    position : sticky;
+    top : 0;
+    background: rgb(255 255 255);
+    z-index : 10;
+    box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px;
 `
 const HTr = styled.tr`
-      margin-left: 0px !important;
-  margin-right: 0px !important;
-  width: 100%;
-    padding : 1rem 1.5rem;
-  justify-content: space-between;
+height : 48px;
+  display: flex;
+  align-items: center;
+  width: inherit;
+  box-sizing: border-box;
+  text-align: center !important;
+  /* vertical-align: inherit;
+    border-color: inherit; */
+  /* justify-content: space-between; */
+ `
 
-// `
-// const TBody = styled.tbody`
-//   width: 100%;
-//   display: flex;
-//   border-bottom: 1px rgb(167, 167, 167) solid;
-//   padding-top: 20px;
-//   margin-left: 0px !important;
-//   margin-right: 0px !important;
-//   height: 70px;
-// `
+
+//  const TBody = styled.tbody`
+//    width: 100%;
+//    display: flex;
+//    border-bottom: 1px rgb(167, 167, 167) solid;
+//    padding-top: 20px;
+//    margin-left: 0px !important;
+//    margin-right: 0px !important;
+//    height: 70px;
+//  `
+
+
 // const BTr = styled.tr`
 //   width: 100%;
 //   display: flex;
@@ -67,13 +80,13 @@ const AdminMyPage = ({
         <>
             <TableTitle>MANAGE : 공지사항</TableTitle>
 
-            <table className="tabel-list">
+            <Table>
                 <THead>
-                    <tr className="row align-items-sm-center text-center text-dark">
+                    <HTr>
                         <th className="col-sm-7">제목</th>
                         <th className="col-sm-2">작성자</th>
                         <th className="col-sm-3">작성일</th>
-                    </tr>
+                    </HTr>
                 </THead>
 
                 {pageList.map(
@@ -85,6 +98,12 @@ const AdminMyPage = ({
                             key={index}
                             onClick={() => {
                                 noticeDetailOnclick(id);
+                            }}
+                            style={{
+                                cursor: "pointer",
+                                '&:hover': {
+                                    textDecoration: 'underline',
+                                }
                             }}
                             className="table-content py-3 px-4 notice-wrapper row align-items-sm-center text-center text-dark important"
                         >
@@ -107,7 +126,7 @@ const AdminMyPage = ({
                         </tbody>
                     )
                 )}
-            </table>
+            </Table>
             <div className="pagination">
                 <ul>
                     {paginationNum.map((i, index) => {

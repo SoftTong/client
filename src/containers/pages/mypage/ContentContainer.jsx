@@ -51,14 +51,24 @@ const ContentContainer = ({ role, name }) => {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    setIsDetailVisible(false);
-    getnoticeList(0);
-  }, []);
 
   useEffect(() => {
-    getnoticeList(pagingNum);
-  }, [pagingNum]);
+    setIsDetailVisible(false);
+    // FIXME USER 구현시 밑에꺼 주석 <-> 반대느반대
+    (role === "USER") ? //USER 구현
+      // (role !== "USER") ? //ADMIN 구현
+      applyList(0) : getnoticeList(0)
+
+  }, [role]);
+
+
+  useEffect(() => {
+
+    // (role === "USER") ?
+    (role !== "USER") ?
+      applyList(pagingNum) : getnoticeList(pagingNum);
+  }, [pagingNum, role]);
+
 
   //SECTION pagination
   const paginationNum = [];
@@ -126,15 +136,6 @@ const ContentContainer = ({ role, name }) => {
       })
       .catch((err) => console.log(err));
   };
-
-  useEffect(() => {
-    setIsDetailVisible(false);
-    applyList(0);
-  }, []);
-
-  useEffect(() => {
-    applyList(pagingNum);
-  }, [pagingNum]);
 
   return (
     <>

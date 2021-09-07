@@ -33,15 +33,16 @@ const MyPageContent = ({
   detailNoticeData,
   paginationOnclick,
 }) => {
-  console.log(role);
+  // console.log(role);
 
   return (
     <>
       <MyPageWrapper>
         <UserCard></UserCard>
         <div className="col-lg-9">
-          {role === "USER" ? (
-            // FIXME admin 구현후 UserMYPage로
+          {/* {role !== "USER" ? ( */}
+          {role === "USER" ? (   //USER 구현
+            // FIXME USER 구현시 밑에꺼 주석 <-> 반대느반대
             <div className="container">
               <div class="row align-items-stretch overlap">
                 <UserMyPage
