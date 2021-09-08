@@ -97,6 +97,7 @@ const ContentContainer = () => {
           startDay: res.startDay,
           destDay: res.destDay,
           swurl: res.swurl,
+          isForm: res.isForm,
         }));
         detailHandling.show();
       })

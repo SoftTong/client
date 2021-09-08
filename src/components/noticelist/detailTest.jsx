@@ -54,103 +54,109 @@ const Test = ({ detailNoticeData, uploadOnclick, uploadfile, selectFile }) => {
       </div>
 
       <div className="buttonsection">
-        <button
-          className="sub-button detail-button"
-          onClick={handleFormModal.show}
-        >
-          신청서 작성하기
-        </button>
-        <Modal
-          closable={true}
-          title={"신청서 작성하기"}
-          visible={formModal}
-          maskClosable={true}
-          onClose={handleFormModal.close}
-        >
-          <div className="uploadsection">
-            <div className="detail">
-              <p>이름</p>
-              <input type="text"></input>
-            </div>
-            <div className="detail">
-              <p>학과</p>
-              <div className="radiobtn">
-                <input type="radio" name="major" />
-                소프트웨어학과
+        {detailNoticeData.isForm === true ? (
+          <div>
+            <button
+              className="sub-button detail-button"
+              onClick={handleFormModal.show}
+            >
+              신청서 작성하기
+            </button>
+            <Modal
+              closable={true}
+              title={"신청서 작성하기"}
+              visible={formModal}
+              maskClosable={true}
+              onClose={handleFormModal.close}
+            >
+              <div className="uploadsection">
+                <div className="detail">
+                  <p>이름</p>
+                  <input type="text"></input>
+                </div>
+                <div className="detail">
+                  <p>학과</p>
+                  <div className="radiobtn">
+                    <input type="radio" name="major" />
+                    소프트웨어학과
+                  </div>
+                  <div className="radiobtn">
+                    <input type="radio" name="major" />
+                    정보통신공학부
+                  </div>
+                  <div className="radiobtn">
+                    <input type="radio" name="major" />
+                    컴퓨터공학과
+                  </div>
+                </div>
+                <div className="detail">
+                  <p>학년</p>
+                  <div className="radiobtn">
+                    <input type="radio" name="grade" />
+                    1학년
+                  </div>
+                  <div className="radiobtn">
+                    <input type="radio" name="grade" />
+                    2학년
+                  </div>
+                  <div className="radiobtn">
+                    <input type="radio" name="grade" />
+                    3학년
+                  </div>
+                  <div className="radiobtn">
+                    <input type="radio" name="grade" />
+                    4학년
+                  </div>
+                </div>
+                <div className="detail">
+                  <p>학번</p>
+                  <input type="text"></input>
+                </div>
+                <div className="detail">
+                  <p>연락처</p>
+                  <input type="text"></input>
+                </div>
               </div>
-              <div className="radiobtn">
-                <input type="radio" name="major" />
-                정보통신공학부
-              </div>
-              <div className="radiobtn">
-                <input type="radio" name="major" />
-                컴퓨터공학과
-              </div>
-            </div>
-            <div className="detail">
-              <p>학년</p>
-              <div className="radiobtn">
-                <input type="radio" name="grade" />
-                1학년
-              </div>
-              <div className="radiobtn">
-                <input type="radio" name="grade" />
-                2학년
-              </div>
-              <div className="radiobtn">
-                <input type="radio" name="grade" />
-                3학년
-              </div>
-              <div className="radiobtn">
-                <input type="radio" name="grade" />
-                4학년
-              </div>
-            </div>
-            <div className="detail">
-              <p>학번</p>
-              <input type="text"></input>
-            </div>
-            <div className="detail">
-              <p>연락처</p>
-              <input type="text"></input>
-            </div>
+            </Modal>
           </div>
-        </Modal>
-
-        <button
-          className="sub-button detail-button"
-          onClick={handleSubmitModal.show}
-        >
-          첨부파일 제출하기
-        </button>
-        <Modal
-          closable={true}
-          title={"첨부파일 제출하기"}
-          visible={submitModal}
-          maskClosable={true}
-          onClose={handleSubmitModal.close}
-        >
-          <div id="js-upload-form">
-            <div className="form-inline">
-              <div className="form-group">
-                <input
-                  type="file"
-                  name="file"
-                  id="js-upload-files"
-                  multiple
-                  onChange={selectFile}
-                ></input>
+        ) : (
+          <div>
+            <button
+              className="sub-button detail-button"
+              onClick={handleSubmitModal.show}
+            >
+              첨부파일 제출하기
+            </button>
+            <Modal
+              closable={true}
+              title={"첨부파일 제출하기"}
+              visible={submitModal}
+              maskClosable={true}
+              onClose={handleSubmitModal.close}
+            >
+              <div id="js-upload-form">
+                <div className="form-inline">
+                  <div className="form-group">
+                    <input
+                      type="file"
+                      name="file"
+                      id="js-upload-files"
+                      multiple
+                      onChange={selectFile}
+                    ></input>
+                  </div>
+                  <button
+                    className="btn btn-sm btn-primary"
+                    id="js-upload-submit"
+                    onClick={uploadOnclick}
+                  >
+                    Upload files
+                  </button>
+                </div>
               </div>
-              <button
-                className="btn btn-sm btn-primary"
-                id="js-upload-submit"
-                onClick={uploadOnclick}
-              >
-                Upload files
-              </button>
-            </div>
+            </Modal>
           </div>
-        </Modal>
+        )}
 
         <button className="sub-button detail-button">돌아가기</button>
       </div>
