@@ -1,14 +1,6 @@
 import React from "react";
 
-const ManageTable = ({
-  applypageList,
-  isDetailVisible,
-  detailHandling,
-  paginationNum,
-  noticeDetailOnclick,
-  detailNoticeData,
-  paginationOnclick,
-}) => {
+const ManageTable = (props) => {
   return (
     <>
       <table className="tabel-list">
@@ -20,12 +12,12 @@ const ManageTable = ({
           </tr>
         </thead>
 
-        {applypageList.applypageList.map(
+        {props.applyPageList.map(
           ({ id, number, title, status, uploadDay }, index) => (
             <tbody
               key={index}
               onClick={() => {
-                noticeDetailOnclick(id);
+                props.applyDetailOnclick(id);
               }}
               className="table-content py-3 px-4 notice-wrapper row align-items-sm-center text-center text-dark important"
             >

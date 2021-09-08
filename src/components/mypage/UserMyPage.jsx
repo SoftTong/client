@@ -4,15 +4,9 @@ import React from "react";
 // import styled from "styled-components";
 import ManageTable from "./ManageTable";
 
-const UserMyPage = (
-  applypageList,
-  isDetailVisible,
-  detailHandling,
-  paginationNum,
-  noticeDetailOnclick,
-  detailNoticeData,
-  paginationOnclick
-) => {
+const UserMyPage = (props) => {
+  console.log("=====");
+  console.log(props.applyPageinationNum);
   return (
     <>
       <div className="col-lg-12">
@@ -23,15 +17,28 @@ const UserMyPage = (
           <div className="d-flex align-items-center">
             <div className="section">
               <ManageTable
-                applypageList={applypageList}
-                isDetailVisible={isDetailVisible}
-                detailHandling={detailHandling}
-                paginationNum={paginationNum}
-                noticeDetailOnclick={noticeDetailOnclick}
-                detailNoticeData={detailNoticeData}
-                paginationOnclick={paginationOnclick}
+                applyPageList={props.applyPageList}
+                isDetailVisible={props.isDetailVisible}
+                detailHandling={props.detailHandling}
+                applyPageinationNum={props.applyPageinationNum}
+                applyDetailOnclick={props.applyDetailOnclick}
+                applyDetailData={props.applyDetailData}
+                paginationOnclick={props.paginationOnclick}
               />
             </div>
+          </div>
+
+          <div className="pagination">
+            <ul>
+              {props.applyPageinationNum &&
+                props.applyPageinationNum.map((i, index) => {
+                  return (
+                    <li key={index} onClick={props.paginationOnclick}>
+                      {props.applyPageinationNum[index]}
+                    </li>
+                  );
+                })}
+            </ul>
           </div>
         </div>
       </div>

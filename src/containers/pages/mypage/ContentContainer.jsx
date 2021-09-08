@@ -3,6 +3,7 @@ import MyPageContent from "../../../components/mypage";
 import get_noticedetail from "../../../service/api/get/get_noticedetail";
 import get_managenotice from "../../../service/api/get/get_managenotice";
 import get_applylist from "../../../service/api/get/get_applylist";
+import get_applydetail from "../../../service/api/get/get_applydetail";
 
 const ContentContainer = ({ role, name }) => {
   //NOTE 전체 페이지 갯수
@@ -14,11 +15,18 @@ const ContentContainer = ({ role, name }) => {
   //NOTE 10개씩 세팅되는 리스트
   const [pageList, setPageList] = useState([]);
 
-  //NOTE 신청목록에서 10개씩 세팅되는 리스트
-  const [applypageList, setApplypageList] = useState([]);
-
   //NOTE manage page open
   const [isDetailVisible, setIsDetailVisible] = useState(false);
+
+  //SECTION USER 입장
+  //NOTE 전체 페이지 갯수
+  const [applyPageTotalNum, setApplyPageTotalNum] = useState(0);
+
+  //NOTE 선택한 페이지 번호
+  const [applyPagingNum, setApplyPagingNum] = useState(0);
+
+  //NOTE 신청목록에서 10개씩 세팅되는 리스트
+  const [applyPageList, setApplyPageList] = useState([]);
 
   const detailHandling = {
     show: () => setIsDetailVisible(true),
@@ -51,37 +59,43 @@ const ContentContainer = ({ role, name }) => {
       .catch((err) => console.log(err));
   };
 
-
   useEffect(() => {
     setIsDetailVisible(false);
     // FIXME USER 구현시 밑에꺼 주석 <-> 반대느반대
-    (role === "USER") ? //USER 구현
-      // (role !== "USER") ? //ADMIN 구현
-      applyList(0) : getnoticeList(0)
-
+    role === "USER" //USER 구현
+      ? // (role !== "USER") ? //ADMIN 구현
+        applyList(0)
+      : getnoticeList(0);
   }, [role]);
 
-
   useEffect(() => {
-
-    // (role === "USER") ?
-    (role !== "USER") ?
-      applyList(pagingNum) : getnoticeList(pagingNum);
-  }, [pagingNum, role]);
-
+    role === "USER" ? applyList(applyPagingNum) : getnoticeList(pagingNum);
+  }, [role === "USER" ? applyPagingNum : pagingNum, role]);
 
   //SECTION pagination
   const paginationNum = [];
+  const applyPageinationNum = [];
 
   // pageTotalNum
-  for (let i = 0; i < pageTotalNum; i++) {
-    paginationNum.push(i + 1);
+  if (role === "USER") {
+    for (let i = 0; i < applyPageTotalNum; i++) {
+      applyPageinationNum.push(i + 1);
+    }
+  } else {
+    for (let i = 0; i < pageTotalNum; i++) {
+      paginationNum.push(i + 1);
+    }
   }
 
   const paginationOnclick = (e) => {
     console.log(Number(e.target.innerText) - 1);
-    setPagingNum(Number(e.target.innerText) - 1);
+    if (role === "USER") {
+      setApplyPagingNum(Number(e.target.innerText) - 1);
+    } else {
+      setPagingNum(Number(e.target.innerText) - 1);
+    }
   };
+
   //!SECTION pagination
 
   //NOTE detail notice data
@@ -120,10 +134,10 @@ const ContentContainer = ({ role, name }) => {
         console.log(res);
         console.log(res.content);
         console.log(res.totalPages);
-        setPageTotalNum(res.totalPages);
-        setApplypageList([]);
+        setApplyPageTotalNum(res.totalPages);
+        setApplyPageList([]);
         res.content.forEach((lists) => {
-          setApplypageList((state) => [
+          setApplyPageList((state) => [
             ...state,
             {
               id: lists.id,
@@ -137,6 +151,31 @@ const ContentContainer = ({ role, name }) => {
       .catch((err) => console.log(err));
   };
 
+  const [applyDetailData, setApplyDetailData] = useState({
+    id: "",
+  });
+  const applyDetailOnclick = (id) => {
+    console.log("===");
+    console.log(id);
+    setApplyDetailData((state) => ({ ...state, id: id }));
+    get_applydetail(id)
+      .then((res) => {
+        console.log(res);
+        setApplyDetailData((state) => ({
+          ...state,
+          id: res.id,
+          title: res.noticeTitle,
+          status: res.status,
+          uploadDay: res.uploadDay.substring(0, 10),
+        }));
+        detailHandling.show();
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("detail데이터 불러오기 실패");
+      });
+  };
+
   return (
     <>
       <MyPageContent
@@ -144,12 +183,15 @@ const ContentContainer = ({ role, name }) => {
         role={role}
         name={name}
         pageList={pageList}
-        applypageList={applypageList}
+        applyPageList={applyPageList}
         isDetailVisible={isDetailVisible}
         detailHandling={detailHandling}
         paginationNum={paginationNum}
+        applyPageinationNum={applyPageinationNum}
         noticeDetailOnclick={noticeDetailOnclick}
         detailNoticeData={detailNoticeData}
+        applyDetailOnclick={applyDetailOnclick}
+        applyDetailData={applyDetailData}
         paginationOnclick={paginationOnclick}
       ></MyPageContent>
     </>
