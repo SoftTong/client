@@ -13,7 +13,8 @@ const get_noticelist = (noticeId, searchWord) => {
       _.SERVER_URL +
         "/notice/" +
         Number(noticeId) +
-        "?searchWord=" +
+        +"?category=title" +
+        "&searchWord=" +
         `${searchWord}`,
       {
         method: "GET",
@@ -41,12 +42,15 @@ const get_noticelist = (noticeId, searchWord) => {
         throw err;
       });
   } else {
-    return fetch(_.SERVER_URL + "/notice/" + Number(noticeId), {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("SoTong-token"),
-      },
-    })
+    return fetch(
+      _.SERVER_URL + "/notice/" + Number(noticeId) + "?category=title",
+      {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("SoTong-token"),
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 500)
           throw Promise.resolve({ errorCode: 500, errorName: "Server error" });

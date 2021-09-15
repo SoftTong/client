@@ -136,14 +136,16 @@ const ContentContainer = ({ role, name }) => {
         console.log(res.totalPages);
         setApplyPageTotalNum(res.totalPages);
         setApplyPageList([]);
+
         res.content.forEach((lists) => {
           setApplyPageList((state) => [
             ...state,
             {
-              id: lists.id,
+              id: lists.applyId,
               title: lists.noticeTitle,
               status: lists.status,
               uploadDay: lists.uploadDay.substring(0, 10),
+              dtype: lists.dtype,
             },
           ]);
         });
@@ -154,25 +156,28 @@ const ContentContainer = ({ role, name }) => {
   const [applyDetailData, setApplyDetailData] = useState({
     id: "",
   });
-  const applyDetailOnclick = (id) => {
+
+  const applyDetailOnclick = (id, dtype) => {
     console.log("===");
     console.log(id);
+
     setApplyDetailData((state) => ({ ...state, id: id }));
-    get_applydetail(id)
+    get_applydetail(id, dtype)
       .then((res) => {
         console.log(res);
         setApplyDetailData((state) => ({
           ...state,
-          id: res.id,
+          id: res.applyId,
           title: res.noticeTitle,
           status: res.status,
           uploadDay: res.uploadDay.substring(0, 10),
+          dtype: res.dtype,
         }));
         detailHandling.show();
       })
       .catch((err) => {
         console.log(err);
-        console.log("detail데이터 불러오기 실패");
+        console.log("apply detail데이터 불러오기 실패");
       });
   };
 
