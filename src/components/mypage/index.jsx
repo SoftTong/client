@@ -46,7 +46,7 @@ const MyPageContent = ({
         <UserCard></UserCard>
         <div className="col-lg-9">
           {/* {role !== "USER" ? ( */}
-          {role === "USER" ? ( //USER 구현
+          {role !== "USER" ? ( //USER 구현
             // FIXME USER 구현시 밑에꺼 주석 <-> 반대느반대
 
             <div className="container">

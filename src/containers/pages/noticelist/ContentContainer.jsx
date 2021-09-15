@@ -3,6 +3,7 @@ import NoticeListContent from "../../../components/noticelist";
 import get_noticelist from "../../../service/api/get/get_noticelist";
 import get_noticedetail from "../../../service/api/get/get_noticedetail";
 import postUploadFile from "../../../service/api/post/post_upload_file";
+import { useParams, useHistory } from 'react-router-dom';
 
 const ContentContainer = () => {
   //NOTE 전체 페이지 갯수
@@ -14,17 +15,11 @@ const ContentContainer = () => {
   //NOTE 10개씩 세팅되는 리스트
   const [pageList, setPageList] = useState([]);
 
-  //NOTE detail page open
-  const [isDetailVisible, setIsDetailVisible] = useState(false);
 
   //검색 단어
   const [searchWord, setSearchWord] = useState("");
   const [lengthWord, setLengthWord] = useState(0);
 
-  const detailHandling = {
-    show: () => setIsDetailVisible(true),
-    close: () => setIsDetailVisible(false),
-  };
 
   const getnoticeList = (pickPageNum, searchWord) => {
     get_noticelist(pickPageNum, searchWord)
@@ -54,7 +49,7 @@ const ContentContainer = () => {
 
   useEffect(() => {
     setIsDetailVisible(false);
-    getnoticeList(0);
+    getnoticeList(0, null);
   }, []);
 
   useEffect(() => {
@@ -78,9 +73,21 @@ const ContentContainer = () => {
   //SECTION notice detail
 
   //NOTE detail notice data
+  const { id, title } = useParams();
+
+  const [isDetailVisible, setIsDetailVisible] = useState(false);
+  const detailHandling = {
+    show: () => setIsDetailVisible(true),
+    close: () => setIsDetailVisible(false),
+  };
+
+
   const [detailNoticeData, setDetailNoticeData] = useState({
     id: "",
+    title: "",
   });
+  const history = useHistory();
+
 
   const noticeDetailOnclick = (id) => {
     console.log(id);
@@ -88,6 +95,7 @@ const ContentContainer = () => {
     get_noticedetail(id)
       .then((res) => {
         console.log(res);
+        history.push("/notice/" + res.id + "/" + res.name.replace(/ /g, '-'));
         setDetailNoticeData((state) => ({
           ...state,
           title: res.name,
@@ -99,7 +107,7 @@ const ContentContainer = () => {
           swurl: res.swurl,
           isForm: res.isForm,
         }));
-        detailHandling.show();
+
       })
       .catch((err) => {
         console.log(err);
@@ -160,6 +168,7 @@ const ContentContainer = () => {
         selectFile={selectFile}
         searchWord={searchWord}
         handleChangeWord={handleChangeWord}
+
       ></NoticeListContent>
     </>
   );

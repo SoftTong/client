@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ContentContainer from "../../containers/pages/createnotice/ContentContainer";
 import Header from "../../containers/redux/components/Header";
-import ContentLayout from "../../layout/Content";
-import Footer from "../../components/footer";
+
 
 const WholeWrapper = styled.div`
   /* display : -webkit-box;
@@ -14,15 +13,15 @@ const WholeWrapper = styled.div`
 
 //TODO header
 const CreateNotice = () => {
-    return (
-        <>
-            <WholeWrapper>
-                <Header></Header>
-                <ContentContainer />
+  return (
+    <>
+      <WholeWrapper>
+        <Header></Header>
+        <ContentContainer />
 
-            </WholeWrapper>
-        </>
-    );
+      </WholeWrapper>
+    </>
+  );
 };
 
 export default CreateNotice;

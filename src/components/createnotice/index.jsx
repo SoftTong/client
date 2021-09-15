@@ -172,12 +172,13 @@ const SubmitBtnWrapper = styled.div`
   background: rgba(255, 255, 255, 0.85);
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-around;
 `;
 
 const SubmitBtn = styled.div`
+  margin : 0 5px;
   height: 2.5rem;
-  font-size: 1.125rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -367,6 +368,7 @@ const CreateNoticeContent = ({
               onChange={createNoticeFunction.startDate}
             ></DateSelector>
           </DateWrapper>
+
           <DateWrapper>
             <DateContent> 일정 마감 날짜 </DateContent>
             <DateSelector
@@ -378,8 +380,13 @@ const CreateNoticeContent = ({
 
           <SubmitBtnWrapper>
             <SWBtn>SW중심대학사업단 </SWBtn>
-            <SubmitBtn onClick={formSubmitOnclick}>Form 제출하기</SubmitBtn>
-            <SubmitBtn onClick={fileSubmitOnclick}>File 제출하기</SubmitBtn>
+            <div style={{
+              display: "flex",
+
+            }}>
+              <SubmitBtn onClick={formSubmitOnclick}>Form 제출</SubmitBtn>
+              <SubmitBtn onClick={fileSubmitOnclick}>File 제출</SubmitBtn>
+            </div>
           </SubmitBtnWrapper>
         </CreateArea>
         {/*! SECTION  */}

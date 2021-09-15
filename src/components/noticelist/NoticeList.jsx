@@ -1,7 +1,8 @@
 import ManageTable from "./ManageTable";
 import { FaSistrix } from "react-icons/fa";
-
 import DetailTest from "./detailTest";
+
+import { useParams } from 'react-router-dom';
 
 const NoticeList = ({
   pageList,
@@ -17,6 +18,14 @@ const NoticeList = ({
   searchWord,
   handleChangeWord,
 }) => {
+  // const isOpenDetail = (paramsTitle === detailNoticeData.title) ? true : false;
+  // console.log(isOpenDetail)
+  // console.log(paramsTitle)
+  // console.log(detailNoticeData.title)
+  const { id, title } = useParams();
+  console.log(useParams())
+  console.log(detailNoticeData.id)
+  console.log(detailNoticeData.id === Number(id))
   return (
     <div className="col-lg-12">
       <div className="section-title">
@@ -29,7 +38,7 @@ const NoticeList = ({
         </p>
       </div>
       <div className="box h-100">
-        {isDetailVisible ? (
+        {detailNoticeData.id === Number(id) ? (
           <DetailTest
             detailNoticeData={detailNoticeData}
             uploadOnclick={uploadOnclick}

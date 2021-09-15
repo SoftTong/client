@@ -5,6 +5,8 @@ import HomeRouter from "./HomeRouter";
 import ProfileRouter from "./ProfileRouter";
 import NoticeListRouter from "./NoticeListRouter";
 import MyPageRouter from "./MyPageRouter"
+import AdminRageRouter from "./AdminPageRouter"
+import TestRouter from "./TestRouter";
 
 //TODO userInfo 추가 ( Redux 구축)
 //TODO 여기서 redux 값다 받아서 props 로 contentContainer 로 넘겨주자
@@ -43,7 +45,7 @@ const SotongRouter = () =>
               userInfo={userInfo}
             ></CreateNoticeRouter>
           </Route>
-          <Route path="/notice/:name">
+          <Route path="/notice/:id/:title">
             <NoticeListRouter
               security={["ADMIN", "GUEST", "USER"]}
               userInfo={userInfo}
@@ -60,6 +62,25 @@ const SotongRouter = () =>
               security={["ADMIN", "GUEST", "USER"]}
               userInfo={userInfo}
             ></MyPageRouter>
+          </Route>
+          <Route path="/adminpage/:id/:title">
+            <AdminRageRouter
+              security={["ADMIN", "GUEST", "USER"]}
+              userInfo={userInfo}
+            ></AdminRageRouter>
+          </Route>
+          <Route path="/adminpage">
+            <AdminRageRouter
+              security={["ADMIN", "GUEST", "USER"]}
+              userInfo={userInfo}
+            ></AdminRageRouter>
+          </Route>
+          <Route path="/test/:username"
+          >
+            <TestRouter
+              security={["ADMIN", "GUEST", "USER"]}
+              userInfo={userInfo}
+            ></TestRouter>
           </Route>
         </Switch>
       </BrowserRouter>

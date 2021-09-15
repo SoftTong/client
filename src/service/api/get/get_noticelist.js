@@ -9,8 +9,7 @@ import _ from "../../../config/env";
 
 const get_noticelist = (noticeId, searchWord) => {
   if (searchWord) {
-    return fetch(
-      _.SERVER_URL +
+    return fetch(_.SERVER_URL +
         "/notice/" +
         Number(noticeId) +
         "?searchWord=" +
@@ -41,7 +40,7 @@ const get_noticelist = (noticeId, searchWord) => {
         throw err;
       });
   } else {
-    return fetch(_.SERVER_URL + "/notice/" + Number(noticeId), {
+    return fetch(_.SERVER_URL + "/notice/" + Number(noticeId)+"?category=title", {
       method: "GET",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("SoTong-token"),

@@ -16,6 +16,7 @@ const NoticeListContent = ({
   searchWord,
   handleChangeWord,
 }) => {
+
   return (
     <>
       <div className="container">

@@ -3,6 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 
+
 const TableTitle = styled.div`
     width: 100%;
     height: 50px;
@@ -49,15 +50,21 @@ height : 48px;
  `
 
 
-//  const TBody = styled.tbody`
-//    width: 100%;
-//    display: flex;
-//    border-bottom: 1px rgb(167, 167, 167) solid;
-//    padding-top: 20px;
-//    margin-left: 0px !important;
-//    margin-right: 0px !important;
-//    height: 70px;
-//  `
+const TBody = styled.tbody`
+   width: 100%;
+   display: flex;
+   border-bottom: 1px rgb(167, 167, 167) solid;
+   padding-top: 20px;
+   margin-left: 0px !important;
+   margin-right: 0px !important;
+
+   height : auto;
+   cursor: pointer;
+    &:hover {
+        color : #1071ae;
+        font-weight : 700;
+}
+ `
 
 
 // const BTr = styled.tr`
@@ -94,17 +101,12 @@ const AdminMyPage = ({
                         { id, number, title, adminName, uploadDay, tag1, tag2, tag3 },
                         index
                     ) => (
-                        <tbody
+                        <TBody
                             key={index}
                             onClick={() => {
                                 noticeDetailOnclick(id);
                             }}
-                            style={{
-                                cursor: "pointer",
-                                '&:hover': {
-                                    textDecoration: 'underline',
-                                }
-                            }}
+
                             className="table-content py-3 px-4 notice-wrapper row align-items-sm-center text-center text-dark important"
                         >
                             <tr>
@@ -123,7 +125,7 @@ const AdminMyPage = ({
                                     {uploadDay}
                                 </td>
                             </tr>
-                        </tbody>
+                        </TBody>
                     )
                 )}
             </Table>
