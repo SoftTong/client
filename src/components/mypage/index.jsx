@@ -36,7 +36,6 @@ const MyPageContent = ({
   applyDetailData,
   paginationOnclick,
 }) => {
-  console.log("=========확인");
   console.log(applyPageinationNum);
   console.log(role);
 

@@ -8,7 +8,7 @@ import _ from "../../../config/env";
  */
 
 const get_applylist = (pageNum) => {
-  return fetch(_.SERVER_URL + "/apply/file/" + Number(pageNum), {
+  return fetch(_.SERVER_URL + "/apply/" + Number(pageNum), {
     method: "GET",
     headers: {
       Authorization: "Bearer " + localStorage.getItem("SoTong-token"),

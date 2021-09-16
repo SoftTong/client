@@ -13,11 +13,11 @@ const ManageTable = (props) => {
         </thead>
 
         {props.applyPageList.map(
-          ({ id, number, title, status, uploadDay }, index) => (
+          ({ id, number, title, status, uploadDay, dtype }, index) => (
             <tbody
               key={index}
               onClick={() => {
-                props.applyDetailOnclick(id);
+                props.applyDetailOnclick(id, dtype);
               }}
               className="table-content py-3 px-4 notice-wrapper row align-items-sm-center text-center text-dark important"
             >
