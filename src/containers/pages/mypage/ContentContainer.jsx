@@ -62,8 +62,8 @@ const ContentContainer = ({ role, name }) => {
   useEffect(() => {
     setIsDetailVisible(false);
     // FIXME USER 구현시 밑에꺼 주석 <-> 반대느반대
-    // role === "USER" ? //USER 구현
-    (role !== "USER") ? //ADMIN 구현
+    role === "USER" ? //USER 구현
+      // (role !== "USER") ? //ADMIN 구현
       applyList(0)
       : getnoticeList(0);
   }, [role]);

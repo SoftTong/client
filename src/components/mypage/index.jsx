@@ -44,34 +44,19 @@ const MyPageContent = ({
       <MyPageWrapper>
         <UserCard></UserCard>
         <div className="col-lg-9">
-          {/* {role !== "USER" ? ( */}
-          {role !== "USER" ? ( //USER 구현
-            // FIXME USER 구현시 밑에꺼 주석 <-> 반대느반대
-
-            <div className="container">
-              <div class="row align-items-stretch overlap">
-                <UserMyPage
-                  applyPageList={applyPageList}
-                  isDetailVisible={isDetailVisible}
-                  detailHandling={detailHandling}
-                  applyPageinationNum={applyPageinationNum}
-                  applyDetailOnclick={applyDetailOnclick}
-                  applyDetailData={applyDetailData}
-                  paginationOnclick={paginationOnclick}
-                ></UserMyPage>
-              </div>
+          <div className="container">
+            <div class="row align-items-stretch overlap">
+              <UserMyPage
+                applyPageList={applyPageList}
+                isDetailVisible={isDetailVisible}
+                detailHandling={detailHandling}
+                applyPageinationNum={applyPageinationNum}
+                applyDetailOnclick={applyDetailOnclick}
+                applyDetailData={applyDetailData}
+                paginationOnclick={paginationOnclick}
+              ></UserMyPage>
             </div>
-          ) : (
-            <AdminMyPage
-              pageList={pageList}
-              isDetailVisible={isDetailVisible}
-              detailHandling={detailHandling}
-              paginationNum={paginationNum}
-              noticeDetailOnclick={noticeDetailOnclick}
-              detailNoticeData={detailNoticeData}
-              paginationOnclick={paginationOnclick}
-            ></AdminMyPage>
-          )}
+          </div>
         </div>
       </MyPageWrapper>
     </>
