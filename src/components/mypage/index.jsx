@@ -27,6 +27,8 @@ const MyPageContent = ({
   pageList,
   applyPageList,
   isDetailVisible,
+  applyIsDetailVisible,
+  applydetailHandling,
   detailHandling,
   paginationNum,
   applyPageinationNum,
@@ -48,8 +50,8 @@ const MyPageContent = ({
             <div class="row align-items-stretch overlap">
               <UserMyPage
                 applyPageList={applyPageList}
-                isDetailVisible={isDetailVisible}
-                detailHandling={detailHandling}
+                applyIsDetailVisible={applyIsDetailVisible}
+                applydetailHandling={applydetailHandling}
                 applyPageinationNum={applyPageinationNum}
                 applyDetailOnclick={applyDetailOnclick}
                 applyDetailData={applyDetailData}

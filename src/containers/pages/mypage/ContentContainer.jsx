@@ -4,6 +4,7 @@ import get_noticedetail from "../../../service/api/get/get_noticedetail";
 import get_managenotice from "../../../service/api/get/get_managenotice";
 import get_applylist from "../../../service/api/get/get_applylist";
 import get_applydetail from "../../../service/api/get/get_applydetail";
+import { useParams, useHistory } from "react-router-dom";
 
 const ContentContainer = ({ role, name }) => {
   //NOTE 전체 페이지 갯수
@@ -27,10 +28,16 @@ const ContentContainer = ({ role, name }) => {
 
   //NOTE 신청목록에서 10개씩 세팅되는 리스트
   const [applyPageList, setApplyPageList] = useState([]);
+  //NOTE apply page open
+  const [applyIsDetailVisible, setApplyIsDetailVisible] = useState(false);
 
   const detailHandling = {
     show: () => setIsDetailVisible(true),
     close: () => setIsDetailVisible(false),
+  };
+  const applydetailHandling = {
+    show: () => setApplyIsDetailVisible(true),
+    close: () => setApplyIsDetailVisible(false),
   };
 
   const getnoticeList = (pickPageNum) => {
@@ -61,10 +68,11 @@ const ContentContainer = ({ role, name }) => {
 
   useEffect(() => {
     setIsDetailVisible(false);
+    setApplyIsDetailVisible(false);
     // FIXME USER 구현시 밑에꺼 주석 <-> 반대느반대
-    role === "USER" ? //USER 구현
-      // (role !== "USER") ? //ADMIN 구현
-      applyList(0)
+    role === "USER" //USER 구현
+      ? // (role !== "USER") ? //ADMIN 구현
+        applyList(0)
       : getnoticeList(0);
   }, [role]);
 
@@ -126,7 +134,6 @@ const ContentContainer = ({ role, name }) => {
       });
   };
 
-
   //SECTION user 입장에서 신청한 목록
 
   const applyList = (pickPageNum) => {
@@ -157,7 +164,7 @@ const ContentContainer = ({ role, name }) => {
   const [applyDetailData, setApplyDetailData] = useState({
     id: "",
   });
-
+  const history = useHistory();
   const applyDetailOnclick = (id, dtype) => {
     console.log("===");
     console.log(id);
@@ -165,7 +172,7 @@ const ContentContainer = ({ role, name }) => {
     setApplyDetailData((state) => ({ ...state, id: id }));
     get_applydetail(id, dtype)
       .then((res) => {
-        console.log(res);
+        history.push("/mypage/" + res.applyId);
         setApplyDetailData((state) => ({
           ...state,
           id: res.applyId,
@@ -174,7 +181,7 @@ const ContentContainer = ({ role, name }) => {
           uploadDay: res.uploadDay.substring(0, 10),
           dtype: res.dtype,
         }));
-        detailHandling.show();
+        applydetailHandling.show();
       })
       .catch((err) => {
         console.log(err);
@@ -191,6 +198,8 @@ const ContentContainer = ({ role, name }) => {
         pageList={pageList}
         applyPageList={applyPageList}
         isDetailVisible={isDetailVisible}
+        applyIsDetailVisible={applyIsDetailVisible}
+        applydetailHandling={applydetailHandling}
         detailHandling={detailHandling}
         paginationNum={paginationNum}
         applyPageinationNum={applyPageinationNum}
