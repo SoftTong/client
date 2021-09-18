@@ -4,6 +4,7 @@ import get_noticedetail from "../../../service/api/get/get_noticedetail";
 import get_managenotice from "../../../service/api/get/get_managenotice";
 import get_applylist from "../../../service/api/get/get_applylist";
 import get_applydetail from "../../../service/api/get/get_applydetail";
+import get_filedownload from "../../../service/api/get/get_filedownload";
 import { useParams, useHistory } from "react-router-dom";
 
 const ContentContainer = ({ role, name }) => {
@@ -31,6 +32,7 @@ const ContentContainer = ({ role, name }) => {
   //NOTE apply page open
   const [applyIsDetailVisible, setApplyIsDetailVisible] = useState(false);
 
+  const [filePath, setfilePath] = useState("");
   const detailHandling = {
     show: () => setIsDetailVisible(true),
     close: () => setIsDetailVisible(false),
@@ -172,6 +174,10 @@ const ContentContainer = ({ role, name }) => {
     setApplyDetailData((state) => ({ ...state, id: id }));
     get_applydetail(id, dtype)
       .then((res) => {
+        console.log(res);
+
+        setfilePath(res.filePath);
+
         history.push("/mypage/" + res.applyId);
         setApplyDetailData((state) => ({
           ...state,
@@ -189,12 +195,35 @@ const ContentContainer = ({ role, name }) => {
       });
   };
 
+  //본인이 신청한 파일 다운로드 받기
+  const fileDownload = (filePath) => {
+    console.log("여기");
+    console.log(filePath);
+
+    // get_filedownload(filePath)
+    //   .then((res) => {
+    //     setApplyDetailData((state) => ({
+    //       ...state,
+    //       id: res.applyId,
+    //       title: res.noticeTitle,
+    //       status: res.status,
+    //       uploadDay: res.uploadDay.substring(0, 10),
+    //       dtype: res.dtype,
+    //     }));
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     console.log("파일 다운로드 실패");
+    //   });
+  };
+
   return (
     <>
       <MyPageContent
         //props로 넘겨주기
         role={role}
         name={name}
+        filePath={filePath}
         pageList={pageList}
         applyPageList={applyPageList}
         isDetailVisible={isDetailVisible}
@@ -208,6 +237,7 @@ const ContentContainer = ({ role, name }) => {
         applyDetailOnclick={applyDetailOnclick}
         applyDetailData={applyDetailData}
         paginationOnclick={paginationOnclick}
+        fileDownload={fileDownload}
       ></MyPageContent>
     </>
   );

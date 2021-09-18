@@ -24,6 +24,7 @@ const MyPageWrapper = styled.div`
 const MyPageContent = ({
   role,
   name,
+  filePath,
   pageList,
   applyPageList,
   isDetailVisible,
@@ -37,10 +38,10 @@ const MyPageContent = ({
   applyDetailOnclick,
   applyDetailData,
   paginationOnclick,
+  fileDownload,
 }) => {
   console.log(applyPageinationNum);
   console.log(role);
-
   return (
     <>
       <MyPageWrapper>
@@ -49,6 +50,7 @@ const MyPageContent = ({
           <div className="container">
             <div class="row align-items-stretch overlap">
               <UserMyPage
+                filePath={filePath}
                 applyPageList={applyPageList}
                 applyIsDetailVisible={applyIsDetailVisible}
                 applydetailHandling={applydetailHandling}
@@ -56,6 +58,7 @@ const MyPageContent = ({
                 applyDetailOnclick={applyDetailOnclick}
                 applyDetailData={applyDetailData}
                 paginationOnclick={paginationOnclick}
+                fileDownload={fileDownload}
               ></UserMyPage>
             </div>
           </div>

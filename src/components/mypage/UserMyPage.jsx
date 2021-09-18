@@ -20,10 +20,12 @@ const UserMyPage = (props) => {
         <div className="box h-100">
           {props.applyDetailData.id === Number(id) ? (
             <DetailTest
+              filePath={props.filePath}
               applyPageList={props.applyPageList}
               applyIsDetailVisible={props.applyIsDetailVisible}
               applydetailHandling={props.applydetailHandling}
               applyDetailData={props.applyDetailData}
+              fileDownload={props.fileDownload}
             ></DetailTest>
           ) : (
             <>
