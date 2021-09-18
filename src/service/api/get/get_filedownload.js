@@ -24,7 +24,7 @@ const get_filedownload = (filePath) => {
       if (res.status === 500)
         throw Promise.resolve({ errorCode: 500, errorName: "Server error" });
       if (!res.ok) throw res.json();
-      console.log(res);
+
       return res.blob();
     })
     .then((data) => {
@@ -34,7 +34,7 @@ const get_filedownload = (filePath) => {
       const fileURL = URL.createObjectURL(data);
       const downloadLink = document.createElement("a");
       downloadLink.href = fileURL;
-      // downloadLink.download = fileName;
+      downloadLink.download = filePath;
       downloadLink.click();
     })
     .catch(async (error) => {
