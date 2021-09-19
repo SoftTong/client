@@ -106,7 +106,10 @@ color : #0f8cff;
   }
 `;
 
-const Header = ({ logined }) => {
+const Header = ({ logined, role,
+  //FIXME role 수정후 삭제
+  phone_number
+}) => {
   const history = useHistory();
   //SECTION 모달 관리
   const [isLoginModal, setIsLoginModalVisible] = useState(false);
@@ -232,9 +235,6 @@ const Header = ({ logined }) => {
             />
 
             <HeaderList>
-              <Link to='/notice'>
-                제발,,
-              </Link>
               <ListValue
                 onClick={() => {
                   history.push("/notice");
@@ -249,13 +249,28 @@ const Header = ({ logined }) => {
               >
                 profile
               </ListValue>
-              <ListValue
-                onClick={() => {
-                  history.push("/mypage");
-                }}
-              >
-                mypage
-              </ListValue>
+              {
+                (role === "ADMIN"
+                  //FIXME role 수정후 삭제
+                  || phone_number === "01036296541"
+                ) ?
+                  <ListValue
+                    onClick={() => {
+                      history.push("/adminpage");
+                    }}
+                  >
+                    adminpage
+                  </ListValue>
+                  :
+                  <ListValue
+                    onClick={() => {
+                      history.push("/mypage");
+                    }}
+                  >
+                    mypage
+                  </ListValue>
+              }
+
               <ListValue
                 onClick={() => {
                   history.push("/createnotice");

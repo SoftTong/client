@@ -3,7 +3,7 @@ import NoticeListContent from "../../../components/noticelist";
 import get_noticelist from "../../../service/api/get/get_noticelist";
 import get_noticedetail from "../../../service/api/get/get_noticedetail";
 import postUploadFile from "../../../service/api/post/post_upload_file";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const ContentContainer = () => {
   //NOTE 전체 페이지 갯수
@@ -45,7 +45,6 @@ const ContentContainer = () => {
   };
 
   useEffect(() => {
-    setIsDetailVisible(false);
     getnoticeList(0, null);
   }, []);
 
@@ -70,13 +69,6 @@ const ContentContainer = () => {
   //SECTION notice detail
 
   //NOTE detail notice data
-  const { id, title } = useParams();
-
-  const [isDetailVisible, setIsDetailVisible] = useState(false);
-  const detailHandling = {
-    show: () => setIsDetailVisible(true),
-    close: () => setIsDetailVisible(false),
-  };
 
   const [detailNoticeData, setDetailNoticeData] = useState({
     id: "",
@@ -151,8 +143,6 @@ const ContentContainer = () => {
     <>
       <NoticeListContent
         pageList={pageList}
-        isDetailVisible={isDetailVisible}
-        detailHandling={detailHandling}
         paginationNum={paginationNum}
         noticeDetailOnclick={noticeDetailOnclick}
         paginationOnclick={paginationOnclick}

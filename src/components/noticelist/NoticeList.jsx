@@ -2,12 +2,10 @@ import ManageTable from "./ManageTable";
 import { FaSistrix } from "react-icons/fa";
 import DetailTest from "./detailTest";
 
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 const NoticeList = ({
   pageList,
-  isDetailVisible,
-  detailHandling,
   paginationNum,
   noticeDetailOnclick,
   detailNoticeData,
@@ -18,22 +16,22 @@ const NoticeList = ({
   searchWord,
   handleChangeWord,
 }) => {
-  // const isOpenDetail = (paramsTitle === detailNoticeData.title) ? true : false;
-  // console.log(isOpenDetail)
-  // console.log(paramsTitle)
-  // console.log(detailNoticeData.title)
-  const { id, title } = useParams();
+  const history = useHistory();
+
+  const { id } = useParams();
   console.log(useParams())
   console.log(detailNoticeData.id)
   console.log(detailNoticeData.id === Number(id))
   return (
     <div className="col-lg-12">
-      <div className="section-title">
-        <p
-          onClick={() => {
-            detailHandling.close();
-          }}
-        >
+      <div className="section-title"
+        style={{
+          cursor: 'pointer'
+        }}
+        onClick={() => {
+          history.push("/notice")
+        }}>
+        <p>
           공지 사항
         </p>
       </div>

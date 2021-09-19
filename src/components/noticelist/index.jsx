@@ -4,8 +4,6 @@ import NoticeList from "./NoticeList";
 import "../../css/noticelist.css";
 const NoticeListContent = ({
   pageList,
-  isDetailVisible,
-  detailHandling,
   paginationNum,
   noticeDetailOnclick,
   detailNoticeData,
@@ -24,8 +22,6 @@ const NoticeListContent = ({
           {/* <UserCard></UserCard> */}
           <NoticeList
             pageList={pageList}
-            isDetailVisible={isDetailVisible}
-            detailHandling={detailHandling}
             paginationNum={paginationNum}
             noticeDetailOnclick={noticeDetailOnclick}
             detailNoticeData={detailNoticeData}
