@@ -26,6 +26,7 @@ const UserMyPage = (props) => {
               applydetailHandling={props.applydetailHandling}
               applyDetailData={props.applyDetailData}
               fileDownload={props.fileDownload}
+              applyDetailDataId={props.applyDetailData.id}
             ></DetailTest>
           ) : (
             <>
