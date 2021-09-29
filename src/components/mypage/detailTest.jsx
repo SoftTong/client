@@ -20,6 +20,7 @@ const Test = (props) => {
       .then((res) => {
         console.log("성공");
         history.push("/mypage");
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
