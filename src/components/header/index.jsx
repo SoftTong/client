@@ -106,9 +106,11 @@ color : #0f8cff;
   }
 `;
 
-const Header = ({ logined, role,
+const Header = ({
+  logined,
+  role,
   //FIXME role 수정후 삭제
-  phone_number
+  phone_number,
 }) => {
   const history = useHistory();
   //SECTION 모달 관리
@@ -247,29 +249,27 @@ const Header = ({ logined, role,
                   history.push("/profile");
                 }}
               >
-                profile
+                PROFILE
               </ListValue>
-              {
-                (role === "ADMIN"
-                  //FIXME role 수정후 삭제
-                  || phone_number === "01036296541"
-                ) ?
-                  <ListValue
-                    onClick={() => {
-                      history.push("/adminpage");
-                    }}
-                  >
-                    adminpage
-                  </ListValue>
-                  :
-                  <ListValue
-                    onClick={() => {
-                      history.push("/mypage");
-                    }}
-                  >
-                    mypage
-                  </ListValue>
-              }
+              {role === "ADMIN" ||
+              //FIXME role 수정후 삭제
+              phone_number === "01036296541" ? (
+                <ListValue
+                  onClick={() => {
+                    history.push("/adminpage");
+                  }}
+                >
+                  adminpage
+                </ListValue>
+              ) : (
+                <ListValue
+                  onClick={() => {
+                    history.push("/mypage");
+                  }}
+                >
+                  MYPAGE
+                </ListValue>
+              )}
 
               <ListValue
                 onClick={() => {
