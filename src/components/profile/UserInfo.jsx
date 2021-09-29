@@ -16,7 +16,8 @@ const ChaeeunText = styled.span`
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, #cae3f8 50%);
 `;
 
-const UserInfo = ({ userProfile,
+const UserInfo = ({
+  userProfile,
   editUserProfileFunctions,
   showEmail,
   editEmailOnclick,
@@ -25,7 +26,6 @@ const UserInfo = ({ userProfile,
   showPassword,
   editPasswordOnclick,
 }) => {
-
   return (
     <div className="col-lg-9 userinfotext">
       <div className="section-title">
@@ -127,18 +127,20 @@ const UserInfo = ({ userProfile,
               <div className="col-md-12">
                 <p className="subtitle">비밀번호</p>
                 <div className="inputsubmit">
-                  {showPassword ?
-                    (
-                      <input
-                        type="password"
-                        className="form-control"
-                        placeholder="변경할 비밀번호를 입력하세요"
-                        onChange={editUserProfileFunctions.password}
-                      />
-                    ) :
-                    null
-                  }
-                  <button onClick={editPasswordOnclick} className="sub-button">
+                  {showPassword ? (
+                    <input
+                      type="password"
+                      className="form-control"
+                      placeholder="변경할 비밀번호를 입력하세요"
+                      onChange={editUserProfileFunctions.password}
+                    />
+                  ) : null}
+
+                  <button
+                    onClick={editPasswordOnclick}
+                    className="sub-button"
+                    style={{ marginLeft: "100px" }}
+                  >
                     {showPassword ? "저장" : "변경"}
                   </button>
                 </div>
@@ -147,7 +149,6 @@ const UserInfo = ({ userProfile,
           </div>
         </div>
       </div>
-
     </div>
   );
 };
