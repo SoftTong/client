@@ -2,7 +2,7 @@ import ManageTable from "./ManageTable";
 import { FaSistrix } from "react-icons/fa";
 import DetailTest from "./detailTest";
 
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from "react-router-dom";
 
 const NoticeList = ({
   pageList,
@@ -15,25 +15,26 @@ const NoticeList = ({
   selectFile,
   searchWord,
   handleChangeWord,
+  listback,
 }) => {
   const history = useHistory();
 
   const { id } = useParams();
-  console.log(useParams())
-  console.log(detailNoticeData.id)
-  console.log(detailNoticeData.id === Number(id))
+  console.log(useParams());
+  console.log(detailNoticeData.id);
+  console.log(detailNoticeData.id === Number(id));
   return (
     <div className="col-lg-12">
-      <div className="section-title"
+      <div
+        className="section-title"
         style={{
-          cursor: 'pointer'
+          cursor: "pointer",
         }}
         onClick={() => {
-          history.push("/notice")
-        }}>
-        <p>
-          공지 사항
-        </p>
+          history.push("/notice");
+        }}
+      >
+        <p>공지 사항</p>
       </div>
       <div className="box h-100">
         {detailNoticeData.id === Number(id) ? (
@@ -43,6 +44,7 @@ const NoticeList = ({
             uploadOnclick={uploadOnclick}
             uploadfile={uploadfile}
             selectFile={selectFile}
+            listback={listback}
           ></DetailTest>
         ) : (
           <>

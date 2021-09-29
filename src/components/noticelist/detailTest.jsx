@@ -1,7 +1,13 @@
 import { React, useState } from "react";
 import Modal from "../../components/atoms/Modal";
 
-const Test = ({ detailNoticeData, uploadOnclick, uploadfile, selectFile }) => {
+const Test = ({
+  detailNoticeData,
+  uploadOnclick,
+  uploadfile,
+  selectFile,
+  listback,
+}) => {
   console.log("DetailTest");
   console.log(detailNoticeData);
 
@@ -158,7 +164,9 @@ const Test = ({ detailNoticeData, uploadOnclick, uploadfile, selectFile }) => {
           </div>
         )}
 
-        <button className="sub-button detail-button">돌아가기</button>
+        <button className="sub-button detail-button" onClick={listback}>
+          돌아가기
+        </button>
       </div>
     </div>
   );

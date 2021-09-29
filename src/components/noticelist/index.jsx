@@ -13,8 +13,8 @@ const NoticeListContent = ({
   selectFile,
   searchWord,
   handleChangeWord,
+  listback,
 }) => {
-
   return (
     <>
       <div className="container">
@@ -31,6 +31,7 @@ const NoticeListContent = ({
             selectFile={selectFile}
             seachWord={searchWord}
             handleChangeWord={handleChangeWord}
+            listback={listback}
           ></NoticeList>
         </div>
       </div>

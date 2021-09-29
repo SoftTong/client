@@ -139,6 +139,11 @@ const ContentContainer = () => {
     console.log(searchWord);
   };
 
+  const listback = () => {
+    //목록이동
+    history.push("/notice/");
+  };
+
   return (
     <>
       <NoticeListContent
@@ -152,6 +157,7 @@ const ContentContainer = () => {
         selectFile={selectFile}
         searchWord={searchWord}
         handleChangeWord={handleChangeWord}
+        listback={listback}
       ></NoticeListContent>
     </>
   );
