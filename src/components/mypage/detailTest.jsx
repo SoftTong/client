@@ -28,7 +28,9 @@ const Test = (
 
   return (
     <div>
-      <li onClick={download}>download</li>
+      <li onClick={download} style={{ cursor: "pointer" }}>
+        download
+      </li>
     </div>
   );
 };

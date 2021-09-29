@@ -28,6 +28,7 @@ const ManageTable = ({
                 noticeDetailOnclick(id);
               }}
               className="table-content py-3 px-4 notice-wrapper row align-items-sm-center text-center text-dark important"
+              style={{ cursor: "pointer" }}
             >
               <tr>
                 <td id={number} className="col-sm-7 thtitle">
