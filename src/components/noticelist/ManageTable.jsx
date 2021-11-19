@@ -1,5 +1,5 @@
 import React from "react";
-import { HeartOutlined, HeartFilled } from "@ant-design/icons";
+import { PushpinOutlined, PushpinFilled } from "@ant-design/icons";
 
 const ManageTable = ({
   pageList,
@@ -34,9 +34,9 @@ const ManageTable = ({
               <tr>
                 <td id={number} className="col-sm-1">
                   {islike ? (
-                    <HeartFilled onClick={noticeListLikeHandler} />
+                    <PushpinFilled onClick={noticeListLikeHandler} />
                   ) : (
-                    <HeartOutlined onClick={noticeListLikeHandler} />
+                    <PushpinOutlined onClick={noticeListLikeHandler} />
                   )}
                 </td>
                 <td
