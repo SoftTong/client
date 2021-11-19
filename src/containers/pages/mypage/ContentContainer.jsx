@@ -186,6 +186,7 @@ const ContentContainer = ({ role, name }) => {
           status: res.status,
           uploadDay: res.uploadDay.substring(0, 10),
           dtype: res.dtype,
+          noticeUrl: res.noticeUrl,
         }));
         applydetailHandling.show();
       })

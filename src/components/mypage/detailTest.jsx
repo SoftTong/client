@@ -29,13 +29,22 @@ const Test = (props) => {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <button onClick={download} className="sub-button">
-        신청서 다운로드
-      </button>
-      <button onClick={cancel} className="sub-button">
-        프로그램 신청 취소
-      </button>
+    <div>
+      <div className="section">
+        <iframe
+          src={props.applyDetailData.noticeUrl}
+          width="100%"
+          height="650px"
+        ></iframe>
+      </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button onClick={download} className="sub-button">
+          신청서 다운로드
+        </button>
+        <button onClick={cancel} className="sub-button">
+          프로그램 신청 취소
+        </button>
+      </div>
     </div>
   );
 };

@@ -75,7 +75,7 @@ const Test = ({
               maskClosable={true}
               onClose={handleFormModal.close}
             >
-              <div className="uploadsection">
+              <div className="uploadsection" style={{ overflow: "scroll" }}>
                 <div className="detail">
                   <p>이름</p>
                   <input type="text"></input>
