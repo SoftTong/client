@@ -128,6 +128,8 @@ const ContentContainer = () => {
       .then((res) => {
         console.log("첨부파일 업로드 성공");
         console.log(res + ": 첨부파일 업로드 ");
+
+        history.push("../../mypage");
       })
       .catch((err) => console.log(err + ": 에러"));
   };
