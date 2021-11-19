@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 const Test = (props) => {
   const download = () => {
-    get_filedownload(props.filePath.filePath)
+    get_filedownload(props.filePath)
       .then((res) => {
         console.log("성공");
       })
