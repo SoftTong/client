@@ -1,17 +1,21 @@
 import React from "react";
+import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 
 const ManageTable = ({
   pageList,
   noticeDetailOnclick,
   searchWord,
   handleChangeWord,
+  noticeListLikeHandler,
+  islike,
 }) => {
   return (
     <>
       <table className="tabel-list">
         <thead className="table-head py-3 px-4 d-none d-lg-block bg-light">
           <tr className="row align-items-sm-center text-center text-dark">
-            <th className="col-sm-7">제목</th>
+            <th className="col-sm-1"></th>
+            <th className="col-sm-6">제목</th>
             <th className="col-sm-2">작성자</th>
             <th className="col-sm-3">작성일</th>
           </tr>
@@ -24,14 +28,24 @@ const ManageTable = ({
           ) => (
             <tbody
               key={index}
-              onClick={() => {
-                noticeDetailOnclick(id);
-              }}
               className="table-content py-3 px-4 notice-wrapper row align-items-sm-center text-center text-dark important"
               style={{ cursor: "pointer" }}
             >
               <tr>
-                <td id={number} className="col-sm-7 thtitle">
+                <td id={number} className="col-sm-1">
+                  {islike ? (
+                    <HeartFilled onClick={noticeListLikeHandler} />
+                  ) : (
+                    <HeartOutlined onClick={noticeListLikeHandler} />
+                  )}
+                </td>
+                <td
+                  id={number}
+                  className="col-sm-6 thtitle"
+                  onClick={() => {
+                    noticeDetailOnclick(id);
+                  }}
+                >
                   {title}
                   <div className="tag">
                     {tag1 ? <span className="tagcategory">{tag1}</span> : null}

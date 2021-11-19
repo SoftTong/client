@@ -16,6 +16,8 @@ const NoticeList = ({
   searchWord,
   handleChangeWord,
   listback,
+  noticeListLikeHandler,
+  islike,
 }) => {
   const history = useHistory();
 
@@ -55,6 +57,8 @@ const NoticeList = ({
                   noticeDetailOnclick={noticeDetailOnclick}
                   searchWord={searchWord}
                   handleChangeWord={handleChangeWord}
+                  noticeListLikeHandler={noticeListLikeHandler}
+                  islike={islike}
                 />
               </div>
             </div>

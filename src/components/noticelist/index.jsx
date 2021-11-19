@@ -14,6 +14,8 @@ const NoticeListContent = ({
   searchWord,
   handleChangeWord,
   listback,
+  noticeListLikeHandler,
+  islike,
 }) => {
   return (
     <>
@@ -32,6 +34,8 @@ const NoticeListContent = ({
             seachWord={searchWord}
             handleChangeWord={handleChangeWord}
             listback={listback}
+            noticeListLikeHandler={noticeListLikeHandler}
+            islike={islike}
           ></NoticeList>
         </div>
       </div>

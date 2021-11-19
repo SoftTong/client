@@ -144,6 +144,13 @@ const ContentContainer = () => {
     history.push("/notice/");
   };
 
+  const [islike, setIslike] = useState(false);
+
+  const noticeListLikeHandler = () => {
+    alert("관심목록에 추가하였습니다.");
+    setIslike(!islike);
+  };
+
   return (
     <>
       <NoticeListContent
@@ -158,6 +165,8 @@ const ContentContainer = () => {
         searchWord={searchWord}
         handleChangeWord={handleChangeWord}
         listback={listback}
+        noticeListLikeHandler={noticeListLikeHandler}
+        islike={islike}
       ></NoticeListContent>
     </>
   );
