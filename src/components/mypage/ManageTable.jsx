@@ -7,8 +7,8 @@ const ManageTable = (props) => {
         <thead className="table-head py-3 px-4 d-none d-lg-block bg-light">
           <tr className="row align-items-sm-center text-center text-dark">
             <th className="col-sm-7">프로그램명</th>
-            <th className="col-sm-2">신청날짜</th>
-            <th className="col-sm-3">상태</th>
+            <th className="col-sm-3">신청날짜</th>
+            <th className="col-sm-2">상태</th>
           </tr>
         </thead>
 
@@ -26,11 +26,13 @@ const ManageTable = (props) => {
                 <td id={number} className="col-sm-7 thtitle">
                   {title}
                 </td>
-                <td id={number} className="col-sm-2">
+                <td id={number} className="col-sm-3">
                   {uploadDay}
                 </td>
-                <td id={number} className="col-sm-3">
-                  <p className="applystatus">{status}</p>
+                <td id={number} className="col-sm-2">
+                  <button>
+                    <p className="applystatus">{status}</p>
+                  </button>
                 </td>
               </tr>
             </tbody>

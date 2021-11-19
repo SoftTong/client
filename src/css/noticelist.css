@@ -154,12 +154,12 @@
 }
 
 .applystatus {
-  border-radius: 15px;
+  /* border-radius: 15px;
   border: solid black 1px;
   margin-left: 35px;
   margin-right: 35px;
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 10px; */
   color: rgb(6, 104, 53);
   font-weight: bold;
 }
