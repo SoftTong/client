@@ -29,13 +29,53 @@ const Test = (props) => {
   };
 
   return (
-    <div>
-      <p onClick={download} style={{ cursor: "pointer" }}>
-        다운로드
-      </p>
-      <a onClick={cancel} style={{ cursor: "pointer" }}>
-        신청취소
-      </a>
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <button
+        onClick={download}
+        style={{
+          cursor: "pointer",
+          backgroundColor: "transparent",
+          borderRadius: "15px",
+          border: 0,
+          boxShadow: "inset 0 0 0 2px #f56a6a",
+          color: "#f56a6a !important",
+          display: "inline-block",
+          fontSize: "0.8em",
+          fontWeight: 10000,
+          height: "3.5em",
+          letterSpacing: "0.075em",
+          lineHeight: "3.5em",
+          padding: "0 2.25em",
+          margin: "0 2.25em",
+          textAlign: "center",
+          textTransform: "uppercase",
+        }}
+      >
+        신청서 다운로드
+      </button>
+      <button
+        onClick={cancel}
+        style={{
+          cursor: "pointer",
+          backgroundColor: "transparent",
+          borderRadius: "15px",
+          border: 0,
+          boxShadow: "inset 0 0 0 2px #f56a6a",
+          color: "#f56a6a !important",
+          display: "inline-block",
+          fontSize: "0.8em",
+          fontWeight: 10000,
+          height: "3.5em",
+          letterSpacing: "0.075em",
+          lineHeight: "3.5em",
+          padding: "0 2.25em",
+          margin: "0 2.25em",
+          textAlign: "center",
+          textTransform: "uppercase",
+        }}
+      >
+        프로그램 신청 취소
+      </button>
     </div>
   );
 };
