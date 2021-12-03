@@ -8,7 +8,7 @@ import _ from "../../../config/env";
  */
 
 const delete_apply = (applyId) => {
-  return fetch(_.SERVER_URL + "/apply/file/detail/" + Number(applyId), {
+  return fetch(_.SERVER_URL + "/apply/file/" + Number(applyId), {
     method: "DELETE",
     headers: {
       Authorization: "Bearer " + localStorage.getItem("SoTong-token"),

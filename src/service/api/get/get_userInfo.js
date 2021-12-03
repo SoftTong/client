@@ -8,7 +8,7 @@ import _ from "../../../config/env";
  */
 
 const get_userInfo = () => {
-  return fetch(_.SERVER_URL + "/member/status", {
+  return fetch(_.SERVER_URL + "/members/status", {
     method: "GET",
     headers: {
       Authorization: "Bearer " + localStorage.getItem("SoTong-token"),

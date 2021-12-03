@@ -10,7 +10,7 @@ import _ from "../../../config/env";
 const get_filedownload = (filePath) => {
   console.log(filePath);
   return fetch(
-    _.SERVER_URL + "/notice/download/file/" + `${filePath}`,
+    _.SERVER_URL + "/apply/download/file/" + `${filePath}`,
 
     {
       method: "GET",

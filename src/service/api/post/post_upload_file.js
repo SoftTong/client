@@ -9,9 +9,9 @@ import _ from "../../../config/env";
  */
 const upload_file = (requestData) => {
   console.log("requestdata");
-  console.log(requestData.get('file'));
-  console.log(requestData.get('noticeId'));
-  return fetch(_.SERVER_URL + "/notice/file/apply", {
+  console.log(requestData.get("file"));
+  console.log(requestData.get("noticeId"));
+  return fetch(_.SERVER_URL + "/apply/file", {
     method: "POST",
     headers: {
       Authorization: "Bearer " + localStorage.getItem("SoTong-token"),
@@ -30,9 +30,9 @@ const upload_file = (requestData) => {
       console.log(err);
       console.log(
         "Error from  upload_file\n" +
-        err.message +
-        "\n success : " +
-        err.success
+          err.message +
+          "\n success : " +
+          err.success
       );
       throw err;
     });
