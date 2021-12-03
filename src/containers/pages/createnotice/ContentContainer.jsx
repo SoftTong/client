@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CreateNoticeContent from "../../../components/createnotice";
 import postCreateFormNotice from "../../../service/api/post/post_create_form_notice";
 import postCreateFileNotice from "../../../service/api/post/post_create_file_notice";
+import { useHistory } from "react-router-dom";
 
 const ContentContainer = () => {
   //createnotice에서 관리할 모든 state / 함수
@@ -78,7 +79,7 @@ const ContentContainer = () => {
     @function buttonOnclick
     @btnValue 제출하기
     @detail  requestData 형식으로 맞추고 post  */
-
+  const history = useHistory();
   //Form
   const formSubmitOnclick = () => {
     postCreateFormNotice(
@@ -95,6 +96,7 @@ const ContentContainer = () => {
       .then((res) => {
         console.log("게시글 올리기 성공");
         console.log(res);
+        history.push("../notice");
       })
       .catch((err) => console.log(err));
   };
@@ -115,6 +117,7 @@ const ContentContainer = () => {
       .then((res) => {
         console.log("게시글 올리기 성공");
         console.log(res);
+        history.push("../notice");
       })
       .catch((err) => console.log(err));
   };
