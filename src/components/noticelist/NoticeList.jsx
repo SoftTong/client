@@ -22,9 +22,9 @@ const NoticeList = ({
   const history = useHistory();
 
   const { id } = useParams();
-  console.log(useParams());
-  console.log(detailNoticeData.id);
-  console.log(detailNoticeData.id === Number(id));
+  // console.log(useParams());
+  // console.log(detailNoticeData.id);
+  // console.log(detailNoticeData.id === Number(id));
   return (
     <div className="col-lg-12">
       <div

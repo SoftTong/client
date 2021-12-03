@@ -30,11 +30,11 @@ const LoginProcess = (logInInfo) => {
       store.dispatch(
         ACTION.SET_USER__ACTION_FUNC({
           user: {
-            email: res.email,
-            name: res.name,
-            userId: res.userId,
-            phone_number: res.phoneNumber,
-            department: res.department,
+            email: res.response.email,
+            name: res.response.name,
+            userId: res.response.userId,
+            phone_number: res.response.phoneNumber,
+            department: res.response.department,
             role:
               res.response.roles[0].name === "ROLE_ADMIN" ? "ADMIN" : "USER",
           },

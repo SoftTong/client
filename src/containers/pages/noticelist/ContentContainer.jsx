@@ -22,11 +22,11 @@ const ContentContainer = () => {
     get_noticelist(pickPageNum, searchWord)
       .then((res) => {
         console.log(res);
-        console.log(res.content);
-        console.log(res.totalPages);
-        setPageTotalNum(res.totalPages);
+        console.log(res.response.content);
+        console.log(res.response.totalPages);
+        setPageTotalNum(res.response.totalPages);
         setPageList([]);
-        res.content.forEach((lists) => {
+        res.response.content.forEach((lists) => {
           setPageList((state) => [
             ...state,
             {
@@ -82,17 +82,22 @@ const ContentContainer = () => {
     get_noticedetail(id)
       .then((res) => {
         console.log(res);
-        history.push("/notice/" + res.id + "/" + res.name.replace(/ /g, "-"));
+        history.push(
+          "/notice/" +
+            res.response.notice.id +
+            "/" +
+            res.response.notice.name.replace(/ /g, "-")
+        );
         setDetailNoticeData((state) => ({
           ...state,
-          title: res.name,
-          tag1: res.tag1,
-          tag2: res.tag2,
-          tag3: res.tag3,
-          startDay: res.startDay,
-          destDay: res.destDay,
-          swurl: res.swurl,
-          isForm: res.isForm,
+          title: res.response.notice.name,
+          tag1: res.response.notice.tag1,
+          tag2: res.response.notice.tag2,
+          tag3: res.response.notice.tag3,
+          startDay: res.response.notice.startDay,
+          destDay: res.response.notice.destDay,
+          swurl: res.response.notice.swurl,
+          isForm: res.response.notice.isForm,
         }));
       })
       .catch((err) => {
