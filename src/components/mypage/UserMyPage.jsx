@@ -8,8 +8,8 @@ import { useParams } from "react-router-dom";
 
 const UserMyPage = (props) => {
   const { id, title } = useParams();
-  console.log("=====");
-  console.log(props.applyPageinationNum);
+  // console.log("=====");
+  // console.log(props.applyPageinationNum);
 
   return (
     <>

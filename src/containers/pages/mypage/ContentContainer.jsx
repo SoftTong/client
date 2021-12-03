@@ -142,12 +142,12 @@ const ContentContainer = ({ role, name }) => {
     get_applylist(pickPageNum)
       .then((res) => {
         console.log(res);
-        console.log(res.content);
-        console.log(res.totalPages);
-        setApplyPageTotalNum(res.totalPages);
+        console.log(res.response.content);
+        console.log(res.response.totalPages);
+        setApplyPageTotalNum(res.response.totalPages);
         setApplyPageList([]);
 
-        res.content.forEach((lists) => {
+        res.response.content.forEach((lists) => {
           setApplyPageList((state) => [
             ...state,
             {
@@ -176,17 +176,17 @@ const ContentContainer = ({ role, name }) => {
       .then((res) => {
         console.log(res);
 
-        setfilePath(res.filePath);
+        setfilePath(res.response.filePath);
 
-        history.push("/mypage/" + res.applyId);
+        history.push("/mypage/" + res.response.applyId);
         setApplyDetailData((state) => ({
           ...state,
-          id: res.applyId,
-          title: res.noticeTitle,
-          status: res.status,
-          uploadDay: res.uploadDay.substring(0, 10),
-          dtype: res.dtype,
-          noticeUrl: res.noticeUrl,
+          id: res.response.applyId,
+          title: res.response.noticeTitle,
+          status: res.response.status,
+          uploadDay: res.response.uploadDay.substring(0, 10),
+          dtype: res.response.dtype,
+          noticeUrl: res.response.noticeUrl,
         }));
         applydetailHandling.show();
       })

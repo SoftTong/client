@@ -9,7 +9,7 @@ import _ from "../../../config/env";
 
 const get_applydetail = (applyId, dtype) => {
   if (dtype === "file") {
-    return fetch(_.SERVER_URL + "/apply/file/detail/" + Number(applyId), {
+    return fetch(_.SERVER_URL + "/apply/file/" + Number(applyId), {
       method: "GET",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("SoTong-token"),
