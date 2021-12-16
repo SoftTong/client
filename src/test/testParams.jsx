@@ -1,38 +1,65 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
-import { useParams } from 'react-router-dom';
+function InputSample() {
+    const [inputs, setInputs] = useState({
+        name: '',
+        nickname: ''
+    });
+
+    const nameInput = useRef();
+
+    (nameInput.current) ?
+        console.log(nameInput)
+        : console.log("no")
 
 
 
-// 프로필에서 사용 할 데이터
-const profileData = {
-    velopert: {
-        name: '김민준',
-        description:
-            'Frontend Engineer @ Laftel Inc. 재밌는 것만 골라서 하는 개발자'
-    },
-    gildong: {
-        name: '홍길동',
-        description: '전래동화의 주인공'
-    }
-};
+    console.log(nameInput)
+    useEffect(() => {
+        nameInput.current.focus();
+        console.log(nameInput)
+    }, [])
 
-const Test = () => {
-    // 파라미터를 받아올 땐 match 안에 들어있는 params 값을 참조합니다.
-    const { username } = useParams();
-    console.log(useParams())
-    const profile = profileData[username];
-    if (!profile) {
-        return <div>존재하지 않는 유저입니다.</div>;
-    }
+    const { name, nickname } = inputs; // 비구조화 할당을 통해 값 추출
+
+    const onChange = e => {
+        const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
+        setInputs({
+            ...inputs, // 기존의 input 객체를 복사한 뒤
+            [name]: value // name 키를 가진 값을 value 로 설정
+        });
+    };
+
+    const onReset = () => {
+        setInputs({
+            name: '',
+            nickname: ''
+        });
+        nameInput.current.focus();
+    };
+
     return (
         <div>
-            <h3>
-                {username}({profile.name})
-            </h3>
-            <p>{profile.description}</p>
+            <input
+                name="name"
+                placeholder="이름"
+                onChange={onChange}
+                value={name}
+                ref={nameInput}
+            />
+            <input
+                name="nickname"
+                placeholder="닉네임"
+                onChange={onChange}
+                value={nickname}
+            />
+            <button onClick={onReset}>초기화</button>
+            <div>
+                <b>값: </b>
+                {name} ({nickname})
+            </div>
         </div>
     );
-};
+}
 
-export default Test;
+export default InputSample;

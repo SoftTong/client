@@ -85,6 +85,8 @@ const TBody = styled.tbody`
  `
 
 
+
+
 const AdminPage = ({
     pageList,
     paginationNum,
@@ -100,8 +102,10 @@ const AdminPage = ({
         <>
             <MyPageWrapper>
                 <UserCard></UserCard>
+
                 <div className="col-lg-9">
                     <div className="container">
+
                         <div>
                             <TableTitle
                                 onClick={() => {

@@ -1,19 +1,19 @@
 import './App.css';
-import SotongRouter from "./router"
-import run from "./init/start"
-import { React,useEffect, useState} from 'react';
-
+import SotongRouter from './router';
+import run from './init/start';
+import 'antd/dist/antd.css';
+import { React, useEffect, useState } from 'react';
 
 function App() {
-  const [isRenew, setIsRenew] = useState(false) 
-  useEffect(()=>{
-    run().then((status)=>{
-      if(status){
-        setIsRenew(true)
+  const [isRenew, setIsRenew] = useState(false);
+  useEffect(() => {
+    run().then((status) => {
+      if (status) {
+        setIsRenew(true);
       }
-    })
-  }, [])
-  return (isRenew) ? (
+    });
+  }, []);
+  return isRenew ? (
     <>
       <SotongRouter />
     </>

@@ -1,7 +1,9 @@
 //NOTE CreateNotice CONTENT
 import React, { useCallback, useRef } from "react";
-import { MdTrackChanges } from "react-icons/md";
+
+import { PlusCircleFilled, CheckOutlined } from '@ant-design/icons';
 import styled from "styled-components";
+import { Input } from "antd";
 
 const CreateNoticeWrapper = styled.div`
   width: 100%;
@@ -302,6 +304,24 @@ const PreviewSwurl = styled.iframe.attrs((props) => ({
   margin-bottom: 3rem;
 `;
 
+// SECTION Form 제출
+const QuestionWrapper = styled.div`
+width : 100%auto;
+padding : 20px 0;
+height : auto;
+display : flex;
+justify-content : center;
+align-items : center;
+border : 2px #9baacf dashed;
+color : 94979c;
+font-weight : bold;
+border-radius :8px;
+cursor : pointer;
+`
+
+// !SECTION Form 제출
+
+// NOTE CreateNoticeContent
 const CreateNoticeContent = ({
   noticeData,
   handleTags,
@@ -309,6 +329,11 @@ const CreateNoticeContent = ({
   newTag,
   formSubmitOnclick,
   fileSubmitOnclick,
+
+  isAddQuestion,
+  isFormBtnClick,
+  handleAddQuestion,
+  questionsArr,
 }) => {
   const { title, swurl, tags } = noticeData;
 
@@ -378,13 +403,55 @@ const CreateNoticeContent = ({
             ></DateSelector>
           </DateWrapper>
 
+          <CreateDivider></CreateDivider>
+          {
+
+            // NOTE 질문 입력한거 보이게 
+
+
+
+            (isFormBtnClick) ?
+              (isAddQuestion) ?
+                <>
+                  <Input.Search placeholder="원하는 질문을 입력해 주세요"
+                    allowClear
+                    enterButton={<CheckOutlined />}
+                    onSearch={handleAddQuestion.AddQuestionSubmit}
+                    style={{ width: 300, paddingBottom: '20px' }}
+                  />
+                  <QuestionWrapper onClick={handleAddQuestion.AddQuestionFormDoor}>
+                    <PlusCircleFilled style={{ fontSize: '2rem', paddingRight: '1rem' }} />
+                    질문 추가하기
+                  </QuestionWrapper>
+                </>
+                :
+                <>
+                  <QuestionWrapper onClick={handleAddQuestion.AddQuestionFormDoor}>
+                    <PlusCircleFilled style={{ fontSize: '2rem', paddingRight: '1rem' }} />
+                    질문 추가하기
+                  </QuestionWrapper>
+                </>
+              : null
+
+
+          }
+
+
+
+
           <SubmitBtnWrapper>
             <SWBtn>SW중심대학사업단 </SWBtn>
             <div style={{
               display: "flex",
 
             }}>
-              <SubmitBtn onClick={formSubmitOnclick}>Form 제출</SubmitBtn>
+              {/*! <SubmitBtn onClick={formSubmitOnclick}>Form 제출</SubmitBtn>*/}
+              {
+                (isFormBtnClick) ?
+                  <SubmitBtn onClick={formSubmitOnclick}>Form 제출</SubmitBtn>
+                  :
+                  <SubmitBtn onClick={handleAddQuestion.FormBtnOnClick}>Form 만들기</SubmitBtn>
+              }
               <SubmitBtn onClick={fileSubmitOnclick}>File 제출</SubmitBtn>
             </div>
           </SubmitBtnWrapper>
