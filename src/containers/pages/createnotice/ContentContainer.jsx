@@ -148,7 +148,7 @@ const ContentContainer = () => {
         tag3: noticeData.tags[2] || null,
         startDay: noticeData.startDate,
         destDay: noticeData.endDate,
-        description: setQuestionPost() + '$$$',
+        description: setQuestionPost(),
       })
     )
       .then((res) => {
