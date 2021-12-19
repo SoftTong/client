@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import Modal from "../../components/atoms/Modal";
 
 const Test = ({
@@ -18,9 +18,30 @@ const Test = ({
       setSubmitModal(false);
     },
   };
+
   const [formModal, setFormModal] = useState(false);
+
+  const str = detailNoticeData.description;
+  console.log(str);
+  let arr = [];
+  if (str) {
+    arr = str.split("$$$");
+  }
+  console.log(arr);
+  console.log(arr.length);
+
   const handleFormModal = {
-    show: () => setFormModal(true),
+    show: () => {
+      setFormModal(true);
+      // const str = detailNoticeData.description;
+      // console.log(str);
+      // const arr2 = str.split("$$$");
+      // for (let i = 0; i < arr2.length; i++) {
+      //   arr[i] = arr2[i];
+      // }
+      // console.log(arr);
+      // console.log(arr.length);
+    },
     close: () => {
       setFormModal(false);
     },
@@ -68,61 +89,32 @@ const Test = ({
             >
               신청서 작성하기
             </button>
+
             <Modal
               closable={true}
               title={"신청서 작성하기"}
               visible={formModal}
               maskClosable={true}
               onClose={handleFormModal.close}
+              style={{ width: "200px", height: "200px", overflow: "scroll" }}
             >
-              <div className="uploadsection" style={{ overflow: "scroll" }}>
-                <div className="detail">
-                  <p>이름</p>
-                  <input type="text"></input>
-                </div>
-                <div className="detail">
-                  <p>학과</p>
-                  <div className="radiobtn">
-                    <input type="radio" name="major" />
-                    소프트웨어학과
-                  </div>
-                  <div className="radiobtn">
-                    <input type="radio" name="major" />
-                    정보통신공학부
-                  </div>
-                  <div className="radiobtn">
-                    <input type="radio" name="major" />
-                    컴퓨터공학과
-                  </div>
-                </div>
-                <div className="detail">
-                  <p>학년</p>
-                  <div className="radiobtn">
-                    <input type="radio" name="grade" />
-                    1학년
-                  </div>
-                  <div className="radiobtn">
-                    <input type="radio" name="grade" />
-                    2학년
-                  </div>
-                  <div className="radiobtn">
-                    <input type="radio" name="grade" />
-                    3학년
-                  </div>
-                  <div className="radiobtn">
-                    <input type="radio" name="grade" />
-                    4학년
-                  </div>
-                </div>
-                <div className="detail">
-                  <p>학번</p>
-                  <input type="text"></input>
-                </div>
-                <div className="detail">
-                  <p>연락처</p>
-                  <input type="text"></input>
-                </div>
+              <div className="uploadsection">
+                {arr.map((i, index) => {
+                  return (
+                    <div key={index}>
+                      <p>{arr[index]}</p>
+                      <input type="text"></input>
+                    </div>
+                  );
+                })}
               </div>
+              <button
+                className="sub-button detail-button"
+                style={{ justifyContent: "center" }}
+                // onClick={formSubmit}
+              >
+                신청서 제출하기
+              </button>
             </Modal>
           </div>
         ) : (
