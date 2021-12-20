@@ -101,82 +101,85 @@ const AdminPage = ({
     return (
         <>
             <MyPageWrapper>
-                <UserCard></UserCard>
+                {
 
-                <div className="col-lg-9">
-                    <div className="container">
+                    detailNoticeData.id === Number(id) ?
+                        <DetailTest
+                            detailNoticeData={detailNoticeData}
+                        ></DetailTest>
+                        :
+                        <>
+                            <UserCard></UserCard>
 
-                        <div>
-                            <TableTitle
-                                onClick={() => {
-                                    history.push("/adminpage")
-                                }}>MANAGE : 공지사항</TableTitle>
-                            {
-                                detailNoticeData.id === Number(id) ?
-                                    <DetailTest
-                                        detailNoticeData={detailNoticeData}
-                                    ></DetailTest>
-                                    :
-                                    <>
-                                        <Table>
-                                            <THead>
-                                                <HTr>
-                                                    <th className="col-sm-7">제목</th>
-                                                    <th className="col-sm-2">작성자</th>
-                                                    <th className="col-sm-3">작성일</th>
-                                                </HTr>
-                                            </THead>
+                            <div className="col-lg-9">
+                                <div className="container">
 
-                                            {pageList.map(
-                                                (
-                                                    { id, number, title, adminName, uploadDay, tag1, tag2, tag3 },
-                                                    index
-                                                ) => (
-                                                    <TBody
-                                                        key={index}
-                                                        onClick={() => {
-                                                            noticeDetailOnclick(id);
-                                                        }}
+                                    <div>
+                                        <TableTitle
+                                            onClick={() => {
+                                                history.push("/adminpage")
+                                            }}>MANAGE : 공지사항</TableTitle>
 
-                                                        className="table-content py-3 px-4 notice-wrapper row align-items-sm-center text-center text-dark important"
-                                                    >
-                                                        <tr>
-                                                            <td id={number} className="col-sm-7 thtitle">
-                                                                {title}
-                                                                <div className="tag">
-                                                                    {tag1 ? <span className="tagcategory">{tag1}</span> : null}
-                                                                    {tag2 ? <span className="tagcategory">{tag2}</span> : null}
-                                                                    {tag3 ? <span className="tagcategory">{tag3}</span> : null}
-                                                                </div>
-                                                            </td>
-                                                            <td id={number} className="col-sm-2">
-                                                                {adminName}
-                                                            </td>
-                                                            <td id={number} className="col-sm-3">
-                                                                {uploadDay}
-                                                            </td>
-                                                        </tr>
-                                                    </TBody>
-                                                )
-                                            )}
-                                        </Table>
-                                        <div className="pagination">
-                                            <ul>
-                                                {paginationNum.map((i, index) => {
-                                                    return (
-                                                        <li key={index} onClick={paginationOnclick}>
-                                                            {paginationNum[index]}
-                                                        </li>
-                                                    );
-                                                })}
-                                            </ul>
-                                        </div>
-                                    </>
-                            }
+                                        <>
+                                            <Table>
+                                                <THead>
+                                                    <HTr>
+                                                        <th className="col-sm-7">제목</th>
+                                                        <th className="col-sm-2">작성자</th>
+                                                        <th className="col-sm-3">작성일</th>
+                                                    </HTr>
+                                                </THead>
 
-                        </div>
-                    </div>
-                </div>
+                                                {pageList.map(
+                                                    (
+                                                        { id, number, title, adminName, uploadDay, tag1, tag2, tag3 },
+                                                        index
+                                                    ) => (
+                                                        <TBody
+                                                            key={index}
+                                                            onClick={() => {
+                                                                noticeDetailOnclick(id);
+                                                            }}
+
+                                                            className="table-content py-3 px-4 notice-wrapper row align-items-sm-center text-center text-dark important"
+                                                        >
+                                                            <tr>
+                                                                <td id={number} className="col-sm-7 thtitle">
+                                                                    {title}
+                                                                    <div className="tag">
+                                                                        {tag1 ? <span className="tagcategory">{tag1}</span> : null}
+                                                                        {tag2 ? <span className="tagcategory">{tag2}</span> : null}
+                                                                        {tag3 ? <span className="tagcategory">{tag3}</span> : null}
+                                                                    </div>
+                                                                </td>
+                                                                <td id={number} className="col-sm-2">
+                                                                    {adminName}
+                                                                </td>
+                                                                <td id={number} className="col-sm-3">
+                                                                    {uploadDay}
+                                                                </td>
+                                                            </tr>
+                                                        </TBody>
+                                                    )
+                                                )}
+                                            </Table>
+                                            <div className="pagination">
+                                                <ul>
+                                                    {paginationNum.map((i, index) => {
+                                                        return (
+                                                            <li key={index} onClick={paginationOnclick}>
+                                                                {paginationNum[index]}
+                                                            </li>
+                                                        );
+                                                    })}
+                                                </ul>
+                                            </div>
+                                        </>
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                }
             </MyPageWrapper>
         </>
     );

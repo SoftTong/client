@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import MyPageContent from "../../../components/adminpage";
 import get_noticedetail from "../../../service/api/get/get_noticedetail";
 import get_managenotice from "../../../service/api/get/get_managenotice";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import get_apply_notice_user from "../../../service/api/get/get_applynoticeuser";
 
 
 const ContentContainer = ({ role, name }) => {
@@ -32,12 +33,12 @@ const ContentContainer = ({ role, name }) => {
     const getnoticeList = (pickPageNum) => {
         get_managenotice(pickPageNum)
             .then((res) => {
-                console.log(res);
-                console.log(res.content);
-                console.log(res.totalPages);
-                setPageTotalNum(res.totalPages);
+                console.log(res.response);
+                console.log(res.response.content);
+                console.log(res.response.totalPages);
+                setPageTotalNum(res.response.totalPages);
                 setPageList([]);
-                res.content.forEach((lists) => {
+                res.response.content.forEach((lists) => {
                     setPageList((state) => [
                         ...state,
                         {
@@ -74,17 +75,18 @@ const ContentContainer = ({ role, name }) => {
         setDetailNoticeData((state) => ({ ...state, id: id }));
         get_noticedetail(id)
             .then((res) => {
-                console.log(res);
-                history.push("/adminpage/" + res.id + "/" + res.name.replace(/ /g, "-"));
+                console.log("🦷🦷")
+                console.log(res.response);
+                history.push("/adminpage/" + res.response.notice.id + "/" + res.response.notice.name.replace(/ /g, "-"));
                 setDetailNoticeData((state) => ({
                     ...state,
-                    title: res.name,
-                    tag1: res.tag1,
-                    tag2: res.tag2,
-                    tag3: res.tag3,
-                    startDay: res.startDay,
-                    destDay: res.destDay,
-                    swurl: res.swurl,
+                    title: res.response.notice.name,
+                    tag1: res.response.notice.tag1,
+                    tag2: res.response.notice.tag2,
+                    tag3: res.response.notice.tag3,
+                    startDay: res.response.notice.startDay,
+                    destDay: res.response.notice.destDay,
+                    swurl: res.response.notice.swurl,
                 }));
             })
             .catch((err) => {
@@ -92,6 +94,43 @@ const ContentContainer = ({ role, name }) => {
                 console.log("detail데이터 불러오기 실패");
             });
     };
+
+    const [applyUsersPageNum, setApplyUsersPageNum] = useState(1)
+    const [applyUsers, setApplyUsers] = useState([])
+
+    let notice_id_params = useParams();
+
+    /**
+              @description 관리자가 작성한 게시물에 지원한 지원서 정보들
+              @function getApplyGetUsers
+              */
+
+    useEffect(() => {
+        console.log("🤯🤯params")
+        console.log(notice_id_params)
+        console.log(notice_id_params.id)
+
+        console.log("🍰🍰");
+
+        if (notice_id_params.id) {
+            get_apply_notice_user(notice_id_params.id, applyUsersPageNum)
+                .then((res) => {
+                    console.log("😶‍🌫️😶‍🌫️")
+                    console.log(res.response);
+
+
+
+
+                })
+                .catch((err) => {
+                    console.log(err);
+                    console.log("detail데이터 불러오기 실패");
+                })
+
+        }
+
+
+    }, [applyUsersPageNum, detailNoticeData.id, notice_id_params])
 
 
     //!SECTION detailPage
@@ -112,6 +151,7 @@ const ContentContainer = ({ role, name }) => {
         @detail  pagination 클릭시 setPagingNum
         */
     const paginationOnclick = (e) => {
+
         setPagingNum(Number(e.target.innerText) - 1);
     }
 

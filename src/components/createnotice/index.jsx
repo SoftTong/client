@@ -333,7 +333,8 @@ const CreateNoticeContent = ({
   isAddQuestion,
   isFormBtnClick,
   handleAddQuestion,
-  questionsArr,
+  questionValue,
+  inputQuestionOnChange,
 }) => {
   const { title, swurl, tags } = noticeData;
 
@@ -400,6 +401,7 @@ const CreateNoticeContent = ({
               min={`${noticeData.startDate}` || null}
               defaultValue={noticeData.endDate}
               onChange={createNoticeFunction.endDate}
+
             ></DateSelector>
           </DateWrapper>
 
@@ -415,6 +417,8 @@ const CreateNoticeContent = ({
                 <>
                   <Input.Search placeholder="원하는 질문을 입력해 주세요"
                     allowClear
+                    value={questionValue}
+                    onChange={inputQuestionOnChange}
                     enterButton={<CheckOutlined />}
                     onSearch={handleAddQuestion.AddQuestionSubmit}
                     style={{ width: 300, paddingBottom: '20px' }}
@@ -429,6 +433,7 @@ const CreateNoticeContent = ({
                   <QuestionWrapper onClick={handleAddQuestion.AddQuestionFormDoor}>
                     <PlusCircleFilled style={{ fontSize: '2rem', paddingRight: '1rem' }} />
                     질문 추가하기
+
                   </QuestionWrapper>
                 </>
               : null
