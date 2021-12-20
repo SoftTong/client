@@ -98,6 +98,7 @@ const ContentContainer = () => {
           destDay: res.response.notice.destDay,
           swurl: res.response.notice.swurl,
           isForm: res.response.notice.isForm,
+          description: res.response.notice.description,
         }));
       })
       .catch((err) => {

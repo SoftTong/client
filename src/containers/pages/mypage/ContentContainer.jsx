@@ -141,6 +141,7 @@ const ContentContainer = ({ role, name }) => {
   const applyList = (pickPageNum) => {
     get_applylist(pickPageNum)
       .then((res) => {
+        console.log("===");
         console.log(res);
         console.log(res.response.content);
         console.log(res.response.totalPages);

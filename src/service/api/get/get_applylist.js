@@ -1,4 +1,4 @@
-import _ from '../../../config/env';
+import _ from "../../../config/env";
 
 /**
  * @description 프로그램 신청목록 Data 받아오기
@@ -8,14 +8,15 @@ import _ from '../../../config/env';
  */
 
 const get_applylist = (pageNum) => {
-  return fetch(_.SERVER_URL + '/notice/managers/' + Number(pageNum), {
-    method: 'GET',
+  return fetch(_.SERVER_URL + "/apply/" + Number(pageNum), {
+    method: "GET",
     headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('SoTong-token'),
+      Authorization: "Bearer " + localStorage.getItem("SoTong-token"),
     },
   })
     .then((res) => {
-      if (res.status === 500) throw Promise.resolve({ errorCode: 500, errorName: 'Server error' });
+      if (res.status === 500)
+        throw Promise.resolve({ errorCode: 500, errorName: "Server error" });
       if (!res.ok) throw res.json();
       console.log(res);
       return res.json();
@@ -23,7 +24,12 @@ const get_applylist = (pageNum) => {
     .catch(async (error) => {
       let err = await error.then();
       console.log(err);
-      console.log('Error from  get_applylist\n' + err.message + '\n success : ' + err.success);
+      console.log(
+        "Error from  get_applylist\n" +
+          err.message +
+          "\n success : " +
+          err.success
+      );
       throw err;
     });
 };
