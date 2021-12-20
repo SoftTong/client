@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import NoticeListContent from "../../../components/noticelist";
 import get_noticelist from "../../../service/api/get/get_noticelist";
 import get_noticedetail from "../../../service/api/get/get_noticedetail";
-import postUploadFile from "../../../service/api/post/post_upload_file";
+import post_uploadFile from "../../../service/api/post/post_upload_file";
+import post_submitForm from "../../../service/api/post/post_submit_form";
 import { useHistory } from "react-router-dom";
 
 const ContentContainer = () => {
@@ -99,6 +100,7 @@ const ContentContainer = () => {
           swurl: res.response.notice.swurl,
           isForm: res.response.notice.isForm,
           description: res.response.notice.description,
+          questionId: res.response.notice.questionId,
         }));
       })
       .catch((err) => {
@@ -124,13 +126,14 @@ const ContentContainer = () => {
     console.log(formData);
     setUploadfile(formData);
   };
+
   /**
     @description   첨부파일 버튼 OnClick 
     @function uploadButtonOnclick
     @btnValue 제출하기
     @detail  requestData 형식으로 맞추고 post  */
   const uploadOnclick = () => {
-    postUploadFile(uploadfile)
+    post_uploadFile(uploadfile)
       .then((res) => {
         console.log("첨부파일 업로드 성공");
         console.log(res + ": 첨부파일 업로드 ");
@@ -140,11 +143,54 @@ const ContentContainer = () => {
       .catch((err) => console.log(err + ": 에러"));
   };
 
+  /**
+    @description   신청서 제출 버튼 OnClick 
+    @function uploadButtonOnclick
+    @btnValue 제출하기
+    @detail  requestData 형식으로 맞추고 post  */
+  // const [content, setContent] = useState();
+  const submitFormOnclick = () => {
+    console.log(answerArr);
+    const newanswerArr = [];
+    for (let i = 0; i < Object.keys(answerArr).length; i++) {
+      newanswerArr[i] = answerArr[i];
+    }
+    console.log(newanswerArr);
+    var answerStr = newanswerArr.join("$$$");
+    console.log(answerStr);
+
+    post_submitForm(
+      detailNoticeData.questionId,
+      JSON.stringify({
+        content: answerStr,
+      })
+    )
+      .then((res) => {
+        console.log("신청서 제출 성공");
+        console.log(res);
+        history.push("../../mypage");
+      })
+      .catch((err) => console.log(err));
+  };
+
   //검색기능
   const handleChangeWord = (e) => {
     setSearchWord(e.target.value);
     setPagingNum(0);
     console.log(searchWord);
+  };
+
+  //배열 넣기
+
+  const [answer, setAnswer] = useState("");
+  const [answerArr, setAnswerArr] = useState([]);
+
+  const submitForm = (e, index) => {
+    console.log(e.target.value);
+    setAnswer(e.target.value);
+    console.log(answer);
+    setAnswerArr({ ...answerArr, [index]: answer });
+    console.log(answerArr);
   };
 
   const listback = () => {
@@ -168,6 +214,7 @@ const ContentContainer = () => {
         paginationOnclick={paginationOnclick}
         detailNoticeData={detailNoticeData}
         uploadOnclick={uploadOnclick}
+        submitFormOnclick={submitFormOnclick}
         uploadfile={uploadfile}
         selectFile={selectFile}
         searchWord={searchWord}
@@ -175,6 +222,8 @@ const ContentContainer = () => {
         listback={listback}
         noticeListLikeHandler={noticeListLikeHandler}
         islike={islike}
+        submitForm={submitForm}
+        answerArr={answerArr}
       ></NoticeListContent>
     </>
   );
