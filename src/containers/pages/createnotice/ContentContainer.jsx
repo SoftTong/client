@@ -113,6 +113,9 @@ const ContentContainer = () => {
 
   const [questionValue, setQuestionValue] = useState('')
 
+  const inputQuestionOnChange = (e) => {
+    setQuestionValue(e.target.value)
+  }
 
   const handleAddQuestion = {
 
@@ -124,6 +127,7 @@ const ContentContainer = () => {
       isAddQuestion ? setIsAddQuestion(false) : setIsAddQuestion(true)
     },
     AddQuestionSubmit: (value) => {
+      setQuestionValue('')
       setQuestionsArr((state) => ([...state, value]))
     }
   }
@@ -148,7 +152,7 @@ const ContentContainer = () => {
         tag3: noticeData.tags[2] || null,
         startDay: noticeData.startDate,
         destDay: noticeData.endDate,
-        description: setQuestionPost(),
+        description: setQuestionPost()
       })
     )
       .then((res) => {
@@ -178,6 +182,9 @@ const ContentContainer = () => {
         formSubmitOnclick={formSubmitOnclick}
         fileSubmitOnclick={fileSubmitOnclick}
 
+
+        questionValue={questionValue}
+        inputQuestionOnChange={inputQuestionOnChange}
         isAddQuestion={isAddQuestion}
         isFormBtnClick={isFormBtnClick}
         handleAddQuestion={handleAddQuestion}
