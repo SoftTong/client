@@ -27,26 +27,43 @@ const Test = (props) => {
         console.log("파일 다운로드 실패");
       });
   };
+  console.log(props.applyDetailData);
 
-  return (
-    <div>
-      <div className="section">
-        <iframe
-          src={props.applyDetailData.noticeUrl}
-          width="100%"
-          height="650px"
-        ></iframe>
+  if (props.applyDetailData.dtype == "file") {
+    return (
+      <div>
+        <div className="section">
+          <iframe
+            src={props.applyDetailData.noticeUrl}
+            width="100%"
+            height="650px"
+          ></iframe>
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <button onClick={download} className="sub-button">
+            신청서 다운로드
+          </button>
+          <button onClick={cancel} className="sub-button">
+            프로그램 신청 취소
+          </button>
+        </div>
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <button onClick={download} className="sub-button">
-          신청서 다운로드
-        </button>
-        <button onClick={cancel} className="sub-button">
-          프로그램 신청 취소
-        </button>
+    );
+  } else if (props.applyDetailData.dtype == "form") {
+    return (
+      <div>
+        <div className="section">
+          <iframe
+            src={props.applyDetailData.noticeUrl}
+            width="100%"
+            height="650px"
+          ></iframe>
+        </div>
+        <p>{props.applyDetailData.question}</p>{" "}
+        <p>{props.applyDetailData.answer}</p>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Test;

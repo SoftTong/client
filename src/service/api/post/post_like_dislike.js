@@ -1,17 +1,20 @@
 import _ from "../../../config/env";
 
 /**
- * @description 신청목록 detail 정보 받아오기
- * @method GET
+ * @description  좋아요 기능
+ * @method POST
  * @request @headers  SoTong-token
+ * @request @body requestData
  * @response
  */
-
-const get_applydetail = (applyId) => {
-  return fetch(_.SERVER_URL + "/apply/detail/" + Number(applyId), {
-    method: "GET",
+const like_dislike = (noticeId) => {
+  console.log("requestdata");
+  console.log(typeof requestData);
+  return fetch(_.SERVER_URL + "/notice/like/" + Number(noticeId), {
+    method: "POST",
     headers: {
       Authorization: "Bearer " + localStorage.getItem("SoTong-token"),
+      "Content-Type": "application/json",
     },
   })
     .then((res) => {
@@ -25,13 +28,14 @@ const get_applydetail = (applyId) => {
       let err = await error.then();
       console.log(err);
       console.log(
-        "Error from  get_noticedetail\n" +
+        "Error from  submit_form\n" +
           err.message +
           "\n success : " +
           err.success
       );
       throw err;
     });
+  //}
 };
 
-export default get_applydetail;
+export default like_dislike;

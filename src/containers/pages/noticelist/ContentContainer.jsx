@@ -4,6 +4,7 @@ import get_noticelist from "../../../service/api/get/get_noticelist";
 import get_noticedetail from "../../../service/api/get/get_noticedetail";
 import post_uploadFile from "../../../service/api/post/post_upload_file";
 import post_submitForm from "../../../service/api/post/post_submit_form";
+import post_like_dislike from "../../../service/api/post/post_like_dislike";
 import { useHistory } from "react-router-dom";
 
 const ContentContainer = () => {
@@ -197,12 +198,16 @@ const ContentContainer = () => {
     //목록이동
     history.push("/notice/");
   };
-
   const [islike, setIslike] = useState(false);
-
-  const noticeListLikeHandler = () => {
-    alert("관심목록에 추가하였습니다.");
-    setIslike(!islike);
+  const noticeListLikeHandler = (id) => {
+    post_like_dislike(id)
+      .then((res) => {
+        alert("관심목록에 추가하였습니다.");
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("apply detail데이터 불러오기 실패");
+      });
   };
 
   return (
