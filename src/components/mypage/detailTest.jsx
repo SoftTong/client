@@ -50,6 +50,11 @@ const Test = (props) => {
       </div>
     );
   } else if (props.applyDetailData.dtype == "form") {
+    const questionArray = props.applyDetailData.question.split("$$$");
+    const answerArray = props.applyDetailData.answer.split("$$$");
+
+    console.log(questionArray);
+    console.log(answerArray);
     return (
       <div>
         <div className="section">
@@ -59,8 +64,54 @@ const Test = (props) => {
             height="650px"
           ></iframe>
         </div>
-        <p>{props.applyDetailData.question}</p>{" "}
-        <p>{props.applyDetailData.answer}</p>
+        <div style={{ display: "flex", width: "100%", paddingTop: "50px" }}>
+          <div style={{ width: "50%" }}>
+            {questionArray.map((question, index) => {
+              return (
+                <div
+                  style={{
+                    height: "30px",
+                    margin: "10px",
+                    paddingLeft: "20px",
+                  }}
+                >
+                  {" "}
+                  <strong>{questionArray[index]}</strong>
+                </div>
+              );
+            })}
+          </div>
+
+          <div style={{ width: "50%" }}>
+            {answerArray.map((answer, index) => {
+              return (
+                <div
+                  style={{
+                    width: "80%",
+                    height: "30px",
+                    margin: "10px",
+                    paddingLeft: "10px",
+                    border: "1px solid black",
+                  }}
+                >
+                  {answerArray[index]}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            paddingTop: "30px",
+            justifyContent: "center",
+          }}
+        >
+          <button onClick={cancel} className="sub-button">
+            프로그램 신청 취소
+          </button>
+        </div>
       </div>
     );
   }
