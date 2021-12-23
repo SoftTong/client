@@ -58,7 +58,6 @@ const TableTitle = styled.div`
     margin-top : 20px;
     width: 100%;
     height: 50px;
-    background-color: rgb(233, 233, 233);
     border-bottom: black;
     padding-left: 20px;
     font-size: 25px;
@@ -104,15 +103,12 @@ const TBody = styled.tbody`
     margin-left: 0px !important;
     margin-right: 0px !important;
     height : auto;
-    &:hover {
-        color : #1071ae;
-        font-weight : 700;
-    }
+  
  `
 
 const BTd = styled.td`
  text-align: center;
-  border-bottom: 1px rgb(167, 167, 167) solid;
+  border-bottom: 1px rgb(239 239 239) solid;
     font-size: 0.9rem;
     font-weight: normal;
     font-stretch: normal;
@@ -157,9 +153,30 @@ const TBodyStatus = styled.span`
     }
   }}
 `
+const FormQnAWrapper = styled.div`
+ 
+  padding: 16px;
+  display : flex;
+justify-content : space-around;
+align-items : center;
+`
+const QuestionAnswerBox = styled.div`
+  display : flex;
+  justify-content : center;
+  align-items : center;
+`
 
+const QuestionBox = styled.div`
+font-size : 1rem;
+margin-right : 5px;
+color: #000000d9;
 
-
+font-weight : bold;
+`
+const AnswerBox = styled.div`
+font-size : 1rem;
+color: #0000009e;
+`
 
 const AdminDetailPage = ({ detailNoticeData,
   applyUsers,
@@ -174,7 +191,6 @@ const AdminDetailPage = ({ detailNoticeData,
 
 
 }) => {
-
 
 
   return (
@@ -209,7 +225,7 @@ const AdminDetailPage = ({ detailNoticeData,
 
             }}>
             지원자 정보
-            <Button onClick={noticeDeleteOnClick} danger style={{ marginRight: '20px', padding: '5px 20px' }}>게시글 삭제</Button>
+            <Button onClick={noticeDeleteOnClick} danger style={{ padding: '5px 20px' }}>게시글 삭제</Button>
           </TableTitle>
 
 
@@ -226,71 +242,136 @@ const AdminDetailPage = ({ detailNoticeData,
 
               }}
             >
-              {applyUsers.map(
-                (
-                  { userId, userName, status, userFileTitle, userFilePath, applyId },
-                  index
-                ) => (
-                  <>
-                    <tr key={applyId}>
 
-                      <BTd  >
-                        <UserIdTag>{userId}</UserIdTag>
-                        {userName}{applyId}
-                        <DownloadWrapper>
-                          <Tooltip placement="right" title="클릭 시 파일이 다운됩니다.">
-                            <FileDownload onClick={() => { downloadFileOnClick(userFilePath) }}>
-                              {userFileTitle}
-                              <DownloadOutlined style={{ color: '#9baacf' }} />
-                            </FileDownload>
-                          </Tooltip>
-                        </DownloadWrapper>
-                      </BTd>
+              {
 
-                      <BTd >
-                        <TBodyStatus types={status}>{status}</TBodyStatus>
-                        <Button type="dashed" onClick={() => { statusBtnOnClick(applyId) }} >
-                          상태변경
-                        </Button>
-                        <Modal closable={true} title={"신청자 상태 수정하기"}
-                          visible={isStatusModalVisible}
-                          maskClosable={true}
-                          onClose={handleStatusModal.close}>
-                          <Row>
-                            <Col span={12}>원하는 상태를 클릭해 주세요.</Col>
-                            <Col span={12}>
-                              <TBodyStatus btn onClick={() => { statusChangeOnClick.wait() }} types={"wait"}>Wait</TBodyStatus>
-                              <TBodyStatus btn onClick={() => { statusChangeOnClick.confirm() }} types={"confirm"}>Confirm</TBodyStatus>
-                              <TBodyStatus btn onClick={() => { statusChangeOnClick.reject() }} types={"reject"}>Reject</TBodyStatus>
-                            </Col>
-                          </Row>
-                        </Modal>
-                      </BTd>
-                    </tr>
+                applyUsers.map(
+                  (
+                    { userId, userName, status, userFileTitle, userFilePath, applyId, isForm,
+                      question, answer }
+                  ) => (
+                    (isForm) ?
+                      // NOTE form
+                      <>
+                        <tr>
+
+                          <BTd  >
+                            <UserIdTag>{userId}</UserIdTag>
+                            {userName}{applyId}
 
 
-                  </>
-                )
+                          </BTd>
 
-              )}
+                          <BTd >
+                            <TBodyStatus types={status}>{status}</TBodyStatus>
+                            <Button type="dashed" onClick={() => { statusBtnOnClick(applyId) }} >
+                              상태변경
+                            </Button>
+                            <Modal closable={true} title={"신청자 상태 수정하기"}
+                              visible={isStatusModalVisible}
+                              maskClosable={true}
+                              onClose={handleStatusModal.close}>
+                              <Row>
+                                <Col span={12}>원하는 상태를 클릭해 주세요.</Col>
+                                <Col span={12}>
+                                  <TBodyStatus btn onClick={() => { statusChangeOnClick.wait() }} types={"wait"}>Wait</TBodyStatus>
+                                  <TBodyStatus btn onClick={() => { statusChangeOnClick.confirm() }} types={"confirm"}>Confirm</TBodyStatus>
+                                  <TBodyStatus btn onClick={() => { statusChangeOnClick.reject() }} types={"reject"}>Reject</TBodyStatus>
+                                </Col>
+                              </Row>
+                            </Modal>
+                          </BTd>
+                        </tr>
+
+                        <tr>
+                          <td colspan="2" style={{ backgroundColor: 'rgb(239 239 239)', borderBottom: '1px rgb(131, 131, 131) solid' }} >
+                            <FormQnAWrapper>
+                              {
+                                question.map((questions, index) => {
+                                  return (
+                                    <>
+                                      <QuestionAnswerBox key={index}>
+                                        <QuestionBox >{questions} </QuestionBox>
+                                        <AnswerBox >{answer[index]}</AnswerBox>
+
+                                      </QuestionAnswerBox>
+
+                                    </>
+                                  )
+                                })
+                              }
+
+                            </FormQnAWrapper>
+                          </td>
+                        </tr>
+                      </>
+                      :
+                      <>
+
+                        <tr key={applyId}>
+
+                          <BTd  >
+                            <UserIdTag>{userId}</UserIdTag>
+                            {userName}{applyId}
+                            <DownloadWrapper>
+                              <Tooltip placement="right" title="클릭 시 파일이 다운됩니다.">
+                                <FileDownload onClick={() => { downloadFileOnClick(userFilePath) }}>
+                                  {userFileTitle}
+                                  <DownloadOutlined style={{ color: '#9baacf' }} />
+                                </FileDownload>
+                              </Tooltip>
+                            </DownloadWrapper>
+                          </BTd>
+
+                          <BTd >
+                            <TBodyStatus types={status}>{status}</TBodyStatus>
+                            <Button type="dashed" onClick={() => { statusBtnOnClick(applyId) }} >
+                              상태변경
+                            </Button>
+                            <Modal closable={true} title={"신청자 상태 수정하기"}
+                              visible={isStatusModalVisible}
+                              maskClosable={true}
+                              onClose={handleStatusModal.close}>
+                              <Row>
+                                <Col span={12}>원하는 상태를 클릭해 주세요.</Col>
+                                <Col span={12}>
+                                  <TBodyStatus btn onClick={() => { statusChangeOnClick.wait() }} types={"wait"}>Wait</TBodyStatus>
+                                  <TBodyStatus btn onClick={() => { statusChangeOnClick.confirm() }} types={"confirm"}>Confirm</TBodyStatus>
+                                  <TBodyStatus btn onClick={() => { statusChangeOnClick.reject() }} types={"reject"}>Reject</TBodyStatus>
+                                </Col>
+                              </Row>
+                            </Modal>
+                          </BTd>
+                        </tr>
+
+
+                      </>
+                  )
+
+                )}
             </TBody>
           </Table>
 
 
+          {
+            (applyUsers) ?
+              <div className="pagination">
+                <ul>
+                  {
+                    userPaginationNum.map((i, index) => {
+                      return (
+                        <li key={i} onClick={userPaginationOnClick}>
+                          {userPaginationNum[index]}
+                        </li>
+                      )
+                    })
+                  }
+                </ul>
+              </div>
+              :
+              null
+          }
 
-          <div className="pagination">
-            <ul>
-              {
-                userPaginationNum.map((i, index) => {
-                  return (
-                    <li key={i} onClick={userPaginationOnClick}>
-                      {userPaginationNum[index]}
-                    </li>
-                  )
-                })
-              }
-            </ul>
-          </div>
         </Col>
       </Row>
 

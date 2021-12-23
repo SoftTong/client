@@ -335,6 +335,9 @@ const CreateNoticeContent = ({
   handleAddQuestion,
   questionValue,
   inputQuestionOnChange,
+  questionsArr,
+
+
 }) => {
   const { title, swurl, tags } = noticeData;
 
@@ -493,6 +496,11 @@ const CreateNoticeContent = ({
               올바른 주소 입력시 게시글에 미리보기를 확인할 수 있습니다.
             </WarningTag>
           )}
+          {
+            questionsArr.map((questions) => (
+              <h2>{questions}</h2>
+            ))
+          }
         </PreviewArea>
         {/*! SECTION 게시글  */}
       </CreateNoticeWrapper>
