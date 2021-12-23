@@ -82,14 +82,14 @@ const ContentContainer = ({
         email === userProfile.email
           ? console.log("바뀐게없음")
           : patchUserInfo(JSON.stringify({ email: userProfile.email }))
-              .then((res) => {
-                console.log(res);
-                updateUserProfileRedux.email();
-              })
-              .catch((err) => {
-                console.log(err);
-                setUserProfile((state) => ({ ...state, email: email }));
-              }),
+            .then((res) => {
+              console.log(res);
+              updateUserProfileRedux.email();
+            })
+            .catch((err) => {
+              console.log(err);
+              setUserProfile((state) => ({ ...state, email: email }));
+            }),
         setShowEmail(false)
       );
     }
@@ -112,19 +112,19 @@ const ContentContainer = ({
         phone_number === userProfile.phone_number
           ? console.log("바뀐게없음")
           : patchUserInfo(
-              JSON.stringify({ phoneNumber: userProfile.phone_number })
-            )
-              .then((res) => {
-                console.log(res);
-                updateUserProfileRedux.phone_number();
-              })
-              .catch((err) => {
-                console.log(err);
-                setUserProfile((state) => ({
-                  ...state,
-                  phone_number: phone_number,
-                }));
-              }),
+            JSON.stringify({ phoneNumber: userProfile.phone_number })
+          )
+            .then((res) => {
+              console.log(res);
+              updateUserProfileRedux.phone_number();
+            })
+            .catch((err) => {
+              console.log(err);
+              setUserProfile((state) => ({
+                ...state,
+                phone_number: phone_number,
+              }));
+            }),
         setShowPhone(false)
       );
     }

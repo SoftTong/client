@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import UserCard from "../../containers/redux/components/usercard";
-import DetailTest from "./detailTest"
-import { useParams, useHistory } from 'react-router-dom';
 
+import AdminDetailPage from "./adminDetailPage"
+import { useParams, useHistory } from 'react-router-dom';
+import { Row, Col } from 'antd';
 
 const MyPageWrapper = styled.div`
   width: 100%;
@@ -93,6 +94,16 @@ const AdminPage = ({
     noticeDetailOnclick,
     paginationOnclick,
     detailNoticeData,
+    applyUsers,
+    userPaginationNum,
+    userPaginationOnClick,
+    isStatusModalVisible,
+    handleStatusModal,
+    statusBtnOnClick,
+    downloadFileOnClick,
+    statusChangeOnClick,
+    noticeDeleteOnClick,
+
 }) => {
     const history = useHistory();
 
@@ -100,87 +111,91 @@ const AdminPage = ({
 
     return (
         <>
-            <MyPageWrapper>
+            <Row>
                 {
-
                     detailNoticeData.id === Number(id) ?
-                        <DetailTest
-                            detailNoticeData={detailNoticeData}
-                        ></DetailTest>
+                        <Col span={24}>
+                            <AdminDetailPage
+                                statusChangeOnClick={statusChangeOnClick}
+                                downloadFileOnClick={downloadFileOnClick}
+                                isStatusModalVisible={isStatusModalVisible}
+                                handleStatusModal={handleStatusModal}
+                                statusBtnOnClick={statusBtnOnClick}
+                                detailNoticeData={detailNoticeData}
+                                applyUsers={applyUsers}
+                                userPaginationNum={userPaginationNum}
+                                userPaginationOnClick={userPaginationOnClick}
+                                noticeDeleteOnClick={noticeDeleteOnClick}
+                            ></AdminDetailPage>
+                        </Col>
                         :
-                        <>
-                            <UserCard></UserCard>
+                        <Col span={24}>
 
-                            <div className="col-lg-9">
-                                <div className="container">
+                            <>
+                                <TableTitle
+                                    onClick={() => {
+                                        history.push("/adminpage")
+                                    }}>MANAGE : 공지사항</TableTitle>
 
-                                    <div>
-                                        <TableTitle
-                                            onClick={() => {
-                                                history.push("/adminpage")
-                                            }}>MANAGE : 공지사항</TableTitle>
+                                <>
+                                    <Table>
+                                        <THead>
+                                            <HTr>
+                                                <th className="col-sm-7">제목</th>
+                                                <th className="col-sm-2">작성자</th>
+                                                <th className="col-sm-3">작성일</th>
+                                            </HTr>
+                                        </THead>
 
-                                        <>
-                                            <Table>
-                                                <THead>
-                                                    <HTr>
-                                                        <th className="col-sm-7">제목</th>
-                                                        <th className="col-sm-2">작성자</th>
-                                                        <th className="col-sm-3">작성일</th>
-                                                    </HTr>
-                                                </THead>
+                                        {pageList.map(
+                                            (
+                                                { id, number, title, adminName, uploadDay, tag1, tag2, tag3 },
+                                                index
+                                            ) => (
+                                                <TBody
+                                                    key={index}
+                                                    onClick={() => {
+                                                        noticeDetailOnclick(id);
+                                                    }}
 
-                                                {pageList.map(
-                                                    (
-                                                        { id, number, title, adminName, uploadDay, tag1, tag2, tag3 },
-                                                        index
-                                                    ) => (
-                                                        <TBody
-                                                            key={index}
-                                                            onClick={() => {
-                                                                noticeDetailOnclick(id);
-                                                            }}
-
-                                                            className="table-content py-3 px-4 notice-wrapper row align-items-sm-center text-center text-dark important"
-                                                        >
-                                                            <tr>
-                                                                <td id={number} className="col-sm-7 thtitle">
-                                                                    {title}
-                                                                    <div className="tag">
-                                                                        {tag1 ? <span className="tagcategory">{tag1}</span> : null}
-                                                                        {tag2 ? <span className="tagcategory">{tag2}</span> : null}
-                                                                        {tag3 ? <span className="tagcategory">{tag3}</span> : null}
-                                                                    </div>
-                                                                </td>
-                                                                <td id={number} className="col-sm-2">
-                                                                    {adminName}
-                                                                </td>
-                                                                <td id={number} className="col-sm-3">
-                                                                    {uploadDay}
-                                                                </td>
-                                                            </tr>
-                                                        </TBody>
-                                                    )
-                                                )}
-                                            </Table>
-                                            <div className="pagination">
-                                                <ul>
-                                                    {paginationNum.map((i, index) => {
-                                                        return (
-                                                            <li key={index} onClick={paginationOnclick}>
-                                                                {paginationNum[index]}
-                                                            </li>
-                                                        );
-                                                    })}
-                                                </ul>
-                                            </div>
-                                        </>
+                                                    className="table-content py-3 px-4 notice-wrapper row align-items-sm-center text-center text-dark important"
+                                                >
+                                                    <tr>
+                                                        <td id={number} className="col-sm-7 thtitle">
+                                                            {title}
+                                                            <div className="tag">
+                                                                {tag1 ? <span className="tagcategory">{tag1}</span> : null}
+                                                                {tag2 ? <span className="tagcategory">{tag2}</span> : null}
+                                                                {tag3 ? <span className="tagcategory">{tag3}</span> : null}
+                                                            </div>
+                                                        </td>
+                                                        <td id={number} className="col-sm-2">
+                                                            {adminName}
+                                                        </td>
+                                                        <td id={number} className="col-sm-3">
+                                                            {uploadDay}
+                                                        </td>
+                                                    </tr>
+                                                </TBody>
+                                            )
+                                        )}
+                                    </Table>
+                                    <div className="pagination">
+                                        <ul>
+                                            {paginationNum.map((i, index) => {
+                                                return (
+                                                    <li key={index} onClick={paginationOnclick}>
+                                                        {paginationNum[index]}
+                                                    </li>
+                                                );
+                                            })}
+                                        </ul>
                                     </div>
-                                </div>
-                            </div>
-                        </>
+                                </>
+                            </>
+                        </Col>
                 }
-            </MyPageWrapper>
+            </Row>
         </>
     );
 };

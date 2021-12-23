@@ -69,7 +69,7 @@ const LoginBtn = styled.div`
   }
 `;
 
-const LogIn = ({ settingLogInFunction, logInInfo, LoginBtnOnclick }) => {
+const LogIn = ({ settingLogInFunction, logInInfo, LoginBtnOnclick, LoginEnterOnPress }) => {
   const { userId, password } = logInInfo;
   // console.log(logInInfo)
   return (
@@ -96,7 +96,7 @@ const LogIn = ({ settingLogInFunction, logInInfo, LoginBtnOnclick }) => {
           ></LogInTextBox>
         </LoginItem>
         <LoginItem>
-          <LoginBtn onClick={LoginBtnOnclick}>로그인</LoginBtn>
+          <LoginBtn onKeyPress={LoginEnterOnPress} onClick={LoginBtnOnclick}>로그인</LoginBtn>
         </LoginItem>
       </LoginWrapper>
     </>
