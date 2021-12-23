@@ -164,32 +164,49 @@ const ContentContainer = ({ role, name }) => {
       .catch((err) => console.log(err));
   };
 
-  const [applyDetailData, setApplyDetailData] = useState({
-    id: "",
-  });
+  const [applyDetailData, setApplyDetailData] = useState({});
   const history = useHistory();
   const applyDetailOnclick = (id, dtype) => {
     console.log("===");
     console.log(id);
 
-    setApplyDetailData((state) => ({ ...state, id: id }));
-    get_applydetail(id, dtype)
+    // setApplyDetailData((state) => ({ ...state, id: id }));
+    get_applydetail(id)
       .then((res) => {
-        console.log(res);
+        console.log(dtype);
+        if (dtype == "file") {
+          console.log(res);
 
-        setfilePath(res.response.filePath);
+          setfilePath(res.response.filePath);
 
-        history.push("/mypage/" + res.response.applyId);
-        setApplyDetailData((state) => ({
-          ...state,
-          id: res.response.applyId,
-          title: res.response.noticeTitle,
-          status: res.response.status,
-          uploadDay: res.response.uploadDay.substring(0, 10),
-          dtype: res.response.dtype,
-          noticeUrl: res.response.noticeUrl,
-        }));
-        applydetailHandling.show();
+          history.push("/mypage/" + res.response.applyId);
+          setApplyDetailData((state) => ({
+            ...state,
+            id: res.response.applyId,
+            title: res.response.noticeTitle,
+            status: res.response.status,
+            uploadDay: res.response.uploadDay.substring(0, 10),
+            dtype: res.response.dtype,
+            noticeUrl: res.response.noticeUrl,
+          }));
+          applydetailHandling.show();
+        } else if (dtype == "form") {
+          console.log(res);
+
+          history.push("/mypage/" + res.response.applyId);
+          setApplyDetailData((state) => ({
+            ...state,
+            id: res.response.applyId,
+            title: res.response.noticeTitle,
+            status: res.response.status,
+            uploadDay: res.response.uploadDay.substring(0, 10),
+            dtype: res.response.dtype,
+            noticeUrl: res.response.noticeUrl,
+            question: res.response.question,
+            answer: res.response.answer,
+          }));
+          applydetailHandling.show();
+        }
       })
       .catch((err) => {
         console.log(err);

@@ -4,9 +4,12 @@ import Modal from "../../components/atoms/Modal";
 const Test = ({
   detailNoticeData,
   uploadOnclick,
+  submitFormOnclick,
   uploadfile,
   selectFile,
   listback,
+  submitForm,
+  answerArr,
 }) => {
   console.log("DetailTest");
   console.log(detailNoticeData);
@@ -103,15 +106,21 @@ const Test = ({
                   return (
                     <div key={index}>
                       <p>{arr[index]}</p>
-                      <input type="text"></input>
+                      <input
+                        type="text"
+                        name={index}
+                        // value={answerArr[index]}
+                        onChange={(e) => submitForm(e, index)}
+                      ></input>
                     </div>
                   );
                 })}
               </div>
+
               <button
                 className="sub-button detail-button"
                 style={{ justifyContent: "center" }}
-                // onClick={formSubmit}
+                onClick={submitFormOnclick}
               >
                 신청서 제출하기
               </button>

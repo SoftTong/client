@@ -11,6 +11,7 @@ const NoticeList = ({
   detailNoticeData,
   paginationOnclick,
   uploadOnclick,
+  submitFormOnclick,
   uploadfile,
   selectFile,
   searchWord,
@@ -18,6 +19,8 @@ const NoticeList = ({
   listback,
   noticeListLikeHandler,
   islike,
+  submitForm,
+  answerArr,
 }) => {
   const history = useHistory();
 
@@ -43,10 +46,12 @@ const NoticeList = ({
           <DetailTest
             detailNoticeData={detailNoticeData}
             uploadOnclick={uploadOnclick}
-            uploadOnclick={uploadOnclick}
+            submitFormOnclick={submitFormOnclick}
             uploadfile={uploadfile}
             selectFile={selectFile}
             listback={listback}
+            submitForm={submitForm}
+            answerArr={answerArr}
           ></DetailTest>
         ) : (
           <>

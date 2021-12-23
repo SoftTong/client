@@ -42,6 +42,7 @@ const MyPageContent = ({
 }) => {
   console.log(applyPageinationNum);
   console.log(role);
+  console.log(applyDetailData);
   return (
     <>
       <MyPageWrapper>

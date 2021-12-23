@@ -9,6 +9,7 @@ const NoticeListContent = ({
   detailNoticeData,
   paginationOnclick,
   uploadOnclick,
+  submitFormOnclick,
   uploadfile,
   selectFile,
   searchWord,
@@ -16,6 +17,8 @@ const NoticeListContent = ({
   listback,
   noticeListLikeHandler,
   islike,
+  submitForm,
+  answerArr,
 }) => {
   return (
     <>
@@ -29,6 +32,7 @@ const NoticeListContent = ({
             detailNoticeData={detailNoticeData}
             paginationOnclick={paginationOnclick}
             uploadOnclick={uploadOnclick}
+            submitFormOnclick={submitFormOnclick}
             uploadfile={uploadfile}
             selectFile={selectFile}
             seachWord={searchWord}
@@ -36,6 +40,8 @@ const NoticeListContent = ({
             listback={listback}
             noticeListLikeHandler={noticeListLikeHandler}
             islike={islike}
+            submitForm={submitForm}
+            answerArr={answerArr}
           ></NoticeList>
         </div>
       </div>
