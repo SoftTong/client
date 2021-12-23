@@ -8,14 +8,19 @@ import _ from '../../../config/env';
  * @response
  */
 
-const patch_userStatus = (userId, userStatus) => {
-  return fetch(_.SERVER_URL + '/apply/status/' + userId, {
+const patch_userStatus = (userApplyId, userStatus) => {
+  const bodyRequest = JSON.stringify({
+    status: userStatus,
+  });
+  console.log(bodyRequest);
+  console.log(userApplyId);
+  return fetch(_.SERVER_URL + '/apply/status/' + Number(userApplyId), {
     method: 'PATCH',
     headers: {
-      'Content-type': 'application/json',
+      'Content-Type': 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem('SoTong-token'),
     },
-    body: userStatus,
+    body: bodyRequest,
   })
     .then((res) => {
       if (res.status === 500) throw Promise.resolve({ errorCode: 500, errorName: 'Server error' });

@@ -66,7 +66,8 @@ const TableTitle = styled.div`
     color: rgb(148, 148, 148);
     align-items: center;
     display: flex;
-    cursor : pointer;
+    justify-content : space-between;
+    cursor : default;
 `
 
 const Table = styled.table`
@@ -131,16 +132,17 @@ const TBodyStatus = styled.span`
     opacity: 1;
     transition: all .3s;
     text-transform: uppercase;
-   
+    cursor : default;
+    ${props => (props.btn ? `cursor : pointer ` : null)};
     ${props => {
     switch (props.types) {
-      case "Confirm":
+      case "confirm":
         return `
           color: #1d39c4;
           background: #f0f5ff;
           border-color: #adc6ff;
           `
-      case "Reject":
+      case "reject":
         return `
           color: #d4380d;
           background: #fff2e8;
@@ -167,7 +169,8 @@ const AdminDetailPage = ({ detailNoticeData,
   handleStatusModal,
   statusBtnOnClick,
   downloadFileOnClick,
-  statusChangeOnClick
+  statusChangeOnClick,
+  noticeDeleteOnClick,
 
 
 }) => {
@@ -181,6 +184,7 @@ const AdminDetailPage = ({ detailNoticeData,
       <Row>
         <Col span={24}>
           <h2>{detailNoticeData.title}</h2>
+
         </Col>
         <Col span={24}>
           {detailNoticeData.tag1 ? (
@@ -203,7 +207,9 @@ const AdminDetailPage = ({ detailNoticeData,
           <TableTitle
             onClick={() => {
 
-            }}>지원자 정보
+            }}>
+            지원자 정보
+            <Button onClick={noticeDeleteOnClick} danger style={{ marginRight: '20px', padding: '5px 20px' }}>게시글 삭제</Button>
           </TableTitle>
 
 
@@ -222,15 +228,15 @@ const AdminDetailPage = ({ detailNoticeData,
             >
               {applyUsers.map(
                 (
-                  { userId, userName, status, userFileTitle, userFilePath },
+                  { userId, userName, status, userFileTitle, userFilePath, applyId },
                   index
                 ) => (
                   <>
-                    <tr key={index}>
+                    <tr key={applyId}>
 
                       <BTd  >
                         <UserIdTag>{userId}</UserIdTag>
-                        {userName}
+                        {userName}{applyId}
                         <DownloadWrapper>
                           <Tooltip placement="right" title="클릭 시 파일이 다운됩니다.">
                             <FileDownload onClick={() => { downloadFileOnClick(userFilePath) }}>
@@ -243,7 +249,7 @@ const AdminDetailPage = ({ detailNoticeData,
 
                       <BTd >
                         <TBodyStatus types={status}>{status}</TBodyStatus>
-                        <Button type="dashed" onClick={() => { statusBtnOnClick(userFileTitle) }} >
+                        <Button type="dashed" onClick={() => { statusBtnOnClick(applyId) }} >
                           상태변경
                         </Button>
                         <Modal closable={true} title={"신청자 상태 수정하기"}
@@ -253,9 +259,9 @@ const AdminDetailPage = ({ detailNoticeData,
                           <Row>
                             <Col span={12}>원하는 상태를 클릭해 주세요.</Col>
                             <Col span={12}>
-                              <TBodyStatus onClick={() => { statusChangeOnClick.wait(userId) }} types={"Wait"}>Wait</TBodyStatus>
-                              <TBodyStatus onClick={() => { statusChangeOnClick.confirm(userId) }} types={"Confirm"}>Confirm</TBodyStatus>
-                              <TBodyStatus onClick={() => { statusChangeOnClick.reject(userId) }} types={"Reject"}>Reject</TBodyStatus>
+                              <TBodyStatus btn onClick={() => { statusChangeOnClick.wait() }} types={"wait"}>Wait</TBodyStatus>
+                              <TBodyStatus btn onClick={() => { statusChangeOnClick.confirm() }} types={"confirm"}>Confirm</TBodyStatus>
+                              <TBodyStatus btn onClick={() => { statusChangeOnClick.reject() }} types={"reject"}>Reject</TBodyStatus>
                             </Col>
                           </Row>
                         </Modal>
@@ -275,9 +281,9 @@ const AdminDetailPage = ({ detailNoticeData,
           <div className="pagination">
             <ul>
               {
-                userPaginationNum.map((index) => {
+                userPaginationNum.map((i, index) => {
                   return (
-                    <li key={index} onClick={userPaginationOnClick}>
+                    <li key={i} onClick={userPaginationOnClick}>
                       {userPaginationNum[index]}
                     </li>
                   )

@@ -101,7 +101,9 @@ const AdminPage = ({
     handleStatusModal,
     statusBtnOnClick,
     downloadFileOnClick,
-    statusChangeOnClick
+    statusChangeOnClick,
+    noticeDeleteOnClick,
+
 }) => {
     const history = useHistory();
 
@@ -123,6 +125,7 @@ const AdminPage = ({
                                 applyUsers={applyUsers}
                                 userPaginationNum={userPaginationNum}
                                 userPaginationOnClick={userPaginationOnClick}
+                                noticeDeleteOnClick={noticeDeleteOnClick}
                             ></AdminDetailPage>
                         </Col>
                         :

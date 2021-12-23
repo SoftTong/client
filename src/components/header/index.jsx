@@ -258,25 +258,23 @@ const Header = ({
               >
                 PROFILE
               </ListValue>
-              {role === "ADMIN" ||
-                //FIXME role 수정후 삭제
-                phone_number === "01036296541" ? (
-                <ListValue
-                  onClick={() => {
-                    history.push("/adminpage");
-                  }}
-                >
-                  adminpage
-                </ListValue>
-              ) : (
-                <ListValue
-                  onClick={() => {
-                    history.push("/mypage");
-                  }}
-                >
-                  MYPAGE
-                </ListValue>
-              )}
+
+              <ListValue
+                onClick={() => {
+                  history.push("/adminpage");
+                }}
+              >
+                adminpage
+              </ListValue>
+
+
+              <ListValue
+                onClick={() => {
+                  history.push("/mypage");
+                }}
+              >
+                MYPAGE
+              </ListValue>
 
               <ListValue
                 onClick={() => {

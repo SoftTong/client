@@ -7,6 +7,7 @@ import get_apply_notice_user from "../../../service/api/get/get_applynoticeuser"
 import get_filedownload from "../../../service/api/get/get_filedownload";
 import patch_status from "../../../service/api/patch/patch_status"
 import { notification } from "antd";
+import delete_notice from "../../../service/api/delete/delete_notice";
 
 const ContentContainer = ({ role, name }) => {
     //NOTE 전체 페이지 갯수
@@ -25,9 +26,12 @@ const ContentContainer = ({ role, name }) => {
     const [applyUserPagingNum, setApplyUserPagingNum] = useState(0);
 
 
+
     useEffect(() => {
         getnoticeList(0);
-        setPagingNum(0)
+        setPagingNum(0);
+        setApplyUserPagingNum(0)
+
     }, [])
 
     useEffect(() => {
@@ -64,6 +68,47 @@ const ContentContainer = ({ role, name }) => {
             })
             .catch((err) => console.log(err));
     };
+
+
+    //SECTION pagination
+    const paginationNum = [];
+
+    // pageTotalNum setting
+    for (let i = 0; i < pageTotalNum; i++) {
+        paginationNum.push(i + 1);
+    }
+
+    /**
+        @description pagingNum 변경
+        @function paginationOnclick
+        @detail  pagination 클릭시 setPagingNum
+        */
+    const paginationOnclick = (e) => {
+
+        setPagingNum(Number(e.target.innerText) - 1);
+    }
+
+    let userPaginationNum = [];
+
+
+
+
+    for (let userIndex = 0; userIndex < applyUserPageTotalNum; userIndex++) {
+        userPaginationNum.push(userIndex + 1);
+    }
+
+
+
+
+
+
+    const userPaginationOnClick = (e) => {
+        setApplyUserPagingNum(Number(e.target.innerText) - 1);
+    }
+
+
+
+    //!SECTION pagination
 
 
     //SECTION detailPage
@@ -104,22 +149,8 @@ const ContentContainer = ({ role, name }) => {
             });
     };
 
-    const [applyUsersPageNum, setApplyUsersPageNum] = useState(0)
     const [applyUsers, setApplyUsers] = useState([
-        {
-            userName: "이채은",
-            userId: "201734",
-            userFileTitle: "user test.txt",
-            userFilePath: "782512c4-6d00-46ba-af62-e40e57a15784.txt",
-            status: "wait",
-        },
-        {
-            userName: "지드래곤",
-            userId: "20173df4",
-            userFileTitle: "user test2.txt",
-            userFilePath: "782512c4-6d00-46ba-af62-e40e57a157842.txt",
-            status: "wait",
-        }
+
     ])
 
     let notice_id_params = useParams();
@@ -133,31 +164,54 @@ const ContentContainer = ({ role, name }) => {
         close: () => setIsStatusModalVisible(false),
     };
 
-    const statusBtnOnClick = (id) => {
+    // NOTE status바꾸기위한 userApplyId 저장
+    const [statusApplyUserId, setStatusApplyUserId] = useState(null)
+
+    const statusBtnOnClick = (applyId) => {
         console.log("🤯🤯")
         // console.log(e.target)
-        console.log(id)
+        console.log(applyId)
+        setStatusApplyUserId(applyId)
         handleStatusModal.show()
     }
 
+
     // NOTE here
     const statusChangeOnClick = {
-        wait: (userId) => {
-            console.log("🤯🤯")
-            patch_status(userId, "wait")
+        wait: () => {
+            console.log("🤯🤯 applyId")
+            console.log(statusApplyUserId)
+            patch_status(statusApplyUserId, "wait")
                 .then((res) => {
                     console.log(res)
                     notification['success']({
                         message: `wait로 업데이트 완료 `,
                         description: '업데이트 성공',
                     })
-                    if (applyUsers.filter(users => users.userId === userId)) {
-                        setApplyUsers((state) => ([{
-                            ...state,
-                            status: "wait"
+                    get_apply_notice_user(notice_id_params.id, applyUserPagingNum)
+                        .then((res) => {
+                            setApplyUsers([])
+                            console.log(res.response);
+                            setApplyUserPageTotalNum(res.response.totalPages);
 
-                        }]))
-                    }
+                            res.response.content.forEach((users) => {
+                                setApplyUsers((state) => ([...state,
+                                {
+                                    userName: users.memberName,
+                                    userId: users.userId,
+                                    userFileTitle: users.fileName,
+                                    userFilePath: users.filePath,
+                                    status: users.status,
+                                    applyId: users.applyId
+                                }
+                                ]))
+                            })
+
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            console.log("detail데이터 불러오기 실패");
+                        })
 
 
                 })
@@ -169,8 +223,8 @@ const ContentContainer = ({ role, name }) => {
                     })
                 })
         },
-        confirm: (userId) => {
-            patch_status(userId, "confirm")
+        confirm: () => {
+            patch_status(statusApplyUserId, "confirm")
                 .then((res) => {
                     console.log(res)
                     notification['success']({
@@ -178,13 +232,28 @@ const ContentContainer = ({ role, name }) => {
                         description: '업데이트 성공',
                     })
 
-                    if (applyUsers.filter(users => users.userId === userId)) {
-                        setApplyUsers((state) => ([{
-                            ...state,
-                            status: "wait"
-
-                        }]))
-                    }
+                    get_apply_notice_user(notice_id_params.id, applyUserPagingNum)
+                        .then((res) => {
+                            console.log(res.response);
+                            setApplyUsers([])
+                            setApplyUserPageTotalNum(res.response.totalPages);
+                            res.response.content.forEach((users) => {
+                                setApplyUsers((state) => ([...state,
+                                {
+                                    userName: users.memberName,
+                                    userId: users.userId,
+                                    userFileTitle: users.fileName,
+                                    userFilePath: users.filePath,
+                                    status: users.status,
+                                    applyId: users.applyId
+                                }
+                                ]))
+                            })
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            console.log("detail데이터 불러오기 실패");
+                        })
 
                 })
                 .catch((err) => {
@@ -195,8 +264,8 @@ const ContentContainer = ({ role, name }) => {
                     })
                 })
         },
-        reject: (userId) => {
-            patch_status(userId, "reject")
+        reject: () => {
+            patch_status(statusApplyUserId, "reject")
                 .then((res) => {
                     console.log(res)
                     notification['success']({
@@ -204,13 +273,28 @@ const ContentContainer = ({ role, name }) => {
                         description: '업데이트 성공',
                     })
 
-                    if (applyUsers.filter(users => users.userId === userId)) {
-                        setApplyUsers((state) => ([{
-                            ...state,
-                            status: "wait"
-
-                        }]))
-                    }
+                    get_apply_notice_user(notice_id_params.id, applyUserPagingNum)
+                        .then((res) => {
+                            setApplyUsers([])
+                            console.log(res.response);
+                            setApplyUserPageTotalNum(res.response.totalPages);
+                            res.response.content.forEach((users) => {
+                                setApplyUsers((state) => ([...state,
+                                {
+                                    userName: users.memberName,
+                                    userId: users.userId,
+                                    userFileTitle: users.fileName,
+                                    userFilePath: users.filePath,
+                                    status: users.status,
+                                    applyId: users.applyId
+                                }
+                                ]))
+                            })
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            console.log("detail데이터 불러오기 실패");
+                        })
 
                 })
                 .catch((err) => {
@@ -230,6 +314,10 @@ const ContentContainer = ({ role, name }) => {
         console.log(path)
         get_filedownload(path)
             .then((res) => {
+                notification['success']({
+                    message: `파일다운로드하기✅ `,
+                    description: '다운로드성공',
+                })
                 console.log("파일다운로드하기✅")
                 console.log(res)
             })
@@ -250,13 +338,17 @@ const ContentContainer = ({ role, name }) => {
         console.log(notice_id_params)
         console.log(notice_id_params.id)
 
+
         if (notice_id_params.id) {
-
-
-            get_apply_notice_user(notice_id_params.id, applyUsersPageNum)
+            setApplyUsers([])
+            get_apply_notice_user(notice_id_params.id, applyUserPagingNum)
                 .then((res) => {
                     console.log("😶‍🌫️😶‍🌫️")
                     console.log(res.response);
+                    console.log(res.response.content[0].isForm)
+
+                    setApplyUsers([])
+
                     setApplyUserPageTotalNum(res.response.totalPages);
                     res.response.content.forEach((users) => {
                         setApplyUsers((state) => ([...state,
@@ -265,13 +357,11 @@ const ContentContainer = ({ role, name }) => {
                             userId: users.userId,
                             userFileTitle: users.fileName,
                             userFilePath: users.filePath,
-                            status: users.status
+                            status: users.status,
+                            applyId: users.applyId
                         }
                         ]))
                     })
-
-
-
                 })
                 .catch((err) => {
                     console.log(err);
@@ -281,44 +371,36 @@ const ContentContainer = ({ role, name }) => {
         }
 
 
-    }, [applyUsersPageNum, detailNoticeData.id, notice_id_params])
+    }, [applyUserPagingNum, detailNoticeData.id, notice_id_params])
 
+    //NOTE 게시글 삭제
+    const noticeDeleteOnClick = () => {
+        //detailNoticeData.id
+        delete_notice(detailNoticeData.id)
+            .then((res) => {
+                console.log(res)
+                notification['success']({
+                    message: `게시글 삭제 성공 `,
+                    description: `${detailNoticeData.title}게시글 삭제`,
+                })
+                history.push('/adminpage')
+            })
+            .catch((err) => {
+                console.log(err)
+                notification['error']({
+                    message: `게시글 삭제 실패 `,
+                    description: `${detailNoticeData.title}게시글 삭제 실패 다시 시도해 주세요.`,
+                })
+            })
+    }
 
     //!SECTION detailPage
 
 
 
-    //SECTION pagination
-    const paginationNum = [];
-
-    // pageTotalNum setting
-    for (let i = 0; i < pageTotalNum; i++) {
-        paginationNum.push(i + 1);
-    }
-
-    /**
-        @description pagingNum 변경
-        @function paginationOnclick
-        @detail  pagination 클릭시 setPagingNum
-        */
-    const paginationOnclick = (e) => {
-
-        setPagingNum(Number(e.target.innerText) - 1);
-    }
-
-    const userPaginationNum = [];
-
-    for (let userIndex = 0; userIndex < userPaginationNum; userIndex++) {
-        userPaginationNum.push(userIndex + 1);
-    }
-
-    const userPaginationOnClick = (e) => {
-        setApplyUserPagingNum(Number(e.target.innerText) - 1);
-    }
 
 
 
-    //!SECTION pagination
     return (
         <>
             <MyPageContent
@@ -331,6 +413,7 @@ const ContentContainer = ({ role, name }) => {
                 applyUsers={applyUsers}
                 userPaginationNum={userPaginationNum}
                 userPaginationOnClick={userPaginationOnClick}
+                noticeDeleteOnClick={noticeDeleteOnClick}
 
                 isStatusModalVisible={isStatusModalVisible}
                 handleStatusModal={handleStatusModal}
