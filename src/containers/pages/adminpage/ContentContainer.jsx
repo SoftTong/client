@@ -4,7 +4,9 @@ import get_noticedetail from "../../../service/api/get/get_noticedetail";
 import get_managenotice from "../../../service/api/get/get_managenotice";
 import { useHistory, useParams } from "react-router-dom";
 import get_apply_notice_user from "../../../service/api/get/get_applynoticeuser";
-
+import get_filedownload from "../../../service/api/get/get_filedownload";
+import patch_status from "../../../service/api/patch/patch_status"
+import { notification } from "antd";
 
 const ContentContainer = ({ role, name }) => {
     //NOTE 전체 페이지 갯수
@@ -15,6 +17,13 @@ const ContentContainer = ({ role, name }) => {
 
     //NOTE 10개씩 세팅되는 리스트
     const [pageList, setPageList] = useState([]);
+
+    //NOTE 신청한 유저 전체 페이지 갯수
+    const [applyUserPageTotalNum, setApplyUserPageTotalNum] = useState(0);
+
+    //NOTE 신청한 유저 선택한 페이지 번호
+    const [applyUserPagingNum, setApplyUserPagingNum] = useState(0);
+
 
     useEffect(() => {
         getnoticeList(0);
@@ -95,29 +104,171 @@ const ContentContainer = ({ role, name }) => {
             });
     };
 
-    const [applyUsersPageNum, setApplyUsersPageNum] = useState(1)
-    const [applyUsers, setApplyUsers] = useState([])
+    const [applyUsersPageNum, setApplyUsersPageNum] = useState(0)
+    const [applyUsers, setApplyUsers] = useState([
+        {
+            userName: "이채은",
+            userId: "201734",
+            userFileTitle: "user test.txt",
+            userFilePath: "782512c4-6d00-46ba-af62-e40e57a15784.txt",
+            status: "wait",
+        },
+        {
+            userName: "지드래곤",
+            userId: "20173df4",
+            userFileTitle: "user test2.txt",
+            userFilePath: "782512c4-6d00-46ba-af62-e40e57a157842.txt",
+            status: "wait",
+        }
+    ])
 
     let notice_id_params = useParams();
 
+
+    // NOTE 관리자가 지원서 status 상태 변경
+    const [isStatusModalVisible, setIsStatusModalVisible] = useState(false)
+
+    const handleStatusModal = {
+        show: () => setIsStatusModalVisible(true),
+        close: () => setIsStatusModalVisible(false),
+    };
+
+    const statusBtnOnClick = (id) => {
+        console.log("🤯🤯")
+        // console.log(e.target)
+        console.log(id)
+        handleStatusModal.show()
+    }
+
+    // NOTE here
+    const statusChangeOnClick = {
+        wait: (userId) => {
+            console.log("🤯🤯")
+            patch_status(userId, "wait")
+                .then((res) => {
+                    console.log(res)
+                    notification['success']({
+                        message: `wait로 업데이트 완료 `,
+                        description: '업데이트 성공',
+                    })
+                    if (applyUsers.filter(users => users.userId === userId)) {
+                        setApplyUsers((state) => ([{
+                            ...state,
+                            status: "wait"
+
+                        }]))
+                    }
+
+
+                })
+                .catch((err) => {
+                    console.log(err)
+                    notification['error']({
+                        message: `wait로 업데이트 실패 😥 `,
+                        description: '새로고침 후 다시 시도해 주세요',
+                    })
+                })
+        },
+        confirm: (userId) => {
+            patch_status(userId, "confirm")
+                .then((res) => {
+                    console.log(res)
+                    notification['success']({
+                        message: `confirm로 업데이트 완료 `,
+                        description: '업데이트 성공',
+                    })
+
+                    if (applyUsers.filter(users => users.userId === userId)) {
+                        setApplyUsers((state) => ([{
+                            ...state,
+                            status: "wait"
+
+                        }]))
+                    }
+
+                })
+                .catch((err) => {
+                    console.log(err)
+                    notification['error']({
+                        message: `confirm로 업데이트 실패 😥 `,
+                        description: '새로고침 후 다시 시도해 주세요',
+                    })
+                })
+        },
+        reject: (userId) => {
+            patch_status(userId, "reject")
+                .then((res) => {
+                    console.log(res)
+                    notification['success']({
+                        message: `reject로 업데이트 완료 `,
+                        description: '업데이트 성공',
+                    })
+
+                    if (applyUsers.filter(users => users.userId === userId)) {
+                        setApplyUsers((state) => ([{
+                            ...state,
+                            status: "wait"
+
+                        }]))
+                    }
+
+                })
+                .catch((err) => {
+                    console.log(err)
+                    notification['error']({
+                        message: `reject로 업데이트 실패 😥 `,
+                        description: '새로고침 후 다시 시도해 주세요',
+                    })
+                })
+        }
+
+    }
+
+
+    const downloadFileOnClick = (path) => {
+        console.log("👑👑")
+        console.log(path)
+        get_filedownload(path)
+            .then((res) => {
+                console.log("파일다운로드하기✅")
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err);
+                console.log("파일다운로드하기✅실패");
+            })
+    }
+
+
     /**
-              @description 관리자가 작성한 게시물에 지원한 지원서 정보들
-              @function getApplyGetUsers
-              */
+    @description 관리자가 작성한 게시물에 지원한 지원서 정보들
+    @function getApplyGetUsers
+    */
 
     useEffect(() => {
         console.log("🤯🤯params")
         console.log(notice_id_params)
         console.log(notice_id_params.id)
 
-        console.log("🍰🍰");
-
         if (notice_id_params.id) {
+
+
             get_apply_notice_user(notice_id_params.id, applyUsersPageNum)
                 .then((res) => {
                     console.log("😶‍🌫️😶‍🌫️")
                     console.log(res.response);
-
+                    setApplyUserPageTotalNum(res.response.totalPages);
+                    res.response.content.forEach((users) => {
+                        setApplyUsers((state) => ([...state,
+                        {
+                            userName: users.memberName,
+                            userId: users.userId,
+                            userFileTitle: users.fileName,
+                            userFilePath: users.filePath,
+                            status: users.status
+                        }
+                        ]))
+                    })
 
 
 
@@ -155,6 +306,17 @@ const ContentContainer = ({ role, name }) => {
         setPagingNum(Number(e.target.innerText) - 1);
     }
 
+    const userPaginationNum = [];
+
+    for (let userIndex = 0; userIndex < userPaginationNum; userIndex++) {
+        userPaginationNum.push(userIndex + 1);
+    }
+
+    const userPaginationOnClick = (e) => {
+        setApplyUserPagingNum(Number(e.target.innerText) - 1);
+    }
+
+
 
     //!SECTION pagination
     return (
@@ -165,6 +327,16 @@ const ContentContainer = ({ role, name }) => {
                 noticeDetailOnclick={noticeDetailOnclick}
                 detailNoticeData={detailNoticeData}
                 paginationOnclick={paginationOnclick}
+
+                applyUsers={applyUsers}
+                userPaginationNum={userPaginationNum}
+                userPaginationOnClick={userPaginationOnClick}
+
+                isStatusModalVisible={isStatusModalVisible}
+                handleStatusModal={handleStatusModal}
+                downloadFileOnClick={downloadFileOnClick}
+                statusBtnOnClick={statusBtnOnClick}
+                statusChangeOnClick={statusChangeOnClick}
             ></MyPageContent>
         </>
     )

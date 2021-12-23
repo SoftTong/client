@@ -31,7 +31,9 @@ margin-bottom : 12px;
 
 
 
-const Container = ({ isSignUpModal,
+const Container = ({
+    LoginEnterOnPress,
+    isSignUpModal,
     handleSignUpModal,
     LoginBtnOnclick,
     SignupBtnOnclick,
@@ -63,7 +65,7 @@ const Container = ({ isSignUpModal,
                     </> :
                     <>
                         {/* <div className = "SignBtn" onClick={handleSignUp} > SignUp</div> */}
-                        <LogIn settingLogInFunction={settingLogInFunction}
+                        <LogIn LoginEnterOnPress={LoginEnterOnPress} settingLogInFunction={settingLogInFunction}
                             logInInfo={logInInfo} LoginBtnOnclick={LoginBtnOnclick}></LogIn>
                         <DividerText>계정이 없으신가요?</DividerText>
                         <LoginBtn onClick={handleSignUpModal.show}>회원가입</LoginBtn>

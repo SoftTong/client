@@ -210,6 +210,13 @@ const Header = ({
     });
     handleLoginModal.close();
   };
+
+  const LoginEnterOnPress = (e) => {
+    if (e.key === 'Enter')
+      console.log("희안")
+    return LoginBtnOnclick()
+  }
+
   const SignupBtnOnclick = () => {
     SignupProcess(signUpInfo);
     handleLoginModal.close();
@@ -252,8 +259,8 @@ const Header = ({
                 PROFILE
               </ListValue>
               {role === "ADMIN" ||
-              //FIXME role 수정후 삭제
-              phone_number === "01036296541" ? (
+                //FIXME role 수정후 삭제
+                phone_number === "01036296541" ? (
                 <ListValue
                   onClick={() => {
                     history.push("/adminpage");
@@ -304,6 +311,7 @@ const Header = ({
                     onClose={handleLoginModal.close}
                   >
                     <Account
+                      LoginEnterOnPress={LoginEnterOnPress}
                       isSignUpModal={isSignUpModal}
                       handleSignUpModal={handleSignUpModal}
                       LoginBtnOnclick={LoginBtnOnclick}
