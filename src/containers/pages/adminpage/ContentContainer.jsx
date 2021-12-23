@@ -62,6 +62,7 @@ const ContentContainer = ({ role, name }) => {
                             tag3: lists.tag3,
                             adminName: lists.authorName,
                             uploadDay: lists.uploadDay.substring(0, 10),
+                            dtype: lists.dtype
                         },
                     ]);
                 });
@@ -126,6 +127,7 @@ const ContentContainer = ({ role, name }) => {
            */
     const noticeDetailOnclick = (id) => {
         console.log(id);
+        setDetailNoticeData({})
         setDetailNoticeData((state) => ({ ...state, id: id }));
         get_noticedetail(id)
             .then((res) => {
@@ -141,6 +143,8 @@ const ContentContainer = ({ role, name }) => {
                     startDay: res.response.notice.startDay,
                     destDay: res.response.notice.destDay,
                     swurl: res.response.notice.swurl,
+                    isForm: res.response.notice.isForm,
+
                 }));
             })
             .catch((err) => {
@@ -155,6 +159,11 @@ const ContentContainer = ({ role, name }) => {
 
     let notice_id_params = useParams();
 
+    //NOTE Question 
+    const questionSetting = (userQuestion) => {
+        const arrQuestion = userQuestion.split("$$$")
+        return arrQuestion;
+    }
 
     // NOTE 관리자가 지원서 status 상태 변경
     const [isStatusModalVisible, setIsStatusModalVisible] = useState(false)
@@ -193,7 +202,25 @@ const ContentContainer = ({ role, name }) => {
                             setApplyUsers([])
                             console.log(res.response);
                             setApplyUserPageTotalNum(res.response.totalPages);
-
+                            if (detailNoticeData.isForm) {
+                                console.log("🍔🍔")
+                                console.log(detailNoticeData.isForm)
+                                return res.response.content.forEach((users) => {
+                                    setApplyUsers((state) => ([...state,
+                                    {
+                                        userName: users.memberName,
+                                        userId: users.userId,
+                                        userFileTitle: users.fileName,
+                                        userFilePath: users.filePath,
+                                        status: users.status,
+                                        applyId: users.applyId,
+                                        question: questionSetting(users.question),
+                                        answer: questionSetting(users.answer),
+                                        isForm: users.isForm,
+                                    }
+                                    ]))
+                                })
+                            }
                             res.response.content.forEach((users) => {
                                 setApplyUsers((state) => ([...state,
                                 {
@@ -237,6 +264,25 @@ const ContentContainer = ({ role, name }) => {
                             console.log(res.response);
                             setApplyUsers([])
                             setApplyUserPageTotalNum(res.response.totalPages);
+                            if (detailNoticeData.isForm) {
+                                console.log("🍔🍔")
+                                console.log(detailNoticeData.isForm)
+                                return res.response.content.forEach((users) => {
+                                    setApplyUsers((state) => ([...state,
+                                    {
+                                        userName: users.memberName,
+                                        userId: users.userId,
+                                        userFileTitle: users.fileName,
+                                        userFilePath: users.filePath,
+                                        status: users.status,
+                                        applyId: users.applyId,
+                                        question: questionSetting(users.question),
+                                        answer: questionSetting(users.answer),
+                                        isForm: users.isForm,
+                                    }
+                                    ]))
+                                })
+                            }
                             res.response.content.forEach((users) => {
                                 setApplyUsers((state) => ([...state,
                                 {
@@ -278,6 +324,26 @@ const ContentContainer = ({ role, name }) => {
                             setApplyUsers([])
                             console.log(res.response);
                             setApplyUserPageTotalNum(res.response.totalPages);
+                            if (detailNoticeData.isForm) {
+                                console.log("🍔🍔")
+                                console.log(detailNoticeData.isForm)
+                                return res.response.content.forEach((users) => {
+                                    setApplyUsers((state) => ([...state,
+                                    {
+                                        userName: users.memberName,
+                                        userId: users.userId,
+                                        userFileTitle: users.fileName,
+                                        userFilePath: users.filePath,
+                                        status: users.status,
+                                        applyId: users.applyId,
+                                        question: questionSetting(users.question),
+                                        answer: questionSetting(users.answer),
+                                        isForm: users.isForm,
+                                    }
+                                    ]))
+                                })
+                            }
+
                             res.response.content.forEach((users) => {
                                 setApplyUsers((state) => ([...state,
                                 {
@@ -340,16 +406,37 @@ const ContentContainer = ({ role, name }) => {
 
 
         if (notice_id_params.id) {
+
+
             setApplyUsers([])
             get_apply_notice_user(notice_id_params.id, applyUserPagingNum)
                 .then((res) => {
                     console.log("😶‍🌫️😶‍🌫️")
                     console.log(res.response);
-                    console.log(res.response.content[0].isForm)
-
+                    console.log("isFOrm");
+                    console.log(detailNoticeData.isForm)
                     setApplyUsers([])
-
                     setApplyUserPageTotalNum(res.response.totalPages);
+                    if (detailNoticeData.isForm) {
+                        console.log("🍔🍔")
+                        console.log(detailNoticeData.isForm)
+                        return res.response.content.forEach((users) => {
+                            setApplyUsers((state) => ([...state,
+                            {
+                                userName: users.memberName,
+                                userId: users.userId,
+                                userFileTitle: users.fileName,
+                                userFilePath: users.filePath,
+                                status: users.status,
+                                applyId: users.applyId,
+                                question: questionSetting(users.question),
+                                answer: questionSetting(users.answer),
+                                isForm: users.isForm,
+                            }
+                            ]))
+                        })
+                    }
+                    console.log("🍕🍕")
                     res.response.content.forEach((users) => {
                         setApplyUsers((state) => ([...state,
                         {
@@ -371,7 +458,7 @@ const ContentContainer = ({ role, name }) => {
         }
 
 
-    }, [applyUserPagingNum, detailNoticeData.id, notice_id_params])
+    }, [applyUserPagingNum, detailNoticeData.id, detailNoticeData.isForm, notice_id_params])
 
     //NOTE 게시글 삭제
     const noticeDeleteOnClick = () => {
